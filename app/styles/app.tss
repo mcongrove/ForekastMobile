@@ -1,0 +1,32 @@
+"Window": {
+	backgroundColor: "#FFF",
+	barColor: "#3E4252",
+	backButtonTitle: "",
+	titleAttributes: {
+		color: "#FFF"
+	},
+	orientationModes: [
+		Ti.UI.PORTRAIT
+	]
+},
+"Window[platform=ios]": {
+	statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	navTintColor: "#FFF",
+	tintColor: "#3E4252"
+},
+"Label": {
+	color: "#3E4252",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Regular"
+	},
+	textAlign: "left",
+	height: Ti.UI.SIZE
+},
+"Button": {
+	color: "#3E4252",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Regular"
+	}
+}

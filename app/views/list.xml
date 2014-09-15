@@ -1,0 +1,253 @@
+<Alloy>
+	<Window id="ListWindow">
+		<LeftNavButton platform="ios">
+			<Button image="images/icon_add.png" />
+		</LeftNavButton>
+		
+		<RightNavButton platform="ios">
+			<Button image="images/icon_settings.png" />
+		</RightNavButton>
+		
+		<View class="container">
+			<ScrollView id="DateNav">
+				<View class="dateNavItem dateNavItemEmpty">
+					<Label class="dateNavItemLabel" />
+				</View>
+				
+				<View class="dateNavItem">
+					<Label class="dateNavItemLabel dateNavItemActive" text="Today" />
+				</View>
+				
+				<View class="dateNavItem">
+					<Label class="dateNavItemLabel" text="Tomorrow" />
+				</View>
+				
+				<View class="dateNavItem dateNavItemEmpty">
+					<Label class="dateNavItemLabel" />
+				</View>
+			</ScrollView>
+			
+			<ScrollView id="Events">
+				<View class="event">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event eventAlternate">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event eventAlternate">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event eventAlternate">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event eventAlternate">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+				
+				<View class="event eventAlternate">
+					<View class="imageContainer">
+						<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+					</View>
+					
+					<View class="content">
+						<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+						
+						<View class="details">
+							<View class="meta">
+								<Label class="time" text="4:44pm" />
+								<Label class="subkast" text="Science" />
+							</View>
+							
+							<View class="upvotes">
+								<ImageView class="arrow" />
+								<Label class="count" text="20" />
+							</View>
+						</View>
+					</View>
+				</View>
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

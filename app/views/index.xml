@@ -1,0 +1,9 @@
+<Alloy>
+	<Require type="view" src="splash" />
+	
+	<NavigationWindow id="NavWindow" platform="ios">
+		<Require id="ListWindow" type="view" src="list" />
+	</NavigationWindow>
+	
+	<Require id="ListWindow" type="view" src="list" platform="android" />
+</Alloy>
