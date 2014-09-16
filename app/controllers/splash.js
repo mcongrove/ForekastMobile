@@ -19,8 +19,7 @@ function animate() {
 		right: (App.Device.width + 150),
 		transform: transAstronautEnd,
 		curve: Ti.UI.ANIMATION_CURVE_LINEAR,
-		duration: 4000,
-		delay: 500
+		duration: 3500
 	});
 	
 	animAstronaut.addEventListener("complete", complete);
@@ -54,7 +53,7 @@ function close() {
 }
 
 if(ENV_DEV) {
-	$.SplashWindow.addEventListener("open", animate);
+	$.SplashWindow.addEventListener("open", close);
 } else {
 	$.SplashWindow.addEventListener("open", animate);
 }

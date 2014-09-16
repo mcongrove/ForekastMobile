@@ -5,6 +5,12 @@ function toggleReminder(_event) {
 	_event.source.image = "images/icon_reminder_active.png";
 }
 
+$.EventWindow.addEventListener("open", function(_event) {
+	var height = Math.max(($.comments.rect.y + $.comments.rect.height + 20), App.Device.height + 1);
+	
+	$.Content.contentHeight = height;
+});
+
 $.Content.addEventListener("scroll", function(_event) {
 	var offset = _event.y;
 	var opacity = 1;
