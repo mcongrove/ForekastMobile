@@ -5,6 +5,7 @@ var item_height = 85;
 var image_height = 55;
 var item_offset_per_px = 0;
 var item_cell_offset = 0;
+var upvote_notice;
 
 function init() {
 	for(var i = 0, x = $.Events.children.length; i < x; i++) {
@@ -30,6 +31,16 @@ function openSettings() {
 
 $.Events.addEventListener("click", function() {
 	var event = Alloy.createController("event");
+});
+
+$.Events.addEventListener("swipe", function() {
+	if(!upvote_notice) {
+		upvote_notice = Alloy.createController("ui/upvote_notice");
+		
+		$.ListWindow.add(upvote_notice.getView());
+	}
+	
+	upvote_notice.show();
 });
 
 $.ListWindow.addEventListener("open", function() {

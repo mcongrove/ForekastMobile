@@ -3,8 +3,10 @@ var App = require("core");
 
 var StyledLabel = require("ti.styledlabel");
 
+var upvote_notice;
+
 function init() {
-	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #B2FFF5;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
+	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
 	var text = "On the day of the launch, Spaceflight now should post a link to the <a target='_blank' href='http://www.spaceflightnow.com/'>livestream coverage here.</a><br> If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box.  <a target='_blank' href='http://www.ulalaunch.com/'>ulalaunch.com</a> Will also have a webcast which they indicate begins 20 minutes before launch.";
 
 	var label = StyledLabel.createLabel({
@@ -34,6 +36,16 @@ $.EventWindow.addEventListener("open", function(_event) {
 		duration: 500,
 		delay: 0
 	});
+});
+
+$.Upvote.addEventListener("click", function() {
+	if(!upvote_notice) {
+		upvote_notice = Alloy.createController("ui/upvote_notice");
+		
+		$.EventWindow.add(upvote_notice.getView());
+	}
+	
+	upvote_notice.show();
 });
 
 $.ScrollView.addEventListener("scroll", function(_event) {

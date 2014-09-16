@@ -4,6 +4,18 @@ var App = require("core"),
 
 var OPTIONS = [
 	{
+		title: "Sign out",
+		action: function() {
+			
+		}
+	},
+	{
+		title: "Event reminder settings",
+		action: function() {
+			
+		}
+	},
+	{
 		title: "About this app",
 		controller: "settings_about"
 	},
@@ -46,6 +58,8 @@ function init() {
 			});
 		} else if(OPTIONS[i].action) {
 			row.addEventListener("click", OPTIONS[i].action);
+			
+			row.remove(row.children[1]);
 		}
 		
 		rows.push(row);

@@ -12,7 +12,7 @@
 	bottom: 20,
 	left: 10
 },
-".arrow": {
+"#Arrow": {
 	width: 8,
 	height: 11,
 	right: 10,

@@ -21,8 +21,11 @@
 					
 					<View class="social">
 						<Button id="Share" title="Share Event" />
-						<ImageView class="upvoteArrow" />
-						<Label class="upvoteCount" text="20" />
+						
+						<View id="Upvote">
+							<ImageView class="upvoteArrow" />
+							<Label class="upvoteCount" text="20" />
+						</View>
 					</View>
 				</View>
 				

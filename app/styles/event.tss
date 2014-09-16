@@ -83,7 +83,8 @@
 	height: Ti.UI.FILL,
 	contentWidth: Ti.UI.FILL,
 	contentHeight: "auto",
-	layout: "vertical"
+	layout: "vertical",
+	scrollsToTop: true
 },
 "#Content": {
 	top: 0,
@@ -157,6 +158,11 @@
 		fontSize: 12,
 		fontFamily: "HelveticaNeue-Light"
 	}
+},
+"#Upvote": {
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
 },
 ".upvoteArrow": {
 	width: 11,

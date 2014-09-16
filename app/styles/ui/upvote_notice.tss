@@ -1,0 +1,33 @@
+"#UpvoteView": {
+	top: 0,
+	left: 0,
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	zIndex: 10000,
+	backgroundImage: "images/opaque.png",
+	opacity: 0.1,
+	touchEnabled: false,
+	bubbleParent: false
+},
+"#Container": {
+	width: 150,
+	height: 150,
+	backgroundImage: "images/opaque.png",
+	borderRadius: 25
+},
+"ImageView": {
+	width: 60,
+	height: 40,
+	top: 40
+},
+"Label": {
+	color: "#FFF",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Bold"
+	},
+	textAlign: "center",
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	bottom: 30
+}
