@@ -26,11 +26,7 @@
 					</View>
 				</View>
 				
-				<Label class="description">
-					On the day of the launch, Spaceflight now should post a link to the livestream coverage here.
-	
-If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box. ulalaunch.com will also have a webcast which they indicate begins 20 minutes before launch.
-				</Label>
+				<!-- Dynamically created description goes here -->
 			</View>
 			
 			<View id="Comments">

@@ -22,6 +22,12 @@ function init() {
 	}
 }
 
+function openSettings() {
+	var SettingsWindow = Alloy.createController("settings").getView();
+	
+	SettingsWindow.open();
+}
+
 $.Events.addEventListener("click", function() {
 	var event = Alloy.createController("event");
 });

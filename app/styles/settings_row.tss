@@ -1,0 +1,20 @@
+"TableViewRow": {
+	height: Ti.UI.SIZE,
+	backgroundColor: "#F6F6F6"
+},
+"TableViewRow[platform=ios]": {
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+},
+"Label": {
+	height: Ti.UI.SIZE,
+	top: 20,
+	right: 28,
+	bottom: 20,
+	left: 10
+},
+".arrow": {
+	width: 8,
+	height: 11,
+	right: 10,
+	image: "/images/icon_arrow.png"
+}

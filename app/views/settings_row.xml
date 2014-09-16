@@ -1,0 +1,6 @@
+<Alloy>
+	<TableViewRow id="Row">
+		<Label id="Option" />
+		<ImageView class="arrow" />
+	</TableViewRow>
+</Alloy>

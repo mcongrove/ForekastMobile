@@ -175,14 +175,6 @@
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
-".description": {
-	top: 25,
-	color: "#FFF",
-	font: {
-		fontSize: 16,
-		fontFamily: "HelveticaNeue-Light"
-	}
-},
 "#Comments": {
 	top: 20,
 	height: Ti.UI.SIZE,
@@ -219,7 +211,7 @@
 	top: 10,
 	left: 10,
 	right: 10,
-	backgroundColor: "#18191F",
+	backgroundColor: "#18191F"
 },
 "#CommentBox": {
 	width: Ti.UI.FILL,

@@ -5,7 +5,7 @@
 		</TitleControl>
 		
 		<RightNavButton platform="ios">
-			<Button image="images/icon_settings.png" />
+			<Button image="images/icon_settings.png" onClick="openSettings" />
 		</RightNavButton>
 		
 		<View class="container">
