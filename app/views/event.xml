@@ -1,0 +1,42 @@
+<Alloy>
+	<Window id="EventWindow">
+		<RightNavButton platform="ios">
+			<ImageView image="images/icon_reminder.png" width="22" height="22" onClick="toggleReminder" />
+		</RightNavButton>
+		
+		<View class="imageContainer">
+			<ImageView id="Image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+			<View class="imageOverlay" />
+		</View>
+		
+		<ScrollView id="Content">
+			<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+			
+			<View class="details">
+				<View class="meta">
+					<Label class="time" text="4:44pm" />
+					<Label class="subkast" text="Science" />
+				</View>
+				
+				<View class="upvotes">
+					<ImageView class="arrow" />
+					<Label class="count" text="20" />
+				</View>
+			</View>
+			
+			<Label class="description">
+				On the day of the launch, Spaceflight now should post a link to the livestream coverage here.
+
+If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box. ulalaunch.com will also have a webcast which they indicate begins 20 minutes before launch.
+			</Label>
+			
+			<Button id="Share" title="Share This Event" />
+			
+			<Label class="comments">
+				Comments and stuff will go here shortly...
+				
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</Label>
+		</ScrollView>
+	</Window>
+</Alloy>

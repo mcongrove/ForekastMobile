@@ -1,9 +1,9 @@
 <Alloy>
 	<Window id="SplashWindow">
-		<ImageView id="Background" image="/images/stars.jpg" />
+		<ImageView id="Background" image="images/stars.jpg" />
 		
 		<View class="container">
-			<ImageView id="Astronaut" image="/images/astronaut.png" />
+			<ImageView id="Astronaut" image="images/astronaut.png" />
 		</View>
 	</Window>
 </Alloy>

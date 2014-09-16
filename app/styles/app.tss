@@ -29,4 +29,7 @@
 		fontSize: 14,
 		fontFamily: "HelveticaNeue-Regular"
 	}
+},
+"Image": {
+	preventDefaultImage: true
 }

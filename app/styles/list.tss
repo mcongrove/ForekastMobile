@@ -1,6 +1,3 @@
-"Window": {
-	titleImage: "/images/title.png"
-},
 "Window[platform=android]": {
 	exitOnClose: true
 },
@@ -130,32 +127,3 @@
 		fontFamily: "HelveticaNeue-Bold"
 	}
 }
-
-
-
-
-
-
-
-
-/*
-<TableView id="Events">
-	<View class="event">
-		<ImageView class="image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
-		
-		<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
-		
-		<View class="details">
-			<View class="meta">
-				<Label class="time" text="4:44pm" />
-				<Label class="subkast" text="Science" />
-			</View>
-			
-			<View class="upvotes">
-				<ImageView class="arrow" />
-				<Label class="count" text="20" />
-			</View>
-		</View>
-	</View>
-</TableView>
- */

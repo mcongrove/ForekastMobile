@@ -1,0 +1,155 @@
+"Window[platform=ios]": {
+	extendEdges: [
+		Ti.UI.EXTEND_EDGE_TOP
+	],
+    includeOpaqueBars: true,
+    autoAdjustScrollViewInsets: true,
+    translucent: true,
+    navTintColor: "#FFF",
+	tintColor: "#FFF",
+	barImage: "/images/semitransparent.png",
+	hideShadow: true,
+	backgroundColor: "#000D16"
+},
+".imageContainer": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+},
+"#Image": {
+	top: 0,
+	width: Ti.UI.FILL
+},
+".imageOverlay": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	backgroundGradient: {
+		type: "linear",
+		backfillEnd: true,
+		startPoint: {
+			x: 0,
+			y: 64
+		},
+		endPoint: {
+			x: 0,
+			y: 200
+		},
+		colors: [
+			{
+				color: "#00000D16",
+				offset: 0
+			},
+			{
+				color: "#FF000D16",
+				offset: 1
+			}
+		]
+	}
+},
+"#Content": {
+	top: 0,
+	left: 20,
+	right: 20,
+	bottom: 20,
+	height: Ti.UI.FILL,
+	contentHeight: "auto",
+	contentWidth: Ti.UI.FILL,
+	layout: "vertical"
+},
+".title": {
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	left: 0,
+	top: 125,
+	color: "#FFF",
+	font: {
+		fontSize: 18,
+		fontFamily: "HelveticaNeue-Regular"
+	}
+},
+".details": {
+	height: 16,
+	width: Ti.UI.FILL,
+	left: 0,
+	top: 10
+},
+".meta": {
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	left: 0
+},
+".time": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	color: "#4ED5C3",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Bold"
+	}
+},
+".subkast": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	left: 5,
+	color: "#4ED5C3",
+	font: {
+		fontSize: 11,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+".upvotes": {
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	right: 0
+},
+".arrow": {
+	width: 11,
+	height: 8,
+	image: "/images/icon_upvote.png"
+},
+".count": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	left: 5,
+	textAlign: "right",
+	color: "#4ED5C3",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Bold"
+	}
+},
+".description": {
+	top: 10,
+	color: "#FFF",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+"#Share": {
+	top: 20,
+	width: 120,
+	height: 30,
+	background: "#338A7E",
+	borderColor: "#4ED5C3",
+	borderWidth: 0.5,
+	color: "#4ED5C3",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Regular"
+	}
+},
+".comments": {
+	top: 20,
+	textAlign: "center",
+	color: "#666",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Light"
+	}
+}
