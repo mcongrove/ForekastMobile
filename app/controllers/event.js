@@ -6,12 +6,21 @@ function toggleReminder(_event) {
 }
 
 $.EventWindow.addEventListener("open", function(_event) {
-	var height = Math.max(($.comments.rect.y + $.comments.rect.height + 20), App.Device.height + 1);
+	$.ScrollView.animate({
+		opacity: 1,
+		duration: 500,
+		delay: 0
+	});
 	
-	$.Content.contentHeight = height;
+	var contentHeight = ($.Comments.rect.y + $.Comments.rect.height + 5);
+	var minHeight = (App.Device.height + 1);
+	
+	if(contentHeight < minHeight) {
+		$.ScrollView.contentHeight = minHeight;
+	}
 });
 
-$.Content.addEventListener("scroll", function(_event) {
+$.ScrollView.addEventListener("scroll", function(_event) {
 	var offset = _event.y;
 	var opacity = 1;
 	
@@ -31,6 +40,26 @@ $.Content.addEventListener("scroll", function(_event) {
 		
 		$.Image.setOpacity(opacity);
 	}
+});
+
+$.CommentBox.addEventListener("focus", function(_event) {
+	if($.CommentBox.value == "\nLeave a comment...") {
+		$.CommentBox.value = "";
+		$.CommentBox.textAlign = "left";
+		$.CommentBox.color = "#7A7F9E";
+	}
+});
+
+$.CommentBox.addEventListener("blur", function(_event) {
+	if($.CommentBox.value.length == 0) {
+		$.CommentBox.color = "#3E4252";
+		$.CommentBox.textAlign = "center";
+		$.CommentBox.value = "\nLeave a comment...";
+	}
+});
+
+$.ScrollView.addEventListener("click", function(_event) {
+	$.CommentBox.blur();
 });
 
 if(OS_IOS) {

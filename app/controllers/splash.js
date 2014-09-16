@@ -12,14 +12,15 @@ function animate() {
 	
 	var animStars = Ti.UI.createAnimation({
 		opacity: 1,
-		duration: 500
+		duration: 1000
 	});
 	
 	var animAstronaut = Ti.UI.createAnimation({
 		right: (App.Device.width + 150),
 		transform: transAstronautEnd,
 		curve: Ti.UI.ANIMATION_CURVE_LINEAR,
-		duration: 3500
+		duration: 3500,
+		delay: 1000
 	});
 	
 	animAstronaut.addEventListener("complete", complete);

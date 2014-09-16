@@ -32,4 +32,12 @@
 },
 "Image": {
 	preventDefaultImage: true
+},
+"TableView": {
+	backgroundColor: "transparent",
+	showVerticalScrollIndicator: false,
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+},
+"TableViewRow": {
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 }

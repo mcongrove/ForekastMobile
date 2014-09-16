@@ -9,32 +9,60 @@
 			<View class="imageOverlay" />
 		</View>
 		
-		<ScrollView id="Content">
-			<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
-			
-			<View class="details">
-				<View class="meta">
-					<Label class="time" text="4:44pm" />
-					<Label class="subkast" text="Science" />
+		<ScrollView id="ScrollView">
+			<View id="Content">
+				<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+				
+				<View class="details">
+					<View class="meta">
+						<Label class="time" text="4:44pm" />
+						<Label class="subkast" text="Technology" />
+					</View>
+					
+					<View class="social">
+						<Button id="Share" title="Share Event" />
+						<ImageView class="upvoteArrow" />
+						<Label class="upvoteCount" text="20" />
+					</View>
 				</View>
 				
-				<View class="upvotes">
-					<ImageView class="arrow" />
-					<Label class="count" text="20" />
-				</View>
+				<Label class="description">
+					On the day of the launch, Spaceflight now should post a link to the livestream coverage here.
+	
+If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box. ulalaunch.com will also have a webcast which they indicate begins 20 minutes before launch.
+				</Label>
 			</View>
 			
-			<Label class="description">
-				On the day of the launch, Spaceflight now should post a link to the livestream coverage here.
-
-If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box. ulalaunch.com will also have a webcast which they indicate begins 20 minutes before launch.
-			</Label>
-			
-			<Button id="Share" title="Share This Event" />
-			
-			<Label id="comments">
-				Comments and stuff will go here shortly...
-			</Label>
+			<View id="Comments">
+				<View class="commentBoxWrapper">
+					<TextArea id="CommentBox" value="\nLeave a comment..." />
+				</View>
+				
+				<Button id="CommentSubmit" title="Comment" platform="android" />
+				
+				<TableView id="CommentsTable">
+					<TableViewRow>
+						<Label class="commentText">
+							I really hope this doesn't get delayed. The timing is perfect for me to catch it!
+						</Label>
+						
+						<Label class="commentAuthor">
+							chemistry14
+						</Label>
+					</TableViewRow>
+					<TableViewRow>
+						<Label class="commentText">
+							How often do these things get delayed?
+						</Label>
+						
+						<Label class="commentAuthor">
+							donutgoblin
+						</Label>
+					</TableViewRow>
+				</TableView>
+			</View>
 		</ScrollView>
+		
+		<View class="navbarOverlay" />
 	</Window>
 </Alloy>

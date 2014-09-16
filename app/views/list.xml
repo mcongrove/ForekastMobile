@@ -1,9 +1,5 @@
 <Alloy>
 	<Window id="ListWindow">
-		<LeftNavButton platform="ios">
-			<Button image="images/icon_add.png" />
-		</LeftNavButton>
-		
 		<TitleControl>
 			<ImageView image="images/title.png" />
 		</TitleControl>

@@ -47,13 +47,49 @@
 		]
 	}
 },
+".navbarOverlay": {
+	top: 0,
+	height: 40,
+	width: Ti.UI.FILL,
+	backgroundGradient: {
+		type: "linear",
+		backfillEnd: true,
+		startPoint: {
+			x: 0,
+			y: 0
+		},
+		endPoint: {
+			x: 0,
+			y: 40
+		},
+		colors: [
+			{
+				color: "#FF000D16",
+				offset: 0
+			},
+			{
+				color: "#00000D16",
+				offset: 1
+			}
+		]
+	}
+},
+"#ScrollView": {
+	opacity: 0,
+	top: 0,
+	left: 0,
+	right: 0,
+	bottom: 0,
+	height: Ti.UI.FILL,
+	contentWidth: Ti.UI.FILL,
+	contentHeight: "auto",
+	layout: "vertical"
+},
 "#Content": {
 	top: 0,
 	left: 20,
 	right: 20,
-	bottom: 0,
-	height: Ti.UI.FILL,
-	contentWidth: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	layout: "vertical"
 },
 ".title": {
@@ -63,12 +99,12 @@
 	top: 125,
 	color: "#FFF",
 	font: {
-		fontSize: 18,
+		fontSize: 20,
 		fontFamily: "HelveticaNeue-Regular"
 	}
 },
 ".details": {
-	height: 16,
+	height: 19,
 	width: Ti.UI.FILL,
 	left: 0,
 	top: 10
@@ -85,70 +121,172 @@
 	textAlign: "left",
 	color: "#4ED5C3",
 	font: {
-		fontSize: 12,
+		fontSize: 14,
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
 ".subkast": {
+	top: 1,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
 	textAlign: "left",
 	left: 5,
 	color: "#4ED5C3",
 	font: {
-		fontSize: 11,
+		fontSize: 13,
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
-".upvotes": {
+".social": {
+	top: 1,
 	layout: "horizontal",
 	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
+	height: 16,
 	right: 0
 },
-".arrow": {
+"#Share": {
+	right: 18,
+	width: 77,
+	height: 19,
+	backgroundColor: "transparent",
+	borderColor: "#4ED5C3",
+	borderWidth: 0.5,
+	borderRadius: 1,
+	color: "#4ED5C3",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+".upvoteArrow": {
 	width: 11,
 	height: 8,
 	image: "/images/icon_upvote.png"
 },
-".count": {
+".upvoteCount": {
+	top: -2,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
 	left: 5,
 	textAlign: "right",
 	color: "#4ED5C3",
 	font: {
-		fontSize: 12,
+		fontSize: 14,
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
 ".description": {
-	top: 10,
+	top: 25,
 	color: "#FFF",
 	font: {
-		fontSize: 14,
+		fontSize: 16,
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
-"#Share": {
+"#Comments": {
 	top: 20,
-	width: 120,
-	height: 30,
-	background: "#338A7E",
-	borderColor: "#4ED5C3",
-	borderWidth: 0.5,
-	color: "#4ED5C3",
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical",
+	backgroundGradient: {
+		type: "linear",
+		startPoint: {
+			x: 0,
+			y: 0
+		},
+		endPoint: {
+			x: 0,
+			y: "100%"
+		},
+		colors: [
+			{
+				color: "#2B2D38",
+				offset: 0
+			},
+			{
+				color: "#2B2D38",
+				offset: 0.5
+			},
+			{
+				color: "#000D16",
+				offset: 1
+			}
+		]
+	}
+},
+".commentBoxWrapper": {
+	height: Ti.UI.SIZE,
+	top: 10,
+	left: 10,
+	right: 10,
+	backgroundColor: "#18191F",
+},
+"#CommentBox": {
+	width: Ti.UI.FILL,
+	height: 66,
+	top: 0,
+	left: 7,
+	right: 7,
+	bottom: 7,
+	backgroundColor: "transparent",
+	color: "#3E4252",
+	textAlign: "center",
 	font: {
-		fontSize: 12,
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Regular"
+	},
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_SENTENCES,
+	autocorrect: true,
+	returnKeyType: Titanium.UI.RETURNKEY_SEND,
+	enableReturnKey: true
+},
+"#CommentSubmit": {
+	top: 10,
+	left: 20,
+	right: 20,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	backgroundColor: "transparent",
+	color: "#7A7F9E",
+	font: {
+		fontSize: 16,
 		fontFamily: "HelveticaNeue-Regular"
 	}
 },
-"#comments": {
+"#CommentsTable": {
+	top: 25,
+	left: 20,
+	right: 20,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+},
+"TableViewRow": {
 	top: 20,
-	textAlign: "center",
-	color: "#666",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+},
+".commentText": {
+	top: 0,
+	left: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	color: "#FFF",
+	textAlign: "left",
 	font: {
-		fontSize: 14,
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+".commentAuthor": {
+	top: 0,
+	left: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	color: "#4ED5C3",
+	textAlign: "left",
+	font: {
+		fontSize: 12,
 		fontFamily: "HelveticaNeue-Light"
 	}
 }

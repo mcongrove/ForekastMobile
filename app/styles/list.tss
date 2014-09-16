@@ -13,7 +13,7 @@
 },
 "#DateNav": {
 	width: Ti.UI.FILL,
-	height: 34,
+	height: 44,
 	left: 0,
 	top: 0,
 	layout: "horizontal",
@@ -22,18 +22,18 @@
 },
 ".dateNavItem": {
 	width: 160,
-	height: 34
+	height: 44
 },
 ".dateNavItemEmpty": {
 	width: 80
 },
 ".dateNavItemLabel": {
 	width: Ti.UI.FILL,
-	height: 34,
+	height: 44,
 	textAlign: "center",
 	color: "#6E7690",
 	font: {
-		fontSize: 12,
+		fontSize: 14,
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
@@ -104,7 +104,7 @@
 	height: Ti.UI.FILL,
 	textAlign: "left",
 	font: {
-		fontSize: 11,
+		fontSize: 12,
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
@@ -114,17 +114,18 @@
 	textAlign: "left",
 	left: 5,
 	font: {
-		fontSize: 10,
+		fontSize: 11,
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
 ".upvotes": {
 	layout: "horizontal",
 	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
+	height: 16,
 	right: 0
 },
 ".arrow": {
+	top: 5,
 	width: 11,
 	height: 8,
 	image: "/images/icon_upvote.png"
@@ -136,7 +137,7 @@
 	textAlign: "right",
 	color: "#4ED5C3",
 	font: {
-		fontSize: 11,
+		fontSize: 12,
 		fontFamily: "HelveticaNeue-Bold"
 	}
 }
