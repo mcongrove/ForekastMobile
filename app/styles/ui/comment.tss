@@ -1,0 +1,30 @@
+"TableViewRow": {
+	top: 20,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+},
+"#Text": {
+	top: 0,
+	left: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	color: "#FFF",
+	textAlign: "left",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+"#Author": {
+	top: 0,
+	left: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	color: "#4ED5C3",
+	textAlign: "left",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Light"
+	}
+}

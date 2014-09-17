@@ -1,0 +1,24 @@
+<Alloy>
+	<View id="Row">
+		<ScrollView class="imageContainer">
+			<ImageView id="Image" />
+			<ImageView id="ImageOverlay" />
+		</ScrollView>
+		
+		<View class="content">
+			<Label id="Title" />
+			
+			<View class="details">
+				<View class="meta">
+					<Label id="Time" />
+					<Label id="Subkast" />
+				</View>
+				
+				<View class="upvotes">
+					<ImageView class="arrow" />
+					<Label id="UpvoteCount" />
+				</View>
+			</View>
+		</View>
+	</View>
+</Alloy>

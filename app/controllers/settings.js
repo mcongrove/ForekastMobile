@@ -17,7 +17,7 @@ var OPTIONS = [
 	},
 	{
 		title: "About this app",
-		controller: "settings_about"
+		controller: "settings/about"
 	},
 	{
 		title: "Contact developer",
@@ -38,7 +38,7 @@ function init() {
 	var rows = [];
 	
 	for(var i = 0, x = OPTIONS.length; i < x; i++) {
-		var row = Alloy.createController("settings_row", { title: OPTIONS[i].title }).getView();
+		var row = Alloy.createController("ui/settings_row", { title: OPTIONS[i].title }).getView();
 		
 		if(i % 2 == 0) {
 			row.backgroundColor = "#FFF";

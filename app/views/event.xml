@@ -40,24 +40,8 @@
 				<Button id="CommentSubmit" title="Comment" platform="android" />
 				
 				<TableView id="CommentsTable">
-					<TableViewRow>
-						<Label class="commentText">
-							I really hope this doesn't get delayed. The timing is perfect for me to catch it!
-						</Label>
-						
-						<Label class="commentAuthor">
-							chemistry14
-						</Label>
-					</TableViewRow>
-					<TableViewRow>
-						<Label class="commentText">
-							How often do these things get delayed?
-						</Label>
-						
-						<Label class="commentAuthor">
-							donutgoblin
-						</Label>
-					</TableViewRow>
+					<Require type="view" src="ui/comment" author="chemistry14" comment="I really hope this doesn't get delayed. The timing is perfect for me to catch it!" />
+					<Require type="view" src="ui/comment" author="donutgoblin" comment="How often do these things get delayed?" />
 				</TableView>
 			</View>
 		</ScrollView>

@@ -1,0 +1,6 @@
+<Alloy>
+	<TableViewRow>
+		<Label id="Text" />
+		<Label id="Author" />
+	</TableViewRow>
+</Alloy>

@@ -1,0 +1,97 @@
+"#Row": {
+	width: Ti.UI.FILL,
+	height: 85,
+	layout: "horizontal"
+},
+".imageContainer": {
+	width: 75,
+	height: 85,
+	left: 0,
+	top: 0,
+	contentWidth: "auto",
+	contentHeight: "auto",
+	scrollingEnabled: false,
+	scrollType: "vertical"
+},
+"#Image": {
+	width: 113,
+	height: 85,
+	top: 0,
+	left: -19,
+	zIndex: 1,
+	preventDefault: true
+},
+"#ImageOverlay": {
+	width: 75,
+	height: 85,
+	top: 0,
+	left: 0,
+	zIndex: 1000
+},
+".content": {
+	top: 15,
+	left: 10,
+	right: 10,
+	height: 55,
+	layout: "vertical"
+},
+"#Title": {
+	height: 37,
+	width: Ti.UI.FILL,
+	left: 0,
+	top: 0
+},
+".details": {
+	height: 16,
+	width: Ti.UI.FILL,
+	left: 0,
+	bottom: 0
+},
+".meta": {
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	left: 0
+},
+"#Time": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Bold"
+	}
+},
+"#Subkast": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	left: 5,
+	font: {
+		fontSize: 11,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+".upvotes": {
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: 16,
+	right: 0
+},
+".arrow": {
+	top: 5,
+	width: 11,
+	height: 8,
+	image: "/images/icon_upvote.png"
+},
+"#UpvoteCount": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	left: 5,
+	textAlign: "right",
+	color: "#4ED5C3",
+	font: {
+		fontSize: 12,
+		fontFamily: "HelveticaNeue-Bold"
+	}
+}

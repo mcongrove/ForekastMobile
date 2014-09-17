@@ -34,13 +34,13 @@ $.EventWindow.addEventListener("open", function(_event) {
 	$.ScrollView.animate({
 		opacity: 1,
 		duration: 500,
-		delay: 0
+		delay: 250
 	});
 });
 
 $.Upvote.addEventListener("click", function() {
 	if(!upvote_notice) {
-		upvote_notice = Alloy.createController("ui/upvote_notice");
+		upvote_notice = Alloy.createController("ui/upvote");
 		
 		$.EventWindow.add(upvote_notice.getView());
 	}
