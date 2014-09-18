@@ -100,6 +100,10 @@ $.Events.addEventListener("swipe", function() {
 	}
 	
 	upvote_notice.show();
+	
+	App.logEvent("Event:Upvote", {
+		eventId: 12345
+	});
 });
 
 $.ListWindow.addEventListener("open", function() {

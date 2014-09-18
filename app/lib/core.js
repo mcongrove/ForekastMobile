@@ -35,8 +35,13 @@ var App = {
 		width: null,
 		height: null,
 		dpi: Ti.Platform.displayCaps.dpi,
-		orientation: Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "landscape" : "portrait"
+		orientation: Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "landscape" : "portrait",
+		UUID: Ti.App.Properties.hasProperty("UUID") ? Ti.App.Properties.getString("UUID") : false
 	},
+	/**
+	 * Flurry analytics module
+	 */
+	Flurry: !ENV_DEV ? require("ti.flurry") : null,
 	/**
 	 * Access to the main window
 	 */
@@ -52,9 +57,42 @@ var App = {
 		Ti.App.addEventListener("close", App.exit);
 		Ti.App.addEventListener("resumed", App.resume);
 		Ti.Gesture.addEventListener("orientationchange", App.orientationChange);
+		
+		// Get or create UUID
+		if(!App.Device.UUID) {
+			App.createUUID();
+		}
+		
+		// Initialize Flurry analytics
+		if(!ENV_DEV) {
+			if(OS_IOS) {
+				App.Flurry.initialize("32D4SDMNXPHCVV787WFJ");
+				
+				App.Flurry.reportOnClose(true);
+			} else {
+				App.Flurry.initialize("RVDRVZRXD3DT5FM8N2Y8");
+			}
+		}
+		
+		App.logEvent("Application:Open", {
+			uuid: App.Device.UUID
+		});
 
 		// Get device dimensions
 		App.getDeviceDimensions();
+	},
+	/**
+	 * Creates a UUID for the user
+	 */
+	createUUID: function() {
+		App.Device.UUID = Ti.Platform.createUUID();
+		
+		Ti.App.Properties.setString("UUID", App.Device.UUID);
+	},
+	logEvent: function(_name, _properties) {
+		if(!ENV_DEV) {
+			App.Flurry.logEvent(_name, _properties);
+		}
 	},
 	/**
 	 * Opens the settings screen
@@ -76,14 +114,14 @@ var App = {
 	 * @param {Object} _event Standard Ti callback
 	 */
 	exit: function(_event) {
-		App.BackgroundServiceActive = true;
+		App.logEvent("Application:Exit");
 	},
 	/**
 	 * Resume event observer
 	 * @param {Object} _event Standard Ti callback
 	 */
 	resume: function(_event) {
-		App.BackgroundServiceActive = false;
+		App.logEvent("Application:Resume");
 	},
 	/**
 	 * Handle the orientation change event callback

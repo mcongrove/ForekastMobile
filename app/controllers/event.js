@@ -25,10 +25,18 @@ function init() {
 	});
 	
 	$.Content.add(label);
+	
+	App.logEvent("Event:Open", {
+		eventId: 12345
+	});
 }
 
 function toggleReminder(_event) {
 	_event.source.image = "images/icon_reminder_active.png";
+	
+	App.logEvent("Event:Remind", {
+		eventId: 12345
+	});
 }
 
 $.EventWindow.addEventListener("open", function(_event) {
@@ -47,6 +55,10 @@ $.Upvote.addEventListener("click", function() {
 	}
 	
 	upvote_notice.show();
+	
+	App.logEvent("Event:Upvote", {
+		eventId: 12345
+	});
 });
 
 $.ScrollView.addEventListener("scroll", function(_event) {
@@ -87,12 +99,22 @@ $.CommentBox.addEventListener("blur", function(_event) {
 	}
 });
 
+$.CommentBox.addEventListener("return", function(_event) {
+	App.logEvent("Event:Comment", {
+		eventId: 12345
+	});
+});
+
 $.ScrollView.addEventListener("click", function(_event) {
 	$.CommentBox.blur();
 });
 
 $.Share.addEventListener("click", function(_event) {
 	Social.share("https://forekast.com/events/show/537abd28666b7741750e8600");
+	
+	App.logEvent("Event:Share", {
+		eventId: 12345
+	});
 });
 
 if(OS_IOS) {
