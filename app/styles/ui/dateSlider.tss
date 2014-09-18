@@ -1,9 +1,10 @@
 "#DateSlider": {
-	width: Ti.UI.FILL,
 	height: 44,
-	left: 0,
 	top: 0,
-	layout: "horizontal",
 	backgroundColor: "#2B2D38",
-	contentWidth: "auto"
+	clipViews: false,
+	showPagingControl: false,
+	overlayEnabled: true,
+	pagingControlAlpha: 0,
+	cacheSize: 7
 }

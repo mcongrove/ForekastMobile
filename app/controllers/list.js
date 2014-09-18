@@ -79,7 +79,15 @@ function init() {
 	
 	calculateParallax();
 	
-	$.DateSlider.add(Alloy.createController("ui/dateSlider").getView());
+	var DateSlider = Alloy.createController("ui/dateSlider");
+	
+	DateSlider.on("dateChange", onDateChange);
+	
+	$.DateSlider.add(DateSlider.getView());
+}
+
+function onDateChange(_event) {
+	Ti.API.warn(JSON.stringify(_event));
 }
 
 function openSettings() {
