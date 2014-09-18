@@ -21,14 +21,15 @@ if(OS_IOS) {
 
 	/**
 	 * Shares information via e-mail
+	 * @param {String} _url The URL to share
 	 * @platform iOS
 	 */
-	exports.email = function() {
+	exports.email = function(_url) {
 		if(exports.emailSupported) {
 			var email = Ti.UI.createEmailDialog();
 
 			email.html = true;
-			email.messageBody = "Check out this great app I found called BiteBook; it's a simple fish logger, and even supports the Pebble Smartwatch!<br /><br /><a href='http://www.bitebook.net'>BiteBook.net</a>";
+			email.messageBody = "Check out this event on Forekast<br /><br /><a href='" + _url + "'>" + _url + "</a>";
 
 			email.open();
 		}
@@ -36,26 +37,65 @@ if(OS_IOS) {
 
 	/**
 	 * Shares information via Twitter
+	 * @param {String} _url The URL to share
 	 * @platform iOS
 	 */
-	exports.twitter = function() {
+	exports.twitter = function(_url) {
 		if(exports.twitterSupported) {
 			SOCIAL.twitter({
-				text: "Check out this great app I found called BiteBook; it's a simple fish logger, and even supports the Pebble Smartwatch!",
-				url: "http://www.bitebook.net"
+				text: "Check out this event on Forekast",
+				url: _url
 			});
 		}
 	};
 
 	/**
 	 * Opens the sharing menu for iOS 6+ users
+	 * @param {String} _url The URL to share
+	 * @param {Object} _view The view to attach the OptionDialog to (required for iPad)
 	 * @platform iOS
 	 */
-	exports.shareActivityView = function() {
-		SOCIAL.activityView({
-			text: "Check out this great app I found called BiteBook; it's a simple fish logger, and even supports the Pebble Smartwatch! BiteBook.net",
-			removeIcons: "print,copy,contact,camera,weibo"
+	exports.shareActivityView = function(_url, _view) {
+		var dialog = Ti.UI.createOptionDialog({
+			options: ["Share", "Open in Safari", "Cancel"],
+			cancel: 2,
+			selectedIndex: 2
 		});
+
+		dialog.addEventListener("click", function(_event) {
+			switch(_event.index) {
+				case 0:
+					/*
+					if(APP.Device.name == "IPAD") {
+						SOCIAL.activityPopover({
+							text: "Check out this event on Forekast " + _url,
+							removeIcons: "print,copy,contact,camera,weibo",
+							view: _view
+						});
+					} else {
+						SOCIAL.activityView({
+							text: "Check out this event on Forekast " + _url,
+							removeIcons: "print,copy,contact,camera,weibo"
+						});
+					}*/
+					SOCIAL.activityView({
+						text: "Check out this event on Forekast " + _url,
+						removeIcons: "print,copy,contact,camera,weibo"
+					});
+					break;
+				case 1:
+					Ti.Platform.openURL(_url);
+					break;
+			}
+		});
+
+		if(_view === undefined) {
+			dialog.show();
+		} else {
+			dialog.show({
+				view: _view
+			});
+		}
 	};
 }
 
@@ -63,11 +103,13 @@ if(OS_IOS) {
  * Opens the sharing menu
  * 
  * **NOTE: Minimum iOS 6 for ActivityView, otherwise fall back to Twitter and e-mail**
+ * @param {String} _url The URL to share
+ * @param {Object} _view [iOS only] The view to attach the OptionDialog to (required for iPad)
  */
-exports.share = function() {
+exports.share = function(_url, _view) {
 	if(OS_IOS) {
 		if(exports.activitySupported) {
-			exports.shareActivityView();
+			exports.shareActivityView(_url, _view);
 		} else {
 			var options = [];
 			var mapping = [];
@@ -82,6 +124,9 @@ exports.share = function() {
 				mapping.push("email");
 			}
 
+			options.push("Open in Safari");
+			mapping.push("browser");
+
 			options.push("Cancel");
 			mapping.push("cancel");
 
@@ -94,15 +139,24 @@ exports.share = function() {
 			dialog.addEventListener("click", function(_event) {
 				switch(mapping[_event.index]) {
 					case "twitter":
-						exports.twitter();
+						exports.twitter(_url);
 						break;
 					case "email":
-						exports.email();
+						exports.email(_url);
+						break;
+					case "browser":
+						Ti.Platform.openURL(_url);
 						break;
 				}
 			});
 
-			dialog.show();
+			if(_view === undefined) {
+				dialog.show();
+			} else {
+				dialog.show({
+					view: _view
+				});
+			}
 		}
 	} else if(OS_ANDROID) {
 		var intent = Ti.Android.createIntent({
@@ -110,7 +164,7 @@ exports.share = function() {
 			type: "text/plain"
 		});
 
-		intent.putExtra(Ti.Android.EXTRA_TEXT, "Check out this great app I found called BiteBook; it's a simple fish logger, and even supports the Pebble Smartwatch! BiteBook.net");
+		intent.putExtra(Ti.Android.EXTRA_TEXT, "Check out this event on Forekast " + _url);
 
 		Ti.Android.currentActivity.startActivity(intent);
 	}

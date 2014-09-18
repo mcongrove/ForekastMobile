@@ -1,5 +1,6 @@
 // App bootstrap
-var App = require("core");
+var App = require("core"),
+	Social = require("social");
 
 var StyledLabel = require("ti.styledlabel");
 
@@ -88,6 +89,10 @@ $.CommentBox.addEventListener("blur", function(_event) {
 
 $.ScrollView.addEventListener("click", function(_event) {
 	$.CommentBox.blur();
+});
+
+$.Share.addEventListener("click", function(_event) {
+	Social.share("https://forekast.com/events/show/537abd28666b7741750e8600");
 });
 
 if(OS_IOS) {

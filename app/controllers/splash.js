@@ -54,7 +54,7 @@ function close() {
 }
 
 if(ENV_DEV) {
-	$.SplashWindow.addEventListener("open", open);
+	$.SplashWindow.addEventListener("open", close);
 } else {
 	$.SplashWindow.addEventListener("open", animate);
 }

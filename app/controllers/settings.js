@@ -1,6 +1,5 @@
 // App bootstrap
-var App = require("core"),
-	Social = require("social");
+var App = require("core");
 
 var OPTIONS = [
 	{
