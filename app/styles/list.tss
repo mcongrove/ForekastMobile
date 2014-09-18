@@ -11,34 +11,10 @@
 ".container": {
 	layout: "vertical"
 },
-"#DateNav": {
+"#DateSlider": {
 	width: Ti.UI.FILL,
 	height: 44,
-	left: 0,
-	top: 0,
-	layout: "horizontal",
-	backgroundColor: "#2B2D38",
-	contentWidth: "auto"
-},
-".dateNavItem": {
-	width: 160,
-	height: 44
-},
-".dateNavItemEmpty": {
-	width: 80
-},
-".dateNavItemLabel": {
-	width: Ti.UI.FILL,
-	height: 44,
-	textAlign: "center",
-	color: "#6E7690",
-	font: {
-		fontSize: 14,
-		fontFamily: "HelveticaNeue-Bold"
-	}
-},
-".dateNavItemActive": {
-	color: "#4ED5C3"
+	backgroundColor: "#2B2D38"
 },
 "#Events": {
 	layout: "vertical",
@@ -46,99 +22,4 @@
 	height: Ti.UI.FILL,
 	contentHeight: "auto",
 	scrollsToTop: true
-},
-".event": {
-	width: Ti.UI.FILL,
-	height: 85,
-	layout: "horizontal"
-},
-".eventAlternate": {
-	width: Ti.UI.FILL,
-	height: 85,
-	layout: "horizontal",
-	backgroundColor: "#F6F6F6"
-},
-".imageContainer": {
-	width: 55,
-	height: 55,
-	borderRadius: 28,
-	left: 10,
-	top: 15,
-	contentWidth: "auto",
-	contentHeight: "auto",
-	scrollingEnabled: false,
-	scrollType: "vertical"
-},
-".image": {
-	width: 113,
-	height: 85,
-	top: 0,
-	left: -29
-},
-".content": {
-	top: 15,
-	left: 20,
-	right: 10,
-	height: 55,
-	layout: "vertical"
-},
-".title": {
-	height: 37,
-	width: Ti.UI.FILL,
-	left: 0,
-	top: 0
-},
-".details": {
-	height: 16,
-	width: Ti.UI.FILL,
-	left: 0,
-	bottom: 0
-},
-".meta": {
-	layout: "horizontal",
-	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
-	left: 0
-},
-".time": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
-	textAlign: "left",
-	font: {
-		fontSize: 12,
-		fontFamily: "HelveticaNeue-Bold"
-	}
-},
-".subkast": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
-	textAlign: "left",
-	left: 5,
-	font: {
-		fontSize: 11,
-		fontFamily: "HelveticaNeue-Light"
-	}
-},
-".upvotes": {
-	layout: "horizontal",
-	width: Ti.UI.SIZE,
-	height: 16,
-	right: 0
-},
-".arrow": {
-	top: 5,
-	width: 11,
-	height: 8,
-	image: "/images/icon_upvote.png"
-},
-".count": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.FILL,
-	left: 5,
-	textAlign: "right",
-	color: "#4ED5C3",
-	font: {
-		fontSize: 12,
-		fontFamily: "HelveticaNeue-Bold"
-	}
 }

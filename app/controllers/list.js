@@ -78,6 +78,8 @@ function init() {
 	}
 	
 	calculateParallax();
+	
+	$.DateSlider.add(Alloy.createController("ui/dateSlider").getView());
 }
 
 function openSettings() {

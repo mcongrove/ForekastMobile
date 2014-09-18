@@ -9,23 +9,7 @@
 		</RightNavButton>
 		
 		<View class="container">
-			<ScrollView id="DateNav">
-				<View class="dateNavItem dateNavItemEmpty">
-					<Label class="dateNavItemLabel" />
-				</View>
-				
-				<View class="dateNavItem">
-					<Label class="dateNavItemLabel dateNavItemActive" text="Today" />
-				</View>
-				
-				<View class="dateNavItem">
-					<Label class="dateNavItemLabel" text="Tomorrow" />
-				</View>
-				
-				<View class="dateNavItem dateNavItemEmpty">
-					<Label class="dateNavItemLabel" />
-				</View>
-			</ScrollView>
+			<View id="DateSlider" />
 			
 			<ScrollView id="Events" />
 		</View>
