@@ -51,8 +51,6 @@
         <module platform="iphone">ti.styledlabel</module>
         <module platform="android">ti.styledlabel</module>
         <module platform="iphone">dk.napp.social</module>
-        <module platform="iphone">ti.flurry</module>
-        <module platform="android">ti.flurry</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>

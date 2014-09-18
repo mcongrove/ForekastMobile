@@ -1,8 +1,23 @@
 {
 	"global": {}, 
-	"env:development": {}, 
-	"env:test": {}, 
-	"env:production": {}, 
+	"env:development": {
+		"Parse": {
+			"ApplicationId": "g9DVSdmtt1tD8B6fpUOxNcXLRVYTawAbkFlM5IYO",
+			"RestKey": "k4xsDfuVc4D76GBtUFEzyHRS04yJtd997PDd7uSD"
+		}
+	}, 
+	"env:test": {
+		"Parse": {
+			"ApplicationId": "g9DVSdmtt1tD8B6fpUOxNcXLRVYTawAbkFlM5IYO",
+			"RestKey": "k4xsDfuVc4D76GBtUFEzyHRS04yJtd997PDd7uSD"
+		}
+	}, 
+	"env:production": {
+		"Parse": {
+			"ApplicationId": "g9DVSdmtt1tD8B6fpUOxNcXLRVYTawAbkFlM5IYO",
+			"RestKey": "k4xsDfuVc4D76GBtUFEzyHRS04yJtd997PDd7uSD"
+		}
+	}, 
 	"os:android": {},
 	"os:blackberry": {},
 	"os:ios": {},

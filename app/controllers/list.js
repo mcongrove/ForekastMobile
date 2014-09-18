@@ -12,7 +12,8 @@ var TEST_DATA = [
 ];
 
 // App bootstrap
-var App = require("core");
+var App = require("core"),
+	Moment = require("alloy/moment");
 
 /**
  * Parallax Effect Calculations
@@ -42,8 +43,30 @@ var movement_bounds = 15; // How much should the image move up or down, maximum
 
 var events = [];
 var upvote_notice;
+var current_date = Moment().format("YYYYMMDD");
 
 function init() {
+	getData();
+	
+	var DateSlider = Alloy.createController("ui/dateSlider");
+	
+	DateSlider.on("dateChange", onDateChange);
+	
+	$.DateSlider.add(DateSlider.getView());
+}
+
+function getData() {
+	var anim = Ti.UI.createAnimation({
+		opacity: 0,
+		duration: 250
+	});
+	
+	anim.addEventListener("complete", setData);
+	
+	$.Events.animate(anim);
+}
+
+function setData() {
 	for(var i = 0, x = TEST_DATA.length; i < x; i++) {
 		var event = TEST_DATA[i];
 		var controller = Alloy.createController("ui/event_row");
@@ -79,15 +102,16 @@ function init() {
 	
 	calculateParallax();
 	
-	var DateSlider = Alloy.createController("ui/dateSlider");
-	
-	DateSlider.on("dateChange", onDateChange);
-	
-	$.DateSlider.add(DateSlider.getView());
+	$.Events.animate({
+		opacity: 1,
+		duration: 250
+	});
 }
 
 function onDateChange(_event) {
-	Ti.API.warn(JSON.stringify(_event));
+	if(_event.date != current_date) {
+		getData(_event.date);
+	}
 }
 
 function openSettings() {

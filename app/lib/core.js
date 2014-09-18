@@ -35,13 +35,12 @@ var App = {
 		width: null,
 		height: null,
 		dpi: Ti.Platform.displayCaps.dpi,
-		orientation: Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "landscape" : "portrait",
-		UUID: Ti.App.Properties.hasProperty("UUID") ? Ti.App.Properties.getString("UUID") : false
+		orientation: Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "landscape" : "portrait"
 	},
 	/**
-	 * Flurry analytics module
+	 * Parse module for analytics and push notifications
 	 */
-	Flurry: !ENV_DEV ? require("ti.flurry") : null,
+	Parse: require("parse"),
 	/**
 	 * Access to the main window
 	 */
@@ -58,41 +57,17 @@ var App = {
 		Ti.App.addEventListener("resumed", App.resume);
 		Ti.Gesture.addEventListener("orientationchange", App.orientationChange);
 		
-		// Get or create UUID
-		if(!App.Device.UUID) {
-			App.createUUID();
-		}
-		
-		// Initialize Flurry analytics
-		if(!ENV_DEV) {
-			if(OS_IOS) {
-				App.Flurry.initialize("32D4SDMNXPHCVV787WFJ");
-				
-				App.Flurry.reportOnClose(true);
-			} else {
-				App.Flurry.initialize("RVDRVZRXD3DT5FM8N2Y8");
-			}
-		}
-		
-		App.logEvent("Application:Open", {
-			uuid: App.Device.UUID
-		});
+		// Log app open event
+		App.logEvent("Application:Open");
 
 		// Get device dimensions
 		App.getDeviceDimensions();
 	},
 	/**
-	 * Creates a UUID for the user
+	 * Logs an analytics event
 	 */
-	createUUID: function() {
-		App.Device.UUID = Ti.Platform.createUUID();
-		
-		Ti.App.Properties.setString("UUID", App.Device.UUID);
-	},
 	logEvent: function(_name, _properties) {
-		if(!ENV_DEV) {
-			App.Flurry.logEvent(_name, _properties);
-		}
+		App.Parse.event(_name, _properties);
 	},
 	/**
 	 * Opens the settings screen
