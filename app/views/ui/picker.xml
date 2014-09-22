@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="Wrapper">
+		<Label id="Instructions" />
+		<TableView id="Table" />
+	</View>
+</Alloy>

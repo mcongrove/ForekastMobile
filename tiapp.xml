@@ -10,7 +10,7 @@
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
     <guid>55565607-6551-44b1-9f83-13139a215584</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>

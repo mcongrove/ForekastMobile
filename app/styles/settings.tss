@@ -2,7 +2,7 @@
 	modal: true
 },
 "Window": {
-	layout: "vertical"
+	
 },
 "TableView[platform=ios]": {
 	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE

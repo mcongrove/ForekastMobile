@@ -1,0 +1,29 @@
+"#Wrapper": {
+	top: 0,
+	left: 0,
+	opacity: 0,
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	backgroundColor: "#CC000000"
+},
+"#Instructions": {
+	top: 20,
+	left: 20,
+	right: 20,
+	bottom: 212,
+	textAlign: "center",
+	color: "#FFF",
+	font: {
+		fontFamily: "HelveticaNeue-Light",
+		fontSize: 24
+	}
+},
+"#Table": {
+	bottom: 0,
+	width: Ti.UI.FILL,
+	height: 192,
+	backgroundColor: "transparent",
+	rowHeight: 48,
+	separatorColor: "transparent",
+	bubbleParent: false
+}

@@ -11,7 +11,46 @@ var OPTIONS = [
 	{
 		title: "Event reminder settings",
 		action: function() {
+			var picker = Alloy.createController("ui/picker");
+			var selectedValue = Ti.App.Properties.getInt("ReminderDefault", 0);
 			
+			var options = [
+				{
+					title: "15 min. before",
+					value: 0,
+					selected: selectedValue == 0 ? true : false
+				},
+				{
+					title: "1 hr. before",
+					value: 1,
+					selected: selectedValue == 1 ? true : false
+				},
+				{
+					title: "4 hr. before",
+					value: 2,
+					selected: selectedValue == 2 ? true : false
+				},
+				{
+					title: "1 day before",
+					value: 3,
+					selected: selectedValue == 3 ? true : false
+				}
+			];
+			
+			picker.setOptions(options);
+			picker.setInstructions("Choose a default time for new reminders:");
+			
+			picker.setCallback(function(_data) {
+				if(_data !== false) {
+					Ti.App.Properties.setInt("ReminderDefault", _data);
+				}
+				
+				$.SettingsWindow.remove(picker.getView());
+			});
+			
+			$.SettingsWindow.add(picker.getView());
+			
+			picker.open();
 		}
 	},
 	{

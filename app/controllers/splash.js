@@ -3,11 +3,11 @@ var App = require("core");
 
 function animate() {
 	var transAstronautStart = Ti.UI.create2DMatrix({
-		rotate: 90
+		rotate: 89
 	});
 	
 	var transAstronautEnd = Ti.UI.create2DMatrix({
-		rotate: 270
+		rotate: 271
 	});
 	
 	var animStars = Ti.UI.createAnimation({
