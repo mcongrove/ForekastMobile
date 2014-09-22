@@ -15,7 +15,7 @@ var Parse = {
 	 */
 	applicationId: Alloy.CFG.Parse.ApplicationId,
 	/**
-	 * Rest KEY
+	 * REST Key
 	 * @property {String}
 	 */
 	restKey: Alloy.CFG.Parse.RestKey,
@@ -23,12 +23,6 @@ var Parse = {
 	 * Default endpoint
 	 */
 	url: "https://api.parse.com/1/",
-	/**
-	 * User session token
-	 * @member TitaniumProperties
-	 * @property {String} sessionToken
-	 */
-	sessionToken: Ti.App.Properties.getString("sessionToken") || null,
 	/**
 	 * Update a specific installation object
 	 * @param {String} _id ID of object to save
@@ -40,11 +34,6 @@ var Parse = {
 			{ name: "X-Parse-Application-Id", value: Parse.applicationId },
 			{ name: "X-Parse-REST-API-Key", value: Parse.restKey }
 		];
-		
-		// If we have a session, use this
-		if(Parse.sessionToken) {
-			headers.push({ name: "X-Parse-Session-Token", value: Parse.sessionToken });
-		}
 
 		http.request({
 			type: "PUT",
@@ -74,11 +63,6 @@ var Parse = {
 			{ name: "X-Parse-Application-Id", value: Parse.applicationId },
 			{ name: "X-Parse-REST-API-Key", value: Parse.restKey }
 		];
-		
-		// If we have a session, use this
-		if(Parse.sessionToken) {
-			headers.push({ name: "X-Parse-Session-Token", value: Parse.sessionToken });
-		}
 
 		http.request({
 			type: "GET",
@@ -100,28 +84,21 @@ var Parse = {
 	/**
 	 * Register device for push
 	 * @param {String} _token
-	 * @param {String} _device
 	 * @param {Array} _channels
 	 * @param {Function} _callback
 	 */
-	registerDeviceToken: function(_token, _device, _channels, _callback) {
+	registerDeviceToken: function(_token, _channels, _callback) {
 		var headers = [
 			{ name: "X-Parse-Application-Id", value: Parse.applicationId },
 			{ name: "X-Parse-REST-API-Key", value: Parse.restKey }
 		];
-		
-		// If we have a session, use this
-		if(Parse.sessionToken) {
-			headers.push({ name: "X-Parse-Session-Token", value: Parse.sessionToken });
-		}
 
 		var data = {
-			deviceType: _device,
+			deviceType: OS_IOS ? "ios" : "android",
 	        deviceToken: _token,
-	        channels: _channels
+	        channels: _channels ? _channels : [ "" ]
 		};
 
-		// Save the record to the cloud db
 		http.request({
 			type: "POST",
 			format: "json",
@@ -129,12 +106,11 @@ var Parse = {
 			url: Parse.url + "installations",
 			headers: headers,
 			success: function(_response) {
-				Ti.API.debug(_response);
 				/**
 				 * @member TitaniumProperties
 			     * @property {String} installationObjectId
 				 */
-				Ti.App.Properties.setString("installationObjectId", _response.objectId);
+				Ti.App.Properties.setString("InstallationObjectId", _response.objectId);
 				
 				if(_callback) {
 					_callback({ success: _response });
@@ -185,5 +161,9 @@ var Parse = {
 		http.request(payload);
 	}
 };
+
+Ti.App.addEventListener("Push:TokenReceived", function(_event) {
+	Parse.registerDeviceToken(_event.deviceToken);
+});
 
 module.exports = Parse;

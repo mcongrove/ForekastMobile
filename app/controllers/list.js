@@ -145,6 +145,8 @@ $.ListWindow.addEventListener("open", function() {
 	});
 	
 	init();
+	
+	App.Push.register();
 });
 
 $.Events.addEventListener("postlayout", function postLayoutListener(_event) {

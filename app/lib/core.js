@@ -42,6 +42,10 @@ var App = {
 	 */
 	Parse: require("parse"),
 	/**
+	 * Push notifications library
+	 */
+	Push: require("push"),
+	/**
 	 * Access to the main window
 	 */
 	MainWindow: null,
@@ -64,12 +68,6 @@ var App = {
 		App.getDeviceDimensions();
 	},
 	/**
-	 * Logs an analytics event
-	 */
-	logEvent: function(_name, _properties) {
-		App.Parse.event(_name, _properties);
-	},
-	/**
 	 * Opens the settings screen
 	 */
 	openSettings: function() {
@@ -89,14 +87,14 @@ var App = {
 	 * @param {Object} _event Standard Ti callback
 	 */
 	exit: function(_event) {
-		App.logEvent("Application:Exit");
+		
 	},
 	/**
 	 * Resume event observer
 	 * @param {Object} _event Standard Ti callback
 	 */
 	resume: function(_event) {
-		App.logEvent("Application:Resume");
+		
 	},
 	/**
 	 * Handle the orientation change event callback
@@ -145,6 +143,12 @@ var App = {
 			width: App.Device.width,
 			height: App.Device.height
 		};
+	},
+	/**
+	 * Logs an analytics event
+	 */
+	logEvent: function(_name, _properties) {
+		App.Parse.event(_name, _properties);
 	}
 };
 

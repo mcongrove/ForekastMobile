@@ -98,6 +98,11 @@ exports.request = function(_params) {
 		// Overcomes the 'unsupported browser' error sometimes received
 		xhr.setRequestHeader("User-Agent", "Appcelerator Titanium/" + Ti.version + " (" + Ti.Platform.osname + "/" + Ti.Platform.version + "; " + Ti.Platform.name + "; " + Ti.Locale.currentLocale + ";)");
 
+		// Weird workaround for Android
+		if(_params.format === "json") {
+			xhr.setRequestHeader("Content-Type", "application/json");
+		}
+
 		if(_params.data) {
 			xhr.send(JSON.stringify(_params.data));
 		} else {
