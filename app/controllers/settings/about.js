@@ -15,4 +15,4 @@ label.addEventListener("click", function(_event) {
 	}
 });
 
-$.SettingsAboutWindow.add(label);
+$.ScrollView.add(label);

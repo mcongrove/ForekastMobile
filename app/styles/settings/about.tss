@@ -1,3 +1,9 @@
 "Window": {
 	layout: "vertical"
+},
+"#ScrollView": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	contentHeight: "auto"
 }

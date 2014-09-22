@@ -1,5 +1,5 @@
 <Alloy>
 	<Window id="SettingsAboutWindow" title="About">
-		
+		<ScrollView id="ScrollView" />
 	</Window>
 </Alloy>
