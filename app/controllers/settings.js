@@ -38,7 +38,7 @@ var OPTIONS = [
 			];
 			
 			picker.setOptions(options);
-			picker.setInstructions("Choose a default time for new reminders:");
+			picker.setInstructions("Choose a default time for any new reminders you create");
 			
 			picker.setCallback(function(_data) {
 				if(_data !== false) {

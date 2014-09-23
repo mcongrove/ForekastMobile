@@ -4,7 +4,8 @@ var App = require("core"),
 
 var StyledLabel = require("ti.styledlabel");
 
-var upvote_notice;
+var reminder = false,
+	upvote_notice;
 
 function init() {
 	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
@@ -32,11 +33,65 @@ function init() {
 }
 
 function toggleReminder(_event) {
-	_event.source.image = "images/icon_reminder_active.png";
+	var picker = Alloy.createController("ui/picker");
+	var selectedValue = reminder === false ? Ti.App.Properties.getInt("ReminderDefault", 0) : reminder;
 	
-	App.logEvent("Event:Remind", {
-		eventId: 12345
+	var options = [
+		{
+			title: "15 min. before",
+			value: 0,
+			selected: selectedValue == 0 ? true : false
+		},
+		{
+			title: "1 hr. before",
+			value: 1,
+			selected: selectedValue == 1 ? true : false
+		},
+		{
+			title: "4 hr. before",
+			value: 2,
+			selected: selectedValue == 2 ? true : false
+		},
+		{
+			title: "1 day before",
+			value: 3,
+			selected: selectedValue == 3 ? true : false
+		}
+	];
+	
+	if(reminder !== false) {
+		options.unshift({
+			title: "Cancel",
+			value: "cancel"
+		});
+	}
+	
+	picker.setOptions(options);
+	picker.setInstructions("When should we remind you of this event?");
+	
+	picker.setCallback(function(_data) {
+		if(_data !== false) {
+			if(_data == "cancel") {
+				reminder = false;
+				
+				_event.source.image = "images/icon_reminder.png";
+			} else {
+				reminder = _data;
+				
+				_event.source.image = "images/icon_reminder_active.png";
+				
+				App.logEvent("Event:Remind", {
+					eventId: 12345
+				});
+			}
+		}
+		
+		$.EventWindow.remove(picker.getView());
 	});
+	
+	$.EventWindow.add(picker.getView());
+	
+	picker.open();
 }
 
 $.EventWindow.addEventListener("open", function(_event) {
