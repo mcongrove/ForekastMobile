@@ -1,9 +1,11 @@
 var callback;
 
 $.setOptions = function(_data) {
-	var rows = [];
+	var rows = [],
+		len = _data.length,
+		height;
 
-	for(var i = 0, x = _data.length; i < x; i++) {
+	for(var i = 0, x = len; i < x; i++) {
 		var bgColor = _data[i].selected ? "#AA3E4252" : "99000000";
 
 		var row = Ti.UI.createTableViewRow({
@@ -21,6 +23,19 @@ $.setOptions = function(_data) {
 	}
 
 	$.Table.setData(rows);
+	
+	if(len > 5) {
+		len = 5;
+		
+		$.Table.scrollable = true;
+	} else {
+		$.Table.scrollable = false;
+	}
+	
+	height = 48 * len;
+	
+	$.Table.height = height;
+	$.Container.bottom = height;
 };
 
 $.setInstructions = function(_text) {
