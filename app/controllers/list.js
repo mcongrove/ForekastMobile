@@ -110,6 +110,8 @@ function setData() {
 
 function onDateChange(_event) {
 	if(_event.date != current_date) {
+		current_date = _event.date;
+		
 		getData(_event.date);
 	}
 }
