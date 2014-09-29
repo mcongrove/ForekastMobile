@@ -39,7 +39,7 @@ var Parse = {
 			doNotCache: true,
 			type: "PUT",
 			format: "json",
-			data: _params,
+			data: JSON.stringify(_params),
 			url: Parse.url + "installations/" + _id,
 			headers: headers,
 			success: function(_response) {
@@ -105,7 +105,7 @@ var Parse = {
 			doNotCache: true,
 			type: "POST",
 			format: "json",
-			data: data,
+			data: JSON.stringify(data),
 			url: Parse.url + "installations",
 			headers: headers,
 			success: function(_response) {
@@ -157,9 +157,9 @@ var Parse = {
 		};
 
 		if(_data) {
-			payload.data = {  dimensions: _data };
+			payload.data = JSON.stringify({ dimensions: _data });
 		} else {
-			payload.data = {};
+			payload.data = JSON.stringify({});
 		}
 
 		http.request(payload);

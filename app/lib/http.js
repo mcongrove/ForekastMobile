@@ -92,6 +92,7 @@ exports.request = function(_params) {
 					Ti.API.error(JSON.stringify(this));
 				}
 	
+				Ti.API.error(_params.url);
 				Ti.API.error(_event);
 			};
 	
