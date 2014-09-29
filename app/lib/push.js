@@ -76,7 +76,6 @@ function receiveNotification(_event) {
 	}
 }
 
-
 // Parse Form:
 // { "aps": { "alert": "In 1 hour: Watch the Atlast V rocket..." } }
 //

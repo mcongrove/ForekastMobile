@@ -69,10 +69,15 @@ function getData() {
 function setData() {
 	for(var i = 0, x = TEST_DATA.length; i < x; i++) {
 		var event = TEST_DATA[i];
-		var controller = Alloy.createController("ui/event_row");
+		var controller = Alloy.createController("ui/event_row", {
+			id: 12345
+		});
 		
 		controller.updateViews({
 			"#Row": {
+				backgroundColor: (i % 2 == 0) ? "#FFF" : "#F6F6F6"
+			},
+			"#Container": {
 				backgroundColor: (i % 2 == 0) ? "#FFF" : "#F6F6F6"
 			},
 			"#Title": {
@@ -126,7 +131,7 @@ $.Events.addEventListener("click", function() {
 	var event = Alloy.createController("event");
 });
 
-$.Events.addEventListener("swipe", function() {
+$.Events.addEventListener("remind", function(_event) {
 	if(!upvote_notice) {
 		upvote_notice = Alloy.createController("ui/upvote");
 		
@@ -136,7 +141,7 @@ $.Events.addEventListener("swipe", function() {
 	upvote_notice.show();
 	
 	App.logEvent("Event:Upvote", {
-		eventId: 12345
+		eventId: _event.id
 	});
 });
 
