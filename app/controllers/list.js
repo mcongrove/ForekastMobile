@@ -1,19 +1,7 @@
-var TEST_DATA = [
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5412/f45a/666b/7750/fc75/0000/medium/open-uri20140912-20732-cp4469?1410804276" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5416/736f/666b/7776/da1a/0000/medium/fight-for-your-right.png?1410757486" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5415/9529/666b/7750/fca3/0000/medium/open-uri20140914-20732-12omidv?1410714096" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5410/ea55/666b/7750/fc4d/0000/medium/open-uri20140915-30426-1uf8ggn?1410804283" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5410/eab7/666b/773d/7dc3/0000/medium/Screen_Shot_2014-09-10_at_7.17.09_PM.png?1410507474" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5416/55c7/666b/7776/da15/0000/medium/stringio.txt?1410788781" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/53ef/ac92/666b/7778/3303/0000/medium/POTC-4-stills-pirates-of-the-caribbean-4-22224905-1500-994.jpg?1410451797" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/53fd/eedf/666b/773a/af03/0000/medium/open-uri20140827-15023-1rfhcmd?1410767350" },
-	{ title: "Watch the Atlas V rocket launch streaming live", time: "4:44pm", subkast: "Science", upvotes: 24, image: "https://s3.amazonaws.com/FK-PROD/events/images/5407/42f9/666b/7703/36af/0100/medium/2014_LoneStarLeMans_620x250.jpg?1409778464" }
-];
-
 // App bootstrap
 var App = require("core"),
-	Moment = require("alloy/moment");
+	Moment = require("alloy/moment"),
+	Forekast = require("model/forekast");
 
 /**
  * Parallax Effect Calculations
@@ -43,7 +31,7 @@ var movement_bounds = 15; // How much should the image move up or down, maximum
 
 var events = [];
 var upvote_notice;
-var current_date = Moment().format("YYYYMMDD");
+var current_date = Moment().format("YYYY-MM-DD");
 
 function init() {
 	getData();
@@ -58,58 +46,83 @@ function init() {
 function getData() {
 	var anim = Ti.UI.createAnimation({
 		opacity: 0,
-		duration: 250
+		duration: 100
 	});
 	
-	anim.addEventListener("complete", setData);
+	anim.addEventListener("complete", function() {
+		Forekast.getEventByDate({
+			date: current_date,
+			success: setData,
+			error: function() {
+				$.Events.animate({
+					opacity: 1,
+					duration: 100
+				});
+			}
+		});
+	});
 	
 	$.Events.animate(anim);
 }
 
-function setData() {
-	for(var i = 0, x = TEST_DATA.length; i < x; i++) {
-		var event = TEST_DATA[i];
-		var controller = Alloy.createController("ui/event_row", {
-			id: 12345
-		});
-		
-		controller.updateViews({
-			"#Row": {
-				backgroundColor: (i % 2 == 0) ? "#FFF" : "#F6F6F6"
-			},
-			"#Container": {
-				backgroundColor: (i % 2 == 0) ? "#FFF" : "#F6F6F6"
-			},
-			"#Title": {
-				text: event.title
-			},
-			"#Time": {
-				text: event.time
-			},
-			"#Subkast": {
-				text: event.subkast
-			},
-			"#UpvoteCount": {
-				text: event.upvotes
-			},
-			"#Image": {
-				image: event.image
-			},
-			"#ImageOverlay": {
-				image: (i % 2 == 0) ? "images/circle_white.png" : "images/circle_grey.png"
-			}
-		});
-		
-		events.push(controller);
-		
-		$.Events.add(controller.getView());
-	}
+function setData(_data) {
+	$.Events.removeAllChildren();
 	
-	calculateParallax();
+	var eventCount = 0;
+	
+	if(_data.length) {
+		for(var i = 0, x = _data.length; i < x; i++) {
+			var event = _data[i];
+			
+			// TODO: Ignore if event time has passed
+			if(event.local_date == current_date) {
+				var controller = Alloy.createController("ui/event_row", {
+					id: event._id
+				});
+				
+				controller.updateViews({
+					"#Row": {
+						backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
+					},
+					"#Container": {
+						backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
+					},
+					"#Title": {
+						text: event.name
+					},
+					"#Time": {
+						text: event.is_all_day ? "All Day" : event.local_time
+					},
+					"#Subkast": {
+						text: Forekast.getSubkastByAbbrev(event.subkast)
+					},
+					"#UpvoteCount": {
+						text: event.upvotes
+					},
+					"#Image": {
+						image: event.mediumUrl
+					},
+					"#ImageOverlay": {
+						image: (eventCount % 2 == 0) ? "images/circle_white.png" : "images/circle_grey.png"
+					}
+				});
+				
+				events.push(controller);
+				
+				$.Events.add(controller.getView());
+				
+				eventCount++;
+			}
+		}
+		
+		calculateParallax();
+	} else {
+		// TODO: Show "no events available" message
+	}
 	
 	$.Events.animate({
 		opacity: 1,
-		duration: 250
+		duration: 100
 	});
 }
 
@@ -117,7 +130,7 @@ function onDateChange(_event) {
 	if(_event.date != current_date) {
 		current_date = _event.date;
 		
-		getData(_event.date);
+		getData();
 	}
 }
 
@@ -126,10 +139,6 @@ function openSettings() {
 	
 	SettingsWindow.open();
 }
-
-$.Events.addEventListener("click", function() {
-	var event = Alloy.createController("event");
-});
 
 $.Events.addEventListener("remind", function(_event) {
 	if(!upvote_notice) {

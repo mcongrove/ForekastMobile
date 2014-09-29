@@ -93,7 +93,7 @@
 	height: Ti.UI.SIZE,
 	layout: "vertical"
 },
-".title": {
+"#Title": {
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
 	left: 0,
@@ -116,7 +116,7 @@
 	height: Ti.UI.FILL,
 	left: 0
 },
-".time": {
+"#Time": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
 	textAlign: "left",
@@ -126,15 +126,14 @@
 		fontFamily: "HelveticaNeue-Bold"
 	}
 },
-".subkast": {
-	top: 1,
+"#Subkast": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
 	textAlign: "left",
 	left: 5,
 	color: "#4ED5C3",
 	font: {
-		fontSize: 13,
+		fontSize: 14,
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
@@ -169,7 +168,7 @@
 	height: 8,
 	image: "/images/icon_upvote.png"
 },
-".upvoteCount": {
+"#UpvoteCount": {
 	top: -2,
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
@@ -256,5 +255,6 @@
 	left: 20,
 	right: 20,
 	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+	scrollable: false
 }

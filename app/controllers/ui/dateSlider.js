@@ -64,7 +64,7 @@ function init() {
 
 $.DateSlider.addEventListener("scrollend", function(_event) {
 	$.trigger("dateChange", {
-		date: Moment().add(_event.currentPage, "days").format("YYYYMMDD")
+		date: Moment().add(_event.currentPage, "days").format("YYYY-MM-DD")
 	});
 	
 	var children = $.DateSlider.getViews();

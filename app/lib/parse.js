@@ -36,6 +36,7 @@ var Parse = {
 		];
 
 		http.request({
+			doNotCache: true,
 			type: "PUT",
 			format: "json",
 			data: _params,
@@ -65,6 +66,7 @@ var Parse = {
 		];
 
 		http.request({
+			doNotCache: true,
 			type: "GET",
 			format: "json",
 			url: Parse.url + "installations/" + _id,
@@ -100,6 +102,7 @@ var Parse = {
 		};
 
 		http.request({
+			doNotCache: true,
 			type: "POST",
 			format: "json",
 			data: data,
@@ -136,6 +139,7 @@ var Parse = {
 		];
 
 		var payload = {
+			doNotCache: true,
 			type: "POST",
 			format: "json",
 			url: Parse.url + "events/" + _name.replace(" ", ""),

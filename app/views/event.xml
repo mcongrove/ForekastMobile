@@ -5,18 +5,18 @@
 		</RightNavButton>
 		
 		<View class="imageContainer">
-			<ImageView id="Image" image="https://s3.amazonaws.com/FK-PROD/events/images/540b/075c/666b/774b/1ebd/0000/medium/open-uri20140906-19230-iztbwt?1410807001" />
+			<ImageView id="Image" />
 			<View class="imageOverlay" />
 		</View>
 		
 		<ScrollView id="ScrollView">
 			<View id="Content">
-				<Label class="title" text="Watch the Atlas V rocket launch streaming live" />
+				<Label id="Title" />
 				
 				<View class="details">
 					<View class="meta">
-						<Label class="time" text="4:44pm" />
-						<Label class="subkast" text="Technology" />
+						<Label id="Time" />
+						<Label id="Subkast" />
 					</View>
 					
 					<View class="social">
@@ -24,7 +24,7 @@
 						
 						<View id="Upvote">
 							<ImageView class="upvoteArrow" />
-							<Label class="upvoteCount" text="20" />
+							<Label id="UpvoteCount" text="0" />
 						</View>
 					</View>
 				</View>
@@ -39,10 +39,7 @@
 				
 				<Button id="CommentSubmit" title="Comment" platform="android" />
 				
-				<TableView id="CommentsTable">
-					<Require type="view" src="ui/comment" author="chemistry14" comment="I really hope this doesn't get delayed. The timing is perfect for me to catch it!" />
-					<Require type="view" src="ui/comment" author="donutgoblin" comment="How often do these things get delayed?" />
-				</TableView>
+				<TableView id="CommentsTable"></TableView>
 			</View>
 		</ScrollView>
 		

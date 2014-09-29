@@ -3,7 +3,7 @@
 	height: 85
 },
 "#Container": {
-	width: "100%",
+	width: Ti.UI.FILL,
 	height: 85,
 	layout: "horizontal",
 	touchEnabled: false
@@ -73,7 +73,7 @@
 	textAlign: "left",
 	left: 5,
 	font: {
-		fontSize: 11,
+		fontSize: 12,
 		fontFamily: "HelveticaNeue-Light"
 	}
 },

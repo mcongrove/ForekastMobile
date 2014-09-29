@@ -1,5 +1,7 @@
 {
-	"global": {}, 
+	"global": {
+		"CacheDuration": 5
+	}, 
 	"env:development": {
 		"Parse": {
 			"ApplicationId": "g9DVSdmtt1tD8B6fpUOxNcXLRVYTawAbkFlM5IYO",

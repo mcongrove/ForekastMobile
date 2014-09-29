@@ -1,15 +1,40 @@
 // App bootstrap
 var App = require("core"),
-	Social = require("social");
+	Moment = require("alloy/moment"),
+	Forekast = require("model/forekast"),
+	Social = require("social"),
+	StyledLabel = require("ti.styledlabel");
 
-var StyledLabel = require("ti.styledlabel");
+var args = arguments[0] || {};
+
+var EVENT = {
+	_id: args.id
+};
 
 var reminder = false,
 	upvote_notice;
 
-function init() {
+function getData() {
+	Forekast.getEventById({
+		id: EVENT._id,
+		success: setData,
+		error: function() {
+			// TODO: Alert, close window
+		}
+	});
+}
+
+function setData(_data) {
+	EVENT = _data;
+	
+	$.Image.image = EVENT.mediumUrl;
+	$.Title.text = EVENT.name;
+	$.Time.text = EVENT.local_time;
+	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
+	$.UpvoteCount.text = EVENT.upvotes;
+	
 	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
-	var text = "On the day of the launch, Spaceflight now should post a link to the <a target='_blank' href='http://www.spaceflightnow.com/'>livestream coverage here.</a><br> If you've never watched a live launch, I highly recommend catching one. It's pretty awe-inspiring. You can set a reminder to catch this one with the bell icon directly above this text box.  <a target='_blank' href='http://www.ulalaunch.com/'>ulalaunch.com</a> Will also have a webcast which they indicate begins 20 minutes before launch.";
+	var text = EVENT.description;
 
 	var label = StyledLabel.createLabel({
 		height: Ti.UI.SIZE,
@@ -21,15 +46,38 @@ function init() {
 	
 	label.addEventListener("click", function(_event) {
 		if(_event.url) {
-			Ti.Platform.openURL(_event.url);
+			Ti.Platform.openURL("https://forekast.com/events/show/" + EVENT._id);
 		}
 	});
 	
 	$.Content.add(label);
 	
 	App.logEvent("Event:Open", {
-		eventId: 12345
+		eventId: EVENT._id
 	});
+	
+	Forekast.getCommentsByEventId({
+		id: EVENT._id,
+		success: setComments,
+		error: function() {
+			// TODO: Do something
+		}
+	});
+}
+
+function setComments(_data) {
+	var rows = [];
+	
+	for(i = 0, x = _data.length; i < x; i++) {
+		var comment = _data[i];
+		
+		rows.push(Alloy.createController("ui/comment", {
+			author: comment.username,
+			comment: comment.message
+		}).getView());
+	}
+	
+	$.CommentsTable.setData(rows);
 }
 
 function toggleReminder(_event) {
@@ -165,7 +213,7 @@ $.ScrollView.addEventListener("click", function(_event) {
 });
 
 $.Share.addEventListener("click", function(_event) {
-	Social.share("https://forekast.com/events/show/537abd28666b7741750e8600");
+	Social.share("https://forekast.com/events/show/" + EVENT._id);
 	
 	App.logEvent("Event:Share", {
 		eventId: 12345
@@ -178,4 +226,4 @@ if(OS_IOS) {
 	$.EventWindow.open();
 }
 
-init();
+getData();
