@@ -25,7 +25,11 @@ exports.request = function(_params) {
 	Ti.API.debug("HTTP.request " + _params.url);
 
 	if(Cache.valid(_params.url) && !_params.forceFresh && !_params.doNotCache) {
-		_params.success(Cache.read(_params.url));
+		if(_params.success) {
+			_params.success(Cache.read(_params.url));
+		} else {
+			return Cache.read(_params.url);
+		}
 	} else {
 		if(Ti.Network.online) {
 			var xhr = Ti.Network.createHTTPClient();

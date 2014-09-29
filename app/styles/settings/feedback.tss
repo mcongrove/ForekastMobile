@@ -73,23 +73,3 @@
 		fontFamily: "HelveticaNeue-Regular"
 	}
 }
-
-
-
-
-
-
-
-/*
-<Alloy>
-	<Window id="SettingsFeedbackWindow" title="Feedback">
-		<ScrollView>
-			<TextField id="FieldName" hintText="Your Name" />
-			<TextField id="FieldEmail" hintText="E-mail Address" />
-			<TextField id="FieldTwitter" hintText="@twitter" />
-			<TextArea id="FieldMessage" />
-			<Button id="Submit" title="Send Feedback" />
-		</ScrollView>
-	</Window>
-</Alloy>
- */
