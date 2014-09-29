@@ -1,5 +1,7 @@
 // App bootstrap
-var App = require("core");
+var App = require("core"),
+	Moment = require("alloy/moment"),
+	Forekast = require("model/forekast");
 
 function animate() {
 	var transAstronautStart = Ti.UI.create2DMatrix({
@@ -60,3 +62,7 @@ if(ENV_DEV) {
 }
 
 $.SplashWindow.open();
+
+Forekast.getEventByDate({
+	date: Moment().format("YYYY-MM-DD")
+});
