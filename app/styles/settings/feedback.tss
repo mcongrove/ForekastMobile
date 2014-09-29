@@ -1,0 +1,95 @@
+"ScrollView": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	contentHeight: "auto",
+	layout: "vertical"
+},
+"TextField": {
+	returnKeyType: Ti.UI.RETURNKEY_NEXT,
+	width: Ti.UI.FILL,
+	height: 22,
+	top: 10,
+	left: 10,
+	right: 10,
+	bottom: 10,
+	backgroundColor: "#F6F6F6",
+	color: "#3E4252",
+	textAlign: "left",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Regular"
+	},
+	autocorrect: true
+},
+"TextArea": {
+	returnKeyType: Ti.UI.RETURNKEY_DEFAULT,
+	width: Ti.UI.FILL,
+	height: 132,
+	top: 3,
+	left: 5,
+	right: 5,
+	bottom: 3,
+	backgroundColor: "transparent",
+	color: "#3E4252",
+	textAlign: "left",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Regular"
+	},
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_SENTENCES,
+	autocorrect: true,
+	enableReturnKey: true
+},
+".fieldWrapper": {
+	height: Ti.UI.SIZE,
+	top: 10,
+	left: 10,
+	right: 10,
+	backgroundColor: "#F6F6F6"
+},
+"#FieldName": {
+	keyboardType: Ti.UI.KEYBOARD_DEFAULT
+},
+"#FieldEmail": {
+	keyboardType: Ti.UI.KEYBOARD_EMAIL
+},
+"#FieldTwitter": {
+	keyboardType: Ti.UI.KEYBOARD_DEFAULT
+},
+"#FieldMessage": {
+	
+},
+"Button": {
+	top: 10,
+	left: 20,
+	right: 20,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	backgroundColor: "transparent",
+	color: "#7A7F9E",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Regular"
+	}
+}
+
+
+
+
+
+
+
+/*
+<Alloy>
+	<Window id="SettingsFeedbackWindow" title="Feedback">
+		<ScrollView>
+			<TextField id="FieldName" hintText="Your Name" />
+			<TextField id="FieldEmail" hintText="E-mail Address" />
+			<TextField id="FieldTwitter" hintText="@twitter" />
+			<TextArea id="FieldMessage" />
+			<Button id="Submit" title="Send Feedback" />
+		</ScrollView>
+	</Window>
+</Alloy>
+ */

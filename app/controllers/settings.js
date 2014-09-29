@@ -61,17 +61,8 @@ var OPTIONS = [
 		controller: "settings/about"
 	},
 	{
-		title: "Contact developer",
-		action: function() {
-			var email = Ti.UI.createEmailDialog({
-				barColor: "#FFF"
-			});
-		
-			email.toRecipients = [ "me@mattcongrove.com" ];
-			email.subject = "Forekast Mobile";
-			email.messageBody = "";
-			email.open();
-		}
+		title: "Send us feedback",
+		controller: "settings/feedback"
 	}
 ];
 

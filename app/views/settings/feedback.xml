@@ -1,0 +1,12 @@
+<Alloy>
+	<Window id="SettingsFeedbackWindow" title="Feedback">
+		<ScrollView>
+			<View class="fieldWrapper"><TextField id="FieldName" hintText="Your Name" /></View>
+			<View class="fieldWrapper"><TextField id="FieldEmail" hintText="E-mail Address" /></View>
+			<View class="fieldWrapper"><TextField id="FieldTwitter" hintText="@twitter" /></View>
+			<View class="fieldWrapper"><TextArea id="FieldMessage" /></View>
+			
+			<Button id="Submit" title="Send Feedback" />
+		</ScrollView>
+	</Window>
+</Alloy>

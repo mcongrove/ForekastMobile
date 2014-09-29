@@ -1,0 +1,40 @@
+{
+	"global": {
+		"CacheDuration": 5
+	}, 
+	"env:development": {
+		"Parse": {
+			"ApplicationId": "",
+			"RestKey": ""
+		},
+		"Mailgun": {
+			"Domain": "",
+			"RestKey": ""
+		}
+	}, 
+	"env:test": {
+		"Parse": {
+			"ApplicationId": "",
+			"RestKey": ""
+		},
+		"Mailgun": {
+			"Domain": "",
+			"RestKey": ""
+		}
+	}, 
+	"env:production": {
+		"Parse": {
+			"ApplicationId": "",
+			"RestKey": ""
+		},
+		"Mailgun": {
+			"Domain": "",
+			"RestKey": ""
+		}
+	}, 
+	"os:android": {},
+	"os:blackberry": {},
+	"os:ios": {},
+	"os:mobileweb": {},
+	"dependencies": {}
+}
