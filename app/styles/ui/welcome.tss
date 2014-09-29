@@ -1,0 +1,40 @@
+"WelcomeWindow": {
+	modal: true
+},
+"ScrollView": {
+	layout: "vertical",
+	top: 0,
+	bottom: 44,
+	backgroundColor: "#000D16",
+	backgroundImage: "images/stars.jpg",
+	contentHeight: "auto",
+	contentWidth: Ti.UI.FILL,
+	scrollsToTop: true
+},
+"#Content": {
+	left: 20,
+	right: 20,
+	top: 20
+},
+"Label": {
+	color: "#FFF",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Light"
+	},
+	textAlign: "left",
+	height: Ti.UI.SIZE,
+	bottom: 20
+},
+"#Done": {
+	bottom: 0,
+	left: 0,
+	width: Ti.UI.FILL,
+	height: 44,
+	backgroundColor: "#2B2D38",
+	color: "#4ED5C3",
+	font: {
+		fontSize: 16,
+		fontFamily: "HelveticaNeue-Medium"
+	}
+}

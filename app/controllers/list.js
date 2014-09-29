@@ -167,6 +167,12 @@ $.ListWindow.addEventListener("open", function() {
 	
 	// TODO: v1.1
 	// App.Push.register();
+	
+	if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
+		var WelcomeWindow = Alloy.createController("ui/welcome").getView();
+		
+		WelcomeWindow.open();
+	}
 });
 
 $.Events.addEventListener("postlayout", function postLayoutListener(_event) {
