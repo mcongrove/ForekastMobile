@@ -1,12 +1,7 @@
 "#Row": {
 	width: Ti.UI.FILL,
-	height: 85
-},
-"#Container": {
-	width: Ti.UI.FILL,
 	height: 85,
-	layout: "horizontal",
-	touchEnabled: false
+	layout: "horizontal"
 },
 ".imageContainer": {
 	width: 75,
@@ -77,11 +72,12 @@
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
-".upvotes": {
+"#Upvotes": {
 	layout: "horizontal",
 	width: Ti.UI.SIZE,
 	height: 16,
-	right: 0
+	right: 0,
+	bubbleParent: false
 },
 ".arrow": {
 	top: 5,
@@ -99,22 +95,4 @@
 		fontSize: 12,
 		fontFamily: "HelveticaNeue-Bold"
 	}
-},
-"#UpvoteBackground": {
-	backgroundColor: "#4ED5C3",
-	width: 0,
-	height: Ti.UI.FILL,
-	right: 0,
-	touchEnabled: false
-},
-"#UpvoteBackgroundLabel": {
-	width: 75,
-	height: Ti.UI.FILL,
-	textAlign: "center",
-	color: "#FFF",
-	font: {
-		fontSize: 12,
-		fontFamily: "HelveticaNeue-Bold"
-	},
-	opacity: 0.6
 }

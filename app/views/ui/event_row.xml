@@ -1,28 +1,22 @@
 <Alloy>
 	<View id="Row">
-		<View id="UpvoteBackground">
-			<Label id="UpvoteBackgroundLabel">Upvote</Label>
-		</View>
+		<ScrollView class="imageContainer">
+			<ImageView id="Image" />
+			<ImageView id="ImageOverlay" />
+		</ScrollView>
 		
-		<View id="Container">
-			<ScrollView class="imageContainer">
-				<ImageView id="Image" />
-				<ImageView id="ImageOverlay" />
-			</ScrollView>
+		<View class="content">
+			<Label id="Title" />
 			
-			<View class="content">
-				<Label id="Title" />
+			<View class="details">
+				<View class="meta">
+					<Label id="Time" />
+					<Label id="Subkast" />
+				</View>
 				
-				<View class="details">
-					<View class="meta">
-						<Label id="Time" />
-						<Label id="Subkast" />
-					</View>
-					
-					<View class="upvotes">
-						<ImageView class="arrow" />
-						<Label id="UpvoteCount" />
-					</View>
+				<View id="Upvotes">
+					<ImageView class="arrow" />
+					<Label id="UpvoteCount" />
 				</View>
 			</View>
 		</View>
