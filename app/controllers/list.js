@@ -140,6 +140,8 @@ function openSettings() {
 	SettingsWindow.open();
 }
 
+/*
+// TODO: v1.1
 $.Events.addEventListener("remind", function(_event) {
 	if(!upvote_notice) {
 		upvote_notice = Alloy.createController("ui/upvote");
@@ -153,6 +155,7 @@ $.Events.addEventListener("remind", function(_event) {
 		eventId: _event.id
 	});
 });
+*/
 
 $.ListWindow.addEventListener("open", function() {
 	$.Overlay.animate({
@@ -162,7 +165,8 @@ $.ListWindow.addEventListener("open", function() {
 	
 	init();
 	
-	App.Push.register();
+	// TODO: v1.1
+	// App.Push.register();
 });
 
 $.Events.addEventListener("postlayout", function postLayoutListener(_event) {

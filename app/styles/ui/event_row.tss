@@ -77,7 +77,10 @@
 	width: Ti.UI.SIZE,
 	height: 16,
 	right: 0,
+	/*
+	// TODO: v1.1
 	bubbleParent: false
+	*/
 },
 ".arrow": {
 	top: 5,

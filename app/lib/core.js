@@ -44,7 +44,8 @@ var App = {
 	/**
 	 * Push notifications library
 	 */
-	Push: require("push"),
+	// TODO: v1.1
+	// Push: require("push"),
 	/**
 	 * Access to the main window
 	 */

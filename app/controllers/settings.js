@@ -2,6 +2,8 @@
 var App = require("core");
 
 var OPTIONS = [
+	/*
+	// TODO: v1.1
 	{
 		title: "Sign out",
 		action: function() {
@@ -53,6 +55,7 @@ var OPTIONS = [
 			picker.open();
 		}
 	},
+	*/
 	{
 		title: "About this app",
 		controller: "settings/about"

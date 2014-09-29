@@ -1,8 +1,11 @@
 <Alloy>
 	<Window id="EventWindow">
+		<!--
+		// TODO: v1.1
 		<RightNavButton platform="ios">
 			<ImageView image="images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
+		-->
 		
 		<View class="imageContainer">
 			<ImageView id="Image" />
@@ -33,11 +36,14 @@
 			</View>
 			
 			<View id="Comments">
+				<!--
+				// TODO: v1.1
 				<View class="commentBoxWrapper">
 					<TextArea id="CommentBox" value="\nLeave a comment..." />
 				</View>
 				
 				<Button id="CommentSubmit" title="Comment" platform="android" />
+				-->
 				
 				<TableView id="CommentsTable"></TableView>
 			</View>

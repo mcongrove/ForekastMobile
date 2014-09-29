@@ -80,6 +80,8 @@ function setComments(_data) {
 	$.CommentsTable.setData(rows);
 }
 
+/*
+// TODO: v1.1
 function toggleReminder(_event) {
 	var picker = Alloy.createController("ui/picker");
 	var selectedValue = reminder === false ? Ti.App.Properties.getInt("ReminderDefault", 0) : reminder;
@@ -141,6 +143,7 @@ function toggleReminder(_event) {
 	
 	picker.open();
 }
+*/
 
 $.EventWindow.addEventListener("open", function(_event) {
 	$.ScrollView.animate({
@@ -150,6 +153,8 @@ $.EventWindow.addEventListener("open", function(_event) {
 	});
 });
 
+/*
+// TODO: v1.1
 $.Upvote.addEventListener("click", function() {
 	if(!upvote_notice) {
 		upvote_notice = Alloy.createController("ui/upvote");
@@ -163,6 +168,7 @@ $.Upvote.addEventListener("click", function() {
 		eventId: 12345
 	});
 });
+*/
 
 $.ScrollView.addEventListener("scroll", function(_event) {
 	var offset = _event.y;
@@ -186,6 +192,8 @@ $.ScrollView.addEventListener("scroll", function(_event) {
 	}
 });
 
+/*
+// TODO: v1.1
 $.CommentBox.addEventListener("focus", function(_event) {
 	if($.CommentBox.value == "\nLeave a comment...") {
 		$.CommentBox.value = "";
@@ -194,6 +202,7 @@ $.CommentBox.addEventListener("focus", function(_event) {
 	}
 });
 
+// TODO: v1.1
 $.CommentBox.addEventListener("blur", function(_event) {
 	if($.CommentBox.value.length == 0) {
 		$.CommentBox.color = "#3E4252";
@@ -202,15 +211,18 @@ $.CommentBox.addEventListener("blur", function(_event) {
 	}
 });
 
+// TODO: v1.1
 $.CommentBox.addEventListener("return", function(_event) {
 	App.logEvent("Event:Comment", {
 		eventId: 12345
 	});
 });
 
+// TODO: v1.1
 $.ScrollView.addEventListener("click", function(_event) {
 	$.CommentBox.blur();
 });
+*/
 
 $.Share.addEventListener("click", function(_event) {
 	Social.share("https://forekast.com/events/show/" + EVENT._id);

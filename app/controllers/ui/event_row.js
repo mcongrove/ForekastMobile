@@ -9,8 +9,11 @@ $.Row.addEventListener("click", function(_event) {
 	});
 });
 
+/*
+// TODO: v1.1
 $.Upvotes.addEventListener("click", function(_event) {
 	$.Row.fireEvent("remind", {
 		id: args.id
 	});
 });
+*/
