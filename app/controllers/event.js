@@ -12,7 +12,8 @@ var EVENT = {
 };
 
 var reminder = false,
-	upvote_notice;
+	upvote_notice,
+	comments = [];
 
 function getData() {
 	Forekast.getEventById({
@@ -66,14 +67,24 @@ function setData(_data) {
 }
 
 function setComments(_data) {
-	var rows = [];
+	var rows = [],
+		comments = [];
 	
-	for(i = 0, x = _data.length; i < x; i++) {
-		var comment = _data[i];
+	// TODO: v1.1
+	if(_data.length === 0) {
+		$.Comments.backgroundGradient = {};
 		
+		return;
+	}
+	
+	// This loops through all the replies and grabs EVERY comment
+	extractComments(_data, 0);
+	
+	for(var i = 0, x = comments.length; i < x; i++) {
 		rows.push(Alloy.createController("ui/comment", {
-			author: comment.username,
-			comment: comment.message
+			author: comments[i].username,
+			comment: comments[i].message,
+			depth: comments[i].depth
 		}).getView());
 	}
 	
@@ -105,6 +116,22 @@ function setComments(_data) {
 			}
 		]
 	});
+}
+
+function extractComments(_data, _depth) {
+	for(var i = 0, x = _data.length; i < x; i++) {
+		var comment = {
+			username: _data[i].username,
+			message: _data[i].message,
+			depth: _depth
+		};
+		
+		comments.push(comment);
+		
+		if(_data[i].replies.length > 0) {
+			extractComments(_data[i].replies, _depth + 1);
+		}
+	}
 }
 
 /*
