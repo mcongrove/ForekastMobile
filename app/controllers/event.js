@@ -78,6 +78,33 @@ function setComments(_data) {
 	}
 	
 	$.CommentsTable.setData(rows);
+	
+	// Hacking, because the gradient doesn't update when content is added
+	$.Comments.setBackgroundGradient({
+		type: "linear",
+		startPoint: {
+			x: 0,
+			y: 0
+		},
+		endPoint: {
+			x: 0,
+			y: "100%"
+		},
+		colors: [
+			{
+				color: "#2B2D38",
+				offset: 0
+			},
+			{
+				color: "#2B2D38",
+				offset: 0.5
+			},
+			{
+				color: "#000D16",
+				offset: 1
+			}
+		]
+	});
 }
 
 /*

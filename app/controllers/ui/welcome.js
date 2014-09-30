@@ -8,3 +8,5 @@ if(OS_IOS && App.Device.versionMajor >= 7) {
 $.Done.addEventListener("click", function() {
 	$.WelcomeWindow.close();
 });
+
+Ti.App.Properties.setBool("WelcomeShown", true);
