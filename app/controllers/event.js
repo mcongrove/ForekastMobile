@@ -63,6 +63,12 @@ function setData(_data) {
 			left: 0,
 			html: html + description
 		});
+		
+		label.addEventListener("click", function(_event) {
+			if(_event.url) {
+				Ti.Platform.openURL(_event.url);
+			}
+		});
 	} else {
 		var label = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
