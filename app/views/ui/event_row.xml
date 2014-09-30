@@ -1,8 +1,12 @@
 <Alloy>
 	<View id="Row">
-		<ScrollView class="imageContainer">
+		<ScrollView class="imageContainer" platform="ios">
 			<ImageView id="Image" />
-			<ImageView id="ImageOverlay" platform="ios" />
+			<ImageView id="ImageOverlay" />
+		</ScrollView>
+		
+		<ScrollView class="imageContainer" platform="android">
+			<ImageView id="Image" />
 		</ScrollView>
 		
 		<View class="content">
