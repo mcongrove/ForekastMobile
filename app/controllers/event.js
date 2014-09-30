@@ -70,9 +70,7 @@ function setData(_data) {
 	Forekast.getCommentsByEventId({
 		id: EVENT._id,
 		success: setComments,
-		failure: function() {
-			// TODO: Do something
-		}
+		failure: setComments
 	});
 }
 
