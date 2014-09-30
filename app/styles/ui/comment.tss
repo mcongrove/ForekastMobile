@@ -1,4 +1,4 @@
-"TableViewRow": {
+"View": {
 	top: 0,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,

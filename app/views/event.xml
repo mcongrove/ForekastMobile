@@ -56,7 +56,7 @@
 				<Button id="CommentSubmit" title="Comment" platform="android" />
 				-->
 				
-				<TableView id="CommentsTable"></TableView>
+				<View id="CommentsContainer"></View>
 			</View>
 		</ScrollView>
 		

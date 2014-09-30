@@ -250,12 +250,12 @@
 		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
-"#CommentsTable": {
+"#CommentsContainer": {
 	top: 0,
 	left: 20,
 	right: 20,
 	bottom: 20,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
-	scrollable: false
+	layout: "vertical"
 }

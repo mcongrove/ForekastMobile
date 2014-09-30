@@ -1,6 +1,6 @@
 <Alloy>
-	<TableViewRow>
+	<View>
 		<Label id="Text" />
 		<Label id="Author" />
-	</TableViewRow>
+	</View>
 </Alloy>

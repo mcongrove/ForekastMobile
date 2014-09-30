@@ -75,14 +75,18 @@ function setData(_data) {
 	
 	$.Content.add(label);
 	
+	getComments();
+	
+	App.logEvent("Event:Open", {
+		eventId: EVENT._id
+	});
+}
+
+function getComments() {
 	Forekast.getCommentsByEventId({
 		id: EVENT._id,
 		success: setComments,
 		failure: setComments
-	});
-	
-	App.logEvent("Event:Open", {
-		eventId: EVENT._id
 	});
 }
 
@@ -132,13 +136,13 @@ function extractComments(_data, _depth) {
 	for(var i = 0, x = _data.length; i < x; i++) {
 		var comment = _data[i];
 		
-		var row = Alloy.createController("ui/comment", {
+		var commentView = Alloy.createController("ui/comment", {
 			author: comment.username,
 			comment: comment.message,
 			depth: _depth
 		}).getView();
 		
-		$.CommentsTable.appendRow(row);
+		$.CommentsContainer.add(commentView);
 		
 		if(comment.replies.length > 0) {
 			extractComments(comment.replies, _depth + 1);
