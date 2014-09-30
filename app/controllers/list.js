@@ -68,6 +68,8 @@ function getData() {
 function setData(_data) {
 	$.Events.removeAllChildren();
 	
+	events = [];
+	
 	var eventCount = 0;
 	
 	if(_data.length) {
