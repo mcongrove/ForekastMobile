@@ -53,7 +53,7 @@ function getData() {
 		Forekast.getEventByDate({
 			date: current_date,
 			success: setData,
-			error: function() {
+			failure: function() {
 				$.Events.animate({
 					opacity: 1,
 					duration: 100

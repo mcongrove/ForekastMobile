@@ -10,7 +10,7 @@ function submitForm() {
 	Mailgun.sendMail({
 		message: message,
 		success: onSuccess,
-		error: onError
+		failure: onError
 	});
 }
 

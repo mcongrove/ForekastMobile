@@ -5,7 +5,7 @@ var Moment = require("alloy/moment"),
  * Gets events for a specific date
  * @param {String} _params.date The date in YYYY-MM-DD format
  * @param {Function} _params.success The success callback
- * @param {Function} _params.error The error callback
+ * @param {Function} _params.failure The error callback
  */
 exports.getEventByDate = function(_params) {
 	var url = "https://forekast.com/api/events/eventsByDate.json?"
@@ -32,7 +32,7 @@ exports.getEventByDate = function(_params) {
 		type: "GET",
 		format: "JSON",
 		success: _params.success,
-		error: _params.error
+		failure: _params.failure
 	});
 };
 
@@ -40,7 +40,7 @@ exports.getEventByDate = function(_params) {
  * Gets a specific event
  * @param {String} _params.id The ID of the event
  * @param {Function} _params.success The success callback
- * @param {Function} _params.error The error callback
+ * @param {Function} _params.failure The error callback
  */
 exports.getEventById = function(_params) {
 	var url = "https://forekast.com/events/"
@@ -53,7 +53,7 @@ exports.getEventById = function(_params) {
 		type: "GET",
 		format: "JSON",
 		success: _params.success,
-		error: _params.error
+		failure: _params.failure
 	});
 };
 
@@ -61,7 +61,7 @@ exports.getEventById = function(_params) {
  * Gets comments for a specific event
  * @param {String} _params.id The ID of the event
  * @param {Function} _params.success The success callback
- * @param {Function} _params.error The error callback
+ * @param {Function} _params.failure The error callback
  */
 exports.getCommentsByEventId = function(_params) {
 	var url = "https://forekast.com/api/events/"
@@ -74,7 +74,7 @@ exports.getCommentsByEventId = function(_params) {
 		type: "GET",
 		format: "JSON",
 		success: _params.success,
-		error: _params.error
+		failure: _params.failure
 	});
 };
 

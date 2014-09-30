@@ -22,7 +22,7 @@ var Mailgun = {
 				text: _params.message,
 			},
 			success: _params.success ? _params.success : null,
-			error: _params.error ? _params.error : null
+			failure: _params.failure ? _params.failure : null
 		});
 	}
 };
