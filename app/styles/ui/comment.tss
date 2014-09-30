@@ -13,7 +13,7 @@
 	textAlign: "left",
 	font: {
 		fontSize: 16,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Author": {
@@ -25,6 +25,6 @@
 	textAlign: "left",
 	font: {
 		fontSize: 12,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 }

@@ -3,31 +3,33 @@ var App = require("core"),
 	Moment = require("alloy/moment"),
 	Forekast = require("model/forekast");
 
-/**
- * Parallax Effect Calculations
- * 
- * Basically, we're determining how far away an element is from the center of the screen (as a percent).
- * 
- * The top of the screen is -100% away from center, the bottom is +100% away.
- * 
- * We take that percent and multiply it by the max distance the image can slide up or down;
- * so, if an image can slide up 20px and it's at the bottom of the screen (100%), 20*100% = 20...
- * the image should be offset 20px down.
- * 
- * If the image is in the middle, it's 0% away from the middle of the screen. Therefore, offset is 0px.
- * 
- * If the image is at the top, it's -100% away from the middle, 20*-100% = -20...
- * the image should be offset 20px up.
- * 
- * The max slide distance is determined by calculating the difference in the cropped view size (circle)
- * and the size of the uncropped image (85px in our case). That's how much larger the image is than it's
- * container (30px). We divide by 2 to get the max slide distance for either direction (15px).
- */
-var parent_height; // How tall is the window (ScrollView, in our case)
-var parent_center; // Where is the middle of the window (ScrollView, in our case)
-var row_height = 85; // How tall is our wrapper for the image (row)
-var image_height = 85; // How tall is the image we're using
-var movement_bounds = 15; // How much should the image move up or down, maximum
+if(OS_IOS) {
+	/**
+	 * Parallax Effect Calculations
+	 * 
+	 * Basically, we're determining how far away an element is from the center of the screen (as a percent).
+	 * 
+	 * The top of the screen is -100% away from center, the bottom is +100% away.
+	 * 
+	 * We take that percent and multiply it by the max distance the image can slide up or down;
+	 * so, if an image can slide up 20px and it's at the bottom of the screen (100%), 20*100% = 20...
+	 * the image should be offset 20px down.
+	 * 
+	 * If the image is in the middle, it's 0% away from the middle of the screen. Therefore, offset is 0px.
+	 * 
+	 * If the image is at the top, it's -100% away from the middle, 20*-100% = -20...
+	 * the image should be offset 20px up.
+	 * 
+	 * The max slide distance is determined by calculating the difference in the cropped view size (circle)
+	 * and the size of the uncropped image (85px in our case). That's how much larger the image is than it's
+	 * container (30px). We divide by 2 to get the max slide distance for either direction (15px).
+	 */
+	var parent_height; // How tall is the window (ScrollView, in our case)
+	var parent_center; // Where is the middle of the window (ScrollView, in our case)
+	var row_height = 85; // How tall is our wrapper for the image (row)
+	var image_height = 85; // How tall is the image we're using
+	var movement_bounds = 15; // How much should the image move up or down, maximum
+}
 
 var events = [];
 var upvote_notice;
@@ -119,7 +121,9 @@ function setData(_data) {
 					}
 				});
 				
-				events.push(controller);
+				if(OS_IOS) {
+					events.push(controller);
+				}
 				
 				$.Events.add(controller.getView());
 				
@@ -127,14 +131,16 @@ function setData(_data) {
 			}
 		}
 		
-		calculateParallax();
+		if(OS_IOS) {
+			calculateParallax();
+		}
 	} else {
 		var noEvents = Ti.UI.createLabel({
 			text: "No events on this date",
 			color: "#7A7F9E",
 			font: {
 				fontSize: 14,
-				fontFamily: "HelveticaNeue-Medium"
+				fontFamily: Alloy.CFG.Font.Medium
 			},
 			textAlign: "center",
 			height: Ti.UI.FILL
@@ -148,6 +154,8 @@ function setData(_data) {
 		duration: 100
 	});
 }
+
+Ti.API.error(Alloy.CFG.Font.Medium);
 
 function onDateChange(_event) {
 	if(_event.date != current_date) {
@@ -181,68 +189,83 @@ $.Events.addEventListener("remind", function(_event) {
 */
 
 $.ListWindow.addEventListener("open", function() {
-	$.Overlay.animate({
+	var anim = Ti.UI.createAnimation({
 		opacity: 0,
 		duration: 500
 	});
+	
+	anim.addEventListener("complete", function() {
+		$.ListWindow.remove($.Overlay);
+	});
+	
+	$.Overlay.animate(anim);
 	
 	init();
 	
 	// TODO: v1.1
 	// App.Push.register();
 	
-	if(ENV_DEV) {
-		if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
-			var WelcomeWindow = Alloy.createController("ui/welcome").getView();
-			
-			WelcomeWindow.open();
-		}
-	}
-});
-
-$.Events.addEventListener("postlayout", function postLayoutListener(_event) {
-	parent_height = _event.source.rect.height;
-	parent_center = parent_height / 2;
-	
-	$.Events.removeEventListener("postlayout", postLayoutListener);
-});
-
-$.Events.addEventListener("scroll", calculateParallax);
-
-function calculateParallax(_event) {
-	// How far down the screen have we scrolled?
-	var offset_y = _event && _event.source.contentOffset.y ? _event.source.contentOffset.y : 0;
-	
-	for(var i = 0, x = events.length; i < x; i++) {
-		var event = events[i];
-		
-		// Where on the Y-axis is our element
-		var position_y = (0 - offset_y) + (i * row_height) + (row_height / 2);
-		var percent_y;
-		
-		// Is it above or below the middle of the screen?
-		if(position_y > parent_center) {
-			// Below; calculate percentage away from center (bottom of screen is 100%, middle is 0%)
-			percent_y = ((position_y / parent_center) - 1);
-		} else if(position_y < parent_center) {
-			// Above; calculate percentage away from center (top of screen is 100%, middle is 0%)
-			percent_y = (0 - (1 - (position_y / parent_center)));
-		}
-		
-		// New position is a percentage of the maximum slide amount
-		var new_y = movement_bounds * percent_y;
-		
-		// Ensure that we don't go over the maximum slide amount
-		if(new_y > 0 && new_y > movement_bounds) {
-			new_y = movement_bounds;
-		} else if(new_y < 0 && new_y < (0 - movement_bounds)) {
-			new_y = 0 - movement_bounds;
-		}
-		
-		event.updateViews({
-			"#Image": {
-				top: new_y
+	// TODO: Remove this platform switch, it's temporary
+	if(OS_IOS) {
+		if(!ENV_DEV) {
+			if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
+				var WelcomeWindow = Alloy.createController("ui/welcome").getView();
+				
+				WelcomeWindow.open();
 			}
-		});
+		}
 	}
+});
+
+if(OS_IOS) {
+	$.Events.addEventListener("postlayout", function postLayoutListener(_event) {
+		parent_height = _event.source.rect.height;
+		parent_center = parent_height / 2;
+		
+		$.Events.removeEventListener("postlayout", postLayoutListener);
+	});
+	
+	$.Events.addEventListener("scroll", calculateParallax);
+	
+	function calculateParallax(_event) {
+		// How far down the screen have we scrolled?
+		var offset_y = _event && _event.source.contentOffset.y ? _event.source.contentOffset.y : 0;
+		
+		for(var i = 0, x = events.length; i < x; i++) {
+			var event = events[i];
+			
+			// Where on the Y-axis is our element
+			var position_y = (0 - offset_y) + (i * row_height) + (row_height / 2);
+			var percent_y;
+			
+			// Is it above or below the middle of the screen?
+			if(position_y > parent_center) {
+				// Below; calculate percentage away from center (bottom of screen is 100%, middle is 0%)
+				percent_y = ((position_y / parent_center) - 1);
+			} else if(position_y < parent_center) {
+				// Above; calculate percentage away from center (top of screen is 100%, middle is 0%)
+				percent_y = (0 - (1 - (position_y / parent_center)));
+			}
+			
+			// New position is a percentage of the maximum slide amount
+			var new_y = movement_bounds * percent_y;
+			
+			// Ensure that we don't go over the maximum slide amount
+			if(new_y > 0 && new_y > movement_bounds) {
+				new_y = movement_bounds;
+			} else if(new_y < 0 && new_y < (0 - movement_bounds)) {
+				new_y = 0 - movement_bounds;
+			}
+			
+			event.updateViews({
+				"#Image": {
+					top: new_y
+				}
+			});
+		}
+	}
+}
+
+if(OS_ANDROID) {
+	$.ListWindow.open();
 }

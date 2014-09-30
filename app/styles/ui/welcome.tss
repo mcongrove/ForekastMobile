@@ -21,7 +21,7 @@
 	color: "#FFF",
 	font: {
 		fontSize: 18,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	},
 	textAlign: "left",
 	height: Ti.UI.SIZE,
@@ -32,14 +32,14 @@
 ".strong": {
 	font: {
 		fontSize: 18,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 },
 ".signature": {
 	textAlign: "center",
 	font: {
 		fontSize: 18,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 },
 "#Done": {
@@ -51,6 +51,6 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 22,
-		fontFamily: "HelveticaNeue-Medium"
+		fontFamily: Alloy.CFG.Font.Medium
 	}
 }

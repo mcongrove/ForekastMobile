@@ -1,6 +1,6 @@
 <Alloy>
 	<Window id="ListWindow">
-		<TitleControl>
+		<TitleControl platform="ios">
 			<ImageView image="images/title.png" />
 		</TitleControl>
 		

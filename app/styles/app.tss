@@ -18,7 +18,7 @@
 	color: "#3E4252",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	},
 	textAlign: "left",
 	height: Ti.UI.SIZE
@@ -27,7 +27,7 @@
 	color: "#3E4252",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
 "Image": {

@@ -101,7 +101,7 @@
 	color: "#FFF",
 	font: {
 		fontSize: 20,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
 ".details": {
@@ -130,7 +130,7 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 },
 "#Subkast": {
@@ -141,7 +141,7 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Share": {
@@ -156,7 +156,7 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 12,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Upvote": {
@@ -178,7 +178,7 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 },
 "#TimeFromNow": {
@@ -188,7 +188,7 @@
 	color: "#6E7690",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Author": {
@@ -198,7 +198,7 @@
 	color: "#6E7690",
 	font: {
 		fontSize: 14,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Comments": {
@@ -268,7 +268,7 @@
 	color: "#7A7F9E",
 	font: {
 		fontSize: 16,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
 "#CommentsTable": {

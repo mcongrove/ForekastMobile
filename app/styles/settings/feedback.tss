@@ -18,7 +18,7 @@
 	textAlign: "left",
 	font: {
 		fontSize: 16,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	},
 	autocorrect: true
 },
@@ -35,7 +35,7 @@
 	textAlign: "left",
 	font: {
 		fontSize: 16,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	},
 	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_SENTENCES,
 	autocorrect: true,
@@ -70,6 +70,6 @@
 	color: "#7A7F9E",
 	font: {
 		fontSize: 16,
-		fontFamily: "HelveticaNeue-Regular"
+		fontFamily: Alloy.CFG.Font.Regular
 	}
 }

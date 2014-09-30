@@ -48,7 +48,7 @@ function init() {
 			color: i == 0 ? "#4ED5C3" : "#6E7690",
 			font: {
 				fontSize: 14,
-				fontFamily: "HelveticaNeue-Bold"
+				fontFamily: Alloy.CFG.Font.Bold
 			},
 			text: text,
 			touchEnabled: false

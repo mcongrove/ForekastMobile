@@ -33,9 +33,23 @@
 			"RestKey": ""
 		}
 	}, 
-	"os:android": {},
+	"os:android": {
+		"Font": {
+			"Light": "Roboto-Light",
+			"Regular": "Roboto-Regular",
+			"Medium": "Roboto-Medium",
+			"Bold": "Roboto-Bold"
+		}
+	},
+	"os:ios": {
+		"Font": {
+			"Light": "HelveticaNeue-Light",
+			"Regular": "HelveticaNeue-Regular",
+			"Medium": "HelveticaNeue-Medium",
+			"Bold": "HelveticaNeue-Bold"
+		}
+	},
 	"os:blackberry": {},
-	"os:ios": {},
 	"os:mobileweb": {},
 	"dependencies": {}
 }

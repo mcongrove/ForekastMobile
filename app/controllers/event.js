@@ -46,7 +46,7 @@ function setData(_data) {
 	$.TimeFromNow.text = EVENT.is_all_day ? "" : Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
 	$.Author.text = "by " + EVENT.user;
 	
-	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
+	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, 'Roboto-Light', 'Roboto Light', 'Roboto', Roboto, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
 	var text = Util.linkify(EVENT.description);
 
 	var label = StyledLabel.createLabel({

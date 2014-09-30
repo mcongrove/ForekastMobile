@@ -16,8 +16,8 @@
 	textAlign: "center",
 	color: "#FFF",
 	font: {
-		fontFamily: "HelveticaNeue-Light",
-		fontSize: 24
+		fontSize: 24,
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Table": {
