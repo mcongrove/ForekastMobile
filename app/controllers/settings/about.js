@@ -26,6 +26,7 @@ if(OS_IOS) {
 		right: 20,
 		bottom: 0,
 		left: 20,
+		color: "#3E4252",
 		html: text
 	});
 }

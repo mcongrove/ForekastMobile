@@ -5,6 +5,13 @@
 	contentHeight: "auto",
 	layout: "vertical"
 },
+".fieldWrapper": {
+	height: Ti.UI.SIZE,
+	top: 10,
+	left: 10,
+	right: 10,
+	backgroundColor: "#F6F6F6"
+},
 "TextField": {
 	returnKeyType: Ti.UI.RETURNKEY_NEXT,
 	width: Ti.UI.FILL,
@@ -21,6 +28,11 @@
 		fontFamily: Alloy.CFG.Font.Regular
 	},
 	autocorrect: true
+},
+"TextField[platform=android]": {
+	height: Ti.UI.SIZE,
+	left: 7,
+	right: 7
 },
 "TextArea": {
 	returnKeyType: Ti.UI.RETURNKEY_DEFAULT,
@@ -40,13 +52,6 @@
 	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_SENTENCES,
 	autocorrect: true,
 	enableReturnKey: true
-},
-".fieldWrapper": {
-	height: Ti.UI.SIZE,
-	top: 10,
-	left: 10,
-	right: 10,
-	backgroundColor: "#F6F6F6"
 },
 "#FieldName": {
 	keyboardType: Ti.UI.KEYBOARD_DEFAULT

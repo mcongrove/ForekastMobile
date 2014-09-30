@@ -75,6 +75,7 @@ function setData(_data) {
 			top: 25,
 			right: 0,
 			left: 0,
+			color: "#FFF",
 			html: description
 		});
 	}
