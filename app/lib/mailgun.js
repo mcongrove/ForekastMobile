@@ -16,8 +16,8 @@ var Mailgun = {
 			format: "JSON",
 			url: Mailgun.url,
 			data: {
-				from: "Forekast Mobile <postmaster@" + Alloy.CFG.Mailgun.Domain + ">",
-				to: "Matthew Congrove <mattcongrove@gmail.com>",
+				from: "Forekast Mobile <postmaster@mg.mattcongrove.com>",
+				to: "Matthew Congrove <me@mattcongrove.com>",
 				subject: "Forekast Mobile Feedback",
 				text: _params.message,
 			},
