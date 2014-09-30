@@ -143,13 +143,15 @@ function extractComments(_data, _depth) {
 	for(var i = 0, x = _data.length; i < x; i++) {
 		var comment = _data[i];
 		
-		var commentView = Alloy.createController("ui/comment", {
-			author: comment.username,
-			comment: comment.message,
-			depth: _depth
-		}).getView();
-		
-		$.CommentsContainer.add(commentView);
+		if(comment.status == "active") {
+			var commentView = Alloy.createController("ui/comment", {
+				author: comment.username,
+				comment: comment.message,
+				depth: _depth
+			}).getView();
+			
+			$.CommentsContainer.add(commentView);
+		}
 		
 		if(comment.replies.length > 0) {
 			extractComments(comment.replies, _depth + 1);
