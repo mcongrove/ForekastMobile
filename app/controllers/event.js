@@ -19,8 +19,18 @@ function getData() {
 	Forekast.getEventById({
 		id: EVENT._id,
 		success: setData,
-		error: function() {
-			// TODO: Alert, close window
+		failure: function() {
+			var dialog = Ti.UI.createAlertDialog({
+				title: "Event Unavailable",
+				message: "This event is no longer available for viewing",
+				ok: "OK"
+			});
+			
+			dialog.addEventListener("click", function() {
+				$.EventWindow.close();
+			});
+			
+			dialog.show();
 		}
 	});
 }
@@ -60,7 +70,7 @@ function setData(_data) {
 	Forekast.getCommentsByEventId({
 		id: EVENT._id,
 		success: setComments,
-		error: function() {
+		failure: function() {
 			// TODO: Do something
 		}
 	});
