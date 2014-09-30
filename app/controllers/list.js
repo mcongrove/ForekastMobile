@@ -75,8 +75,18 @@ function setData(_data) {
 	if(_data.length) {
 		for(var i = 0, x = _data.length; i < x; i++) {
 			var event = _data[i];
+			var eventDatetime = Moment(event.local_date + " " + event.local_time, "YYYY-MM-DD h:mm A");
 			
-			// TODO: Ignore if event time has passed
+			// Ignore if not today
+			if(event.local_date !== current_date) {
+				continue;
+			}
+			
+			// Ignore if already over (+2 hours since start)
+			if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
+				continue;
+			}
+			
 			if(event.local_date == current_date) {
 				var controller = Alloy.createController("ui/event_row", {
 					id: event._id
@@ -170,10 +180,12 @@ $.ListWindow.addEventListener("open", function() {
 	// TODO: v1.1
 	// App.Push.register();
 	
-	if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
-		var WelcomeWindow = Alloy.createController("ui/welcome").getView();
-		
-		WelcomeWindow.open();
+	if(ENV_DEV) {
+		if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
+			var WelcomeWindow = Alloy.createController("ui/welcome").getView();
+			
+			WelcomeWindow.open();
+		}
 	}
 });
 
