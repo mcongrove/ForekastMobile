@@ -202,17 +202,6 @@ $.ListWindow.addEventListener("open", function() {
 	
 	// TODO: v1.1
 	// App.Push.register();
-	
-	// TODO: Remove this platform switch, it's temporary
-	if(OS_IOS) {
-		if(!ENV_DEV) {
-			if(!Ti.App.Properties.getBool("WelcomeShown", false)) {
-				var WelcomeWindow = Alloy.createController("ui/welcome").getView();
-				
-				WelcomeWindow.open();
-			}
-		}
-	}
 });
 
 if(OS_IOS) {
