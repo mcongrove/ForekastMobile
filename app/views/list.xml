@@ -1,7 +1,7 @@
 <Alloy>
 	<Window id="ListWindow">
 		<TitleControl platform="ios">
-			<ImageView image="images/title.png" />
+			<ImageView image="images/title.png" onClick="goToCurrentDate" />
 		</TitleControl>
 		
 		<RightNavButton platform="ios">

@@ -31,18 +31,19 @@ if(OS_IOS) {
 	var movement_bounds = 15; // How much should the image move up or down, maximum
 }
 
-var events = [];
-var upvote_notice;
-var current_date = Moment().format("YYYY-MM-DD");
+var events = [],
+	upvote_notice,
+	current_date = Moment().format("YYYY-MM-DD"),
+	dateSlider;
 
 function init() {
 	getData();
 	
-	var DateSlider = Alloy.createController("ui/dateSlider");
+	dateSlider = Alloy.createController("ui/dateSlider");
 	
-	DateSlider.on("dateChange", onDateChange);
+	dateSlider.on("dateChange", onDateChange);
 	
-	$.DateSlider.add(DateSlider.getView());
+	$.DateSlider.add(dateSlider.getView());
 }
 
 function getData() {
@@ -167,6 +168,16 @@ function openSettings() {
 	var SettingsWindow = Alloy.createController("settings").getView();
 	
 	SettingsWindow.open();
+}
+
+if(OS_IOS) {
+	function goToCurrentDate() {
+		current_date = Moment().format("YYYY-MM-DD");
+		
+		dateSlider.getView().scrollToView(0);
+		
+		getData();
+	}
 }
 
 /*
