@@ -2,7 +2,7 @@
 var App = require("core");
 
 if(OS_IOS && App.Device.versionMajor >= 7) {
-	$.Content.top = 40;
+	$.Content.top = $.Content.top + 20;
 }
 
 $.Done.addEventListener("click", function() {

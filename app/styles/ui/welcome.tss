@@ -4,37 +4,53 @@
 "ScrollView": {
 	layout: "vertical",
 	top: 0,
-	bottom: 44,
-	backgroundColor: "#000D16",
+	bottom: 88,
+	backgroundColor: "#000D18",
 	backgroundImage: "images/stars.jpg",
 	contentHeight: "auto",
 	contentWidth: Ti.UI.FILL,
 	scrollsToTop: true
 },
 "#Content": {
-	left: 20,
-	right: 20,
-	top: 20
+	left: 40,
+	right: 40,
+	top: 40,
+	layout: "vertical"
 },
 "Label": {
 	color: "#FFF",
 	font: {
-		fontSize: 16,
+		fontSize: 18,
 		fontFamily: "HelveticaNeue-Light"
 	},
 	textAlign: "left",
 	height: Ti.UI.SIZE,
-	bottom: 20
+	top: 0,
+	bottom: 18,
+	width: Ti.UI.FILL
+},
+".strong": {
+	font: {
+		fontSize: 18,
+		fontFamily: "HelveticaNeue-Bold"
+	}
+},
+".signature": {
+	textAlign: "center",
+	font: {
+		fontSize: 18,
+		fontFamily: "HelveticaNeue-Bold"
+	}
 },
 "#Done": {
 	bottom: 0,
 	left: 0,
 	width: Ti.UI.FILL,
-	height: 44,
+	height: 88,
 	backgroundColor: "#2B2D38",
 	color: "#4ED5C3",
 	font: {
-		fontSize: 16,
+		fontSize: 22,
 		fontFamily: "HelveticaNeue-Medium"
 	}
 }
