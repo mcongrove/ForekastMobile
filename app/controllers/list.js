@@ -143,7 +143,8 @@ function setData(_data) {
 			color: "#7A7F9E",
 			font: {
 				fontSize: 14,
-				fontFamily: Alloy.CFG.Font.Medium
+				fontFamily: Alloy.CFG.Font.Medium,
+				fontWeight: "medium"
 			},
 			textAlign: "center",
 			height: Ti.UI.FILL

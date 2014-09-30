@@ -50,7 +50,8 @@ function init() {
 			color: i == 0 ? Alloy.CFG.Color.Bright : "#6E7690",
 			font: {
 				fontSize: 14,
-				fontFamily: Alloy.CFG.Font.Bold
+				fontFamily: Alloy.CFG.Font.Bold,
+				fontWeight: "bold"
 			},
 			text: text,
 			touchEnabled: false

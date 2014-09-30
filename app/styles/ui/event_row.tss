@@ -74,7 +74,8 @@
 	textAlign: "left",
 	font: {
 		fontSize: 12,
-		fontFamily: Alloy.CFG.Font.Bold
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
 	}
 },
 "#Subkast": {
@@ -84,7 +85,8 @@
 	left: 5,
 	font: {
 		fontSize: 12,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Upvotes": {
@@ -111,6 +113,7 @@
 	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 12,
-		fontFamily: Alloy.CFG.Font.Bold
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
 	}
 }

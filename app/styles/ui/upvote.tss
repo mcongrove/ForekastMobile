@@ -24,7 +24,8 @@
 	color: "#FFF",
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Bold
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
 	},
 	textAlign: "center",
 	height: Ti.UI.SIZE,

@@ -17,7 +17,8 @@
 	color: "#FFF",
 	font: {
 		fontSize: 24,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Table": {

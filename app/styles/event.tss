@@ -134,7 +134,8 @@
 	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Bold
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
 	}
 },
 "#Subkast": {
@@ -145,7 +146,8 @@
 	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Share": {
@@ -160,7 +162,8 @@
 	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 12,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Upvote": {
@@ -182,7 +185,8 @@
 	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Bold
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
 	}
 },
 "#TimeFromNow": {
@@ -192,7 +196,8 @@
 	color: "#6E7690",
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Author": {
@@ -202,7 +207,8 @@
 	color: "#6E7690",
 	font: {
 		fontSize: 14,
-		fontFamily: Alloy.CFG.Font.Light
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
 	}
 },
 "#Comments": {
