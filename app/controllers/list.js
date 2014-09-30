@@ -37,6 +37,8 @@ var events = [],
 	dateSlider;
 
 function init() {
+	$.LoadingIndicator.start();
+	
 	getData();
 	
 	dateSlider = Alloy.createController("ui/dateSlider");
@@ -118,7 +120,7 @@ function setData(_data) {
 						image: event.mediumUrl
 					},
 					"#ImageOverlay": {
-						image: (eventCount % 2 == 0) ? "images/circle_white.png" : "images/circle_grey.png"
+						image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
 					}
 				});
 				

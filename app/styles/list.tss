@@ -9,17 +9,42 @@
 	exitOnClose: true
 },
 ".container": {
-	layout: "vertical"
+	
 },
 "#DateSlider": {
+	top: 0,
 	width: Ti.UI.FILL,
 	height: 44,
 	backgroundColor: "#2B2D38"
 },
 "#Events": {
+	top: 44,
 	layout: "vertical",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	contentHeight: "auto",
 	scrollsToTop: true
+},
+"#Loading": {
+	top: 44,
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	backgroundColor: "#FFF"
+},
+"#LoadingIndicator": {
+	width: 74,
+	height: 10,
+	duration: 100,
+	images: [
+		"/images/loading/1.png",
+		"/images/loading/2.png",
+		"/images/loading/3.png",
+		"/images/loading/4.png",
+		"/images/loading/5.png",
+		"/images/loading/6.png",
+		"/images/loading/7.png",
+		"/images/loading/8.png",
+		"/images/loading/9.png",
+		"/images/loading/10.png"
+	]
 }

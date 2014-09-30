@@ -1,11 +1,11 @@
 <Alloy>
 	<Window id="ListWindow">
 		<TitleControl platform="ios">
-			<ImageView image="images/title.png" onClick="goToCurrentDate" />
+			<ImageView image="/images/title.png" onClick="goToCurrentDate" />
 		</TitleControl>
 		
 		<RightNavButton platform="ios">
-			<Button image="images/icon_settings.png" onClick="openSettings" />
+			<Button image="/images/icon_settings.png" onClick="openSettings" />
 		</RightNavButton>
 		
 		<Menu platform="android">
@@ -14,6 +14,10 @@
 		
 		<View class="container">
 			<View id="DateSlider" />
+			
+			<View id="Loading">
+				<ImageView id="LoadingIndicator" />
+			</View>
 			
 			<ScrollView id="Events" />
 		</View>
