@@ -3,7 +3,7 @@
 		<Require id="ListWindow" type="view" src="list" />
 	</NavigationWindow>
 	
-	<Require id="ListWindow" type="view" src="list" platform="android" />
+	<Require type="view" src="splash" platform="ios" />
 	
-	<Require type="view" src="splash" />
+	<Require id="ListWindow" type="view" src="list" platform="android" />
 </Alloy>

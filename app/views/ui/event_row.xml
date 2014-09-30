@@ -2,7 +2,7 @@
 	<View id="Row">
 		<ScrollView class="imageContainer">
 			<ImageView id="Image" />
-			<ImageView id="ImageOverlay" />
+			<ImageView id="ImageOverlay" platform="ios" />
 		</ScrollView>
 		
 		<View class="content">

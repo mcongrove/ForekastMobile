@@ -2,9 +2,14 @@
 	height: 44,
 	top: 0,
 	backgroundColor: "#2B2D38",
+	showPagingControl: false
+},
+"#DateSlider[platform=ios]": {
 	clipViews: false,
-	showPagingControl: false,
 	overlayEnabled: true,
 	pagingControlAlpha: 0,
 	cacheSize: 7
+},
+"#DateSlider[platform=android]": {
+	width: Ti.UI.FILL
 }

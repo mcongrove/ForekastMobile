@@ -11,14 +11,16 @@ var date = Moment(),
 	selectedView;
 
 function init() {
-	$.DateSlider.width = itemWidth;
-	
-	$.DateSlider.hitRect = {
-		width: App.Device.width,
-		height: 44,
-		x: (0 - (App.Device.width / 4)),
-		y: 0
-	};
+	if(OS_IOS) {
+		$.DateSlider.width = itemWidth;
+		
+		$.DateSlider.hitRect = {
+			width: App.Device.width,
+			height: 44,
+			x: (0 - (App.Device.width / 4)),
+			y: 0
+		};
+	}
 	
 	for(var i = 0, x = dateDiff; i < x; i++) {
 		var text;

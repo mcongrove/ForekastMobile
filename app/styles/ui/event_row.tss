@@ -3,7 +3,10 @@
 	height: 85,
 	layout: "horizontal"
 },
-".imageContainer": {
+"#Row[platform=android]": {
+	layout: "composite"
+},
+".imageContainer[platform=ios]": {
 	width: 75,
 	height: 85,
 	left: 0,
@@ -14,6 +17,13 @@
 	scrollType: "vertical",
 	touchEnabled: false
 },
+".imageContainer[platform=android]": {
+	width: 75,
+	height: 85,
+	left: 0,
+	top: 0,
+	touchEnabled: false
+},
 "#Image": {
 	width: 113,
 	height: 85,
@@ -22,7 +32,7 @@
 	zIndex: 1,
 	preventDefaultImage: true
 },
-"#ImageOverlay": {
+"#ImageOverlay[platform=ios]": {
 	width: 75,
 	height: 85,
 	top: 0,
@@ -30,13 +40,16 @@
 	zIndex: 1000
 },
 ".content": {
-	top: 15,
+	top: 16,
 	left: 10,
 	right: 10,
 	height: 55,
 	layout: "vertical",
 	touchEnabled: false
 },
+".content[platform=android]": {
+	left: 85
+}
 "#Title": {
 	height: 37,
 	width: Ti.UI.FILL,
@@ -61,7 +74,7 @@
 	textAlign: "left",
 	font: {
 		fontSize: 12,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 },
 "#Subkast": {
@@ -71,7 +84,7 @@
 	left: 5,
 	font: {
 		fontSize: 12,
-		fontFamily: "HelveticaNeue-Light"
+		fontFamily: Alloy.CFG.Font.Light
 	}
 },
 "#Upvotes": {
@@ -98,6 +111,6 @@
 	color: "#4ED5C3",
 	font: {
 		fontSize: 12,
-		fontFamily: "HelveticaNeue-Bold"
+		fontFamily: Alloy.CFG.Font.Bold
 	}
 }
