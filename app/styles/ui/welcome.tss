@@ -48,7 +48,7 @@
 	width: Ti.UI.FILL,
 	height: 88,
 	backgroundColor: "#2B2D38",
-	color: "#4ED5C3",
+	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 22,
 		fontFamily: Alloy.CFG.Font.Medium

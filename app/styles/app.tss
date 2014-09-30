@@ -36,10 +36,13 @@
 "TableView": {
 	backgroundColor: "transparent",
 	showVerticalScrollIndicator: false,
-	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
-	scrollsToTop: false
+	scrollsToTop: false,
+	separatorColor: "transparent"
 },
-"TableViewRow": {
+"TableView[platform=ios]": {
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+},
+"TableViewRow[platform=ios]": {
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 "WebView": {

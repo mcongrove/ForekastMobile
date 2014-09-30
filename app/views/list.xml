@@ -8,6 +8,10 @@
 			<Button image="images/icon_settings.png" onClick="openSettings" />
 		</RightNavButton>
 		
+		<Menu platform="android">
+			<MenuItem title="Settings" showAsAction="Ti.Android.SHOW_AS_ACTION_NEVER" onClick="App.openSettings" />
+		</Menu>
+		
 		<View class="container">
 			<View id="DateSlider" />
 			

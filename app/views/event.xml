@@ -8,7 +8,8 @@
 		-->
 		
 		<View class="imageContainer">
-			<ImageView id="Image" />
+			<ImageView id="Image" platform="ios" />
+			<View id="Image" platform="android" />
 			<View class="imageOverlay" />
 		</View>
 		

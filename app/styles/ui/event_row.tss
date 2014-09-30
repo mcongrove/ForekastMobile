@@ -108,7 +108,7 @@
 	height: Ti.UI.FILL,
 	left: 5,
 	textAlign: "right",
-	color: "#4ED5C3",
+	color: Alloy.CFG.Color.Bright,
 	font: {
 		fontSize: 12,
 		fontFamily: Alloy.CFG.Font.Bold

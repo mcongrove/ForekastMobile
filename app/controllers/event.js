@@ -3,7 +3,7 @@ var App = require("core"),
 	Moment = require("alloy/moment"),
 	Forekast = require("model/forekast"),
 	Social = require("social"),
-	StyledLabel = require("ti.styledlabel"),
+	StyledLabel = OS_IOS ? require("ti.styledlabel") : null,
 	Util = require("utilities");
 
 var args = arguments[0] || {};
@@ -38,7 +38,12 @@ function getData() {
 function setData(_data) {
 	EVENT = _data;
 	
-	$.Image.image = EVENT.mediumUrl;
+	if(OS_IOS) {
+		$.Image.image = EVENT.mediumUrl;
+	} else {
+		$.Image.backgroundImage = EVENT.mediumUrl;
+	}
+	
 	$.Title.text = EVENT.name;
 	$.Time.text = EVENT.is_all_day ? "All Day" : EVENT.local_time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
@@ -46,22 +51,27 @@ function setData(_data) {
 	$.TimeFromNow.text = EVENT.is_all_day ? "" : Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
 	$.Author.text = "by " + EVENT.user;
 	
-	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, 'Roboto-Light', 'Roboto Light', 'Roboto', Roboto, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
-	var text = Util.linkify(EVENT.description);
-
-	var label = StyledLabel.createLabel({
-		height: Ti.UI.SIZE,
-		top: 25,
-		right: 0,
-		left: 0,
-		html: html + text
-	});
+	var description = Util.linkify(EVENT.description);
 	
-	label.addEventListener("click", function(_event) {
-		if(_event.url) {
-			Ti.Platform.openURL("https://forekast.com/events/show/" + EVENT._id);
-		}
-	});
+	if(OS_IOS) {
+		var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
+		
+		var label = StyledLabel.createLabel({
+			height: Ti.UI.SIZE,
+			top: 25,
+			right: 0,
+			left: 0,
+			html: html + description
+		});
+	} else {
+		var label = Ti.UI.createLabel({
+			height: Ti.UI.SIZE,
+			top: 25,
+			right: 0,
+			left: 0,
+			html: description
+		});
+	}
 	
 	$.Content.add(label);
 	
@@ -226,20 +236,24 @@ $.Upvote.addEventListener("click", function() {
 });
 */
 
+
 $.ScrollView.addEventListener("scroll", function(_event) {
 	var offset = _event.y;
 	var opacity = 1;
 	
 	if(offset <= 0) {
-		var height = 200 - offset;
-		var scale = height / 200;
-		var transform = Ti.UI.create2DMatrix({
-			scale: scale
-		});
+		if(OS_IOS) {
+			var height = 200 - offset;
+			var scale = height / 200;
+			var transform = Ti.UI.create2DMatrix({
+				scale: scale
+			});
+			
+			transform = transform.translate(0, -offset/(2*scale));
+			
+			$.Image.setTransform(transform);
+		}
 		
-		transform = transform.translate(0, -offset/(2*scale));
-		
-		$.Image.setTransform(transform);
 		$.Image.setOpacity(1);
 	} else if(offset > 0) {
 		opacity = Math.max(1 - (offset / 200), 0.3);

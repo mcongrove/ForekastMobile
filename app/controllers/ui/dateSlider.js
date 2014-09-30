@@ -47,7 +47,7 @@ function init() {
 			width: Ti.UI.FILL,
 			height: 44,
 			textAlign: "center",
-			color: i == 0 ? "#4ED5C3" : "#6E7690",
+			color: i == 0 ? Alloy.CFG.Color.Bright : "#6E7690",
 			font: {
 				fontSize: 14,
 				fontFamily: Alloy.CFG.Font.Bold
@@ -72,7 +72,7 @@ $.DateSlider.addEventListener("scrollend", function(_event) {
 	var children = $.DateSlider.getViews();
 	selectedView.children[0].setColor("#6E7690");
 	selectedView = children[_event.currentPage];
-	selectedView.children[0].setColor("#4ED5C3");
+	selectedView.children[0].setColor(Alloy.CFG.Color.Bright);
 });
 
 init();

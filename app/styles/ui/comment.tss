@@ -1,11 +1,11 @@
 "TableViewRow": {
-	top: 20,
+	top: 0,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
 	layout: "vertical"
 },
 "#Text": {
-	top: 0,
+	top: 20,
 	left: 0,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
@@ -21,7 +21,7 @@
 	left: 0,
 	width: Ti.UI.FILL,
 	height: Ti.UI.SIZE,
-	color: "#4ED5C3",
+	color: Alloy.CFG.Color.Bright,
 	textAlign: "left",
 	font: {
 		fontSize: 12,

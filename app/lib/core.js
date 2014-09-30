@@ -72,9 +72,9 @@ var App = {
 	 * Opens the settings screen
 	 */
 	openSettings: function() {
-		var SettingsNavigationWindow = Alloy.createController("settings").getView();
+		var SettingsWindow = Alloy.createController("settings").getView();
 		
-		SettingsNavigationWindow.open();
+		SettingsWindow.open();
 	},
 	/**
 	 * Global network event handler

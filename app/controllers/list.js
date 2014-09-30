@@ -155,8 +155,6 @@ function setData(_data) {
 	});
 }
 
-Ti.API.error(Alloy.CFG.Font.Medium);
-
 function onDateChange(_event) {
 	if(_event.date != current_date) {
 		current_date = _event.date;
