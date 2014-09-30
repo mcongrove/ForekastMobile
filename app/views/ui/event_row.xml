@@ -5,9 +5,9 @@
 			<ImageView id="ImageOverlay" />
 		</ScrollView>
 		
-		<ScrollView class="imageContainer" platform="android">
+		<View class="imageContainer" platform="android">
 			<ImageView id="Image" />
-		</ScrollView>
+		</View>
 		
 		<View class="content">
 			<Label id="Title" />

@@ -177,10 +177,28 @@ if(OS_IOS) {
 	function goToCurrentDate() {
 		current_date = Moment().format("YYYY-MM-DD");
 		
-		dateSlider.getView().scrollToView(0);
+		dateSlider.DateSlider.scrollToView(0);
 		
 		getData();
 	}
+} else {
+	$.SliderIndicatorLeft.addEventListener("click", function() {
+		if(dateSlider.DateSlider.currentPage > 0) {
+			dateSlider.DateSlider.movePrevious();
+			current_date = Moment().subtract(1, "days").format("YYYY-MM-DD");
+			
+			getData();
+		}
+	});
+	
+	$.SliderIndicatorRight.addEventListener("click", function() {
+		if(dateSlider.DateSlider.currentPage < dateSlider.DateSlider.views.length - 1) {
+			dateSlider.DateSlider.moveNext();
+			current_date = Moment().add(1, "days").format("YYYY-MM-DD");
+			
+			getData();
+		}
+	});
 }
 
 /*

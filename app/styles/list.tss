@@ -8,21 +8,34 @@
 "Window[platform=android]": {
 	exitOnClose: true
 },
-".container": {
-	
-},
 "#DateSlider": {
 	top: 0,
 	width: Ti.UI.FILL,
 	height: 44,
-	backgroundColor: "#2B2D38"
+	backgroundColor: "#2B2D38",
+	zIndex: 1
 },
+"#SliderIndicatorLeft[platform=android]": {
+	width: 33,
+	height: 22,
+	top: 11,
+	left: 11,
+	zIndex: 1000
+},
+"#SliderIndicatorRight[platform=android]": {
+	width: 33,
+	height: 22,
+	top: 11,
+	right: 11,
+	zIndex: 1000
+}
 "#Events": {
 	top: 44,
 	layout: "vertical",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	contentHeight: "auto",
+	backgroundColor: "#FFF",
 	scrollsToTop: true
 },
 "#Loading": {

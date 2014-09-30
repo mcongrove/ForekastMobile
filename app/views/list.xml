@@ -15,6 +15,9 @@
 		<View class="container">
 			<View id="DateSlider" />
 			
+			<ImageView id="SliderIndicatorLeft" image="/images/scroller_left.png" platform="android" />
+			<ImageView id="SliderIndicatorRight" image="/images/scroller_right.png" platform="android" />
+			
 			<View id="Loading">
 				<ImageView id="LoadingIndicator" />
 			</View>
