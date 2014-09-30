@@ -3,7 +3,7 @@
 		<!--
 		// TODO: v1.1
 		<RightNavButton platform="ios">
-			<ImageView image="images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
+			<ImageView image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
 		-->
 		

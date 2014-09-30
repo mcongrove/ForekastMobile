@@ -4,7 +4,7 @@
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL,
 	zIndex: 10000,
-	backgroundImage: "images/opaque.png",
+	backgroundImage: "/images/opaque.png",
 	opacity: 0.1,
 	touchEnabled: false,
 	bubbleParent: false
@@ -12,7 +12,7 @@
 "#Container": {
 	width: 150,
 	height: 150,
-	backgroundImage: "images/opaque.png",
+	backgroundImage: "/images/opaque.png",
 	borderRadius: 25
 },
 "ImageView": {

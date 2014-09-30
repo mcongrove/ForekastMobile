@@ -1,7 +1,7 @@
 <Alloy>
 	<View id="UpvoteView">
 		<View id="Container">
-			<ImageView image="images/icon_upvote_large.png" />
+			<ImageView image="/images/icon_upvote_large.png" />
 			
 			<Label text="Upvoted" />
 		</View>

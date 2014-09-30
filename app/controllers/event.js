@@ -201,11 +201,11 @@ function toggleReminder(_event) {
 			if(_data == "cancel") {
 				reminder = false;
 				
-				_event.source.image = "images/icon_reminder.png";
+				_event.source.image = "/images/icon_reminder.png";
 			} else {
 				reminder = _data;
 				
-				_event.source.image = "images/icon_reminder_active.png";
+				_event.source.image = "/images/icon_reminder_active.png";
 				
 				App.logEvent("Event:Remind", {
 					eventId: 12345
