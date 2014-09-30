@@ -40,10 +40,10 @@ function setData(_data) {
 	
 	$.Image.image = EVENT.mediumUrl;
 	$.Title.text = EVENT.name;
-	$.Time.text = EVENT.local_time;
+	$.Time.text = EVENT.is_all_day ? "All Day" : EVENT.local_time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
-	$.TimeFromNow.text = Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
+	$.TimeFromNow.text = EVENT.is_all_day ? "" : Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
 	$.Author.text = "by " + EVENT.user;
 	
 	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
