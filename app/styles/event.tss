@@ -97,7 +97,7 @@
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
 	left: 0,
-	top: 125,
+	top: 150,
 	color: "#FFF",
 	font: {
 		fontSize: 20,
@@ -110,11 +110,18 @@
 	left: 0,
 	top: 10
 },
-".meta": {
+".left": {
 	layout: "horizontal",
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
 	left: 0
+},
+".right": {
+	top: 0,
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: 16,
+	right: 0
 },
 "#Time": {
 	width: Ti.UI.SIZE,
@@ -137,14 +144,8 @@
 		fontFamily: "HelveticaNeue-Light"
 	}
 },
-".social": {
-	top: 1,
-	layout: "horizontal",
-	width: Ti.UI.SIZE,
-	height: 16,
-	right: 0
-},
 "#Share": {
+	top: 0,
 	right: 18,
 	width: 77,
 	height: 19,
@@ -178,6 +179,26 @@
 	font: {
 		fontSize: 14,
 		fontFamily: "HelveticaNeue-Bold"
+	}
+},
+"#TimeFromNow": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	color: "#6E7690",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+"#Author": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "right",
+	color: "#6E7690",
+	font: {
+		fontSize: 14,
+		fontFamily: "HelveticaNeue-Light"
 	}
 },
 "#Comments": {

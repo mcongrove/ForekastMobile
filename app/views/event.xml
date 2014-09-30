@@ -17,18 +17,28 @@
 				<Label id="Title" />
 				
 				<View class="details">
-					<View class="meta">
+					<View class="left">
 						<Label id="Time" />
 						<Label id="Subkast" />
 					</View>
 					
-					<View class="social">
+					<View class="right">
 						<Button id="Share" title="Share Event" />
 						
 						<View id="Upvote">
 							<ImageView class="upvoteArrow" />
 							<Label id="UpvoteCount" text="0" />
 						</View>
+					</View>
+				</View>
+				
+				<View class="details">
+					<View class="left">
+						<Label id="TimeFromNow" />
+					</View>
+					
+					<View class="right">
+						<Label id="Author" />
 					</View>
 				</View>
 				

@@ -3,7 +3,8 @@ var App = require("core"),
 	Moment = require("alloy/moment"),
 	Forekast = require("model/forekast"),
 	Social = require("social"),
-	StyledLabel = require("ti.styledlabel");
+	StyledLabel = require("ti.styledlabel"),
+	Util = require("utilities");
 
 var args = arguments[0] || {};
 
@@ -12,8 +13,7 @@ var EVENT = {
 };
 
 var reminder = false,
-	upvote_notice,
-	comments = [];
+	upvote_notice;
 
 function getData() {
 	Forekast.getEventById({
@@ -43,9 +43,11 @@ function setData(_data) {
 	$.Time.text = EVENT.local_time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
+	$.TimeFromNow.text = Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
+	$.Author.text = "by " + EVENT.user;
 	
 	var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
-	var text = EVENT.description;
+	var text = Util.linkify(EVENT.description);
 
 	var label = StyledLabel.createLabel({
 		height: Ti.UI.SIZE,
@@ -63,14 +65,14 @@ function setData(_data) {
 	
 	$.Content.add(label);
 	
-	App.logEvent("Event:Open", {
-		eventId: EVENT._id
-	});
-	
 	Forekast.getCommentsByEventId({
 		id: EVENT._id,
 		success: setComments,
 		failure: setComments
+	});
+	
+	App.logEvent("Event:Open", {
+		eventId: EVENT._id
 	});
 }
 
@@ -79,7 +81,7 @@ function setComments(_data) {
 		comments = [];
 	
 	// TODO: v1.1
-	if(_data.length === 0) {
+	if(_data.length < 1) {
 		$.Comments.backgroundGradient = {};
 		
 		return;
@@ -87,16 +89,6 @@ function setComments(_data) {
 	
 	// This loops through all the replies and grabs EVERY comment
 	extractComments(_data, 0);
-	
-	for(var i = 0, x = comments.length; i < x; i++) {
-		rows.push(Alloy.createController("ui/comment", {
-			author: comments[i].username,
-			comment: comments[i].message,
-			depth: comments[i].depth
-		}).getView());
-	}
-	
-	$.CommentsTable.setData(rows);
 	
 	// Hacking, because the gradient doesn't update when content is added
 	$.Comments.setBackgroundGradient({
@@ -128,16 +120,18 @@ function setComments(_data) {
 
 function extractComments(_data, _depth) {
 	for(var i = 0, x = _data.length; i < x; i++) {
-		var comment = {
-			username: _data[i].username,
-			message: _data[i].message,
+		var comment = _data[i];
+		
+		var row = Alloy.createController("ui/comment", {
+			author: comment.username,
+			comment: comment.message,
 			depth: _depth
-		};
+		}).getView();
 		
-		comments.push(comment);
+		$.CommentsTable.appendRow(row);
 		
-		if(_data[i].replies.length > 0) {
-			extractComments(_data[i].replies, _depth + 1);
+		if(comment.replies.length > 0) {
+			extractComments(comment.replies, _depth + 1);
 		}
 	}
 }
