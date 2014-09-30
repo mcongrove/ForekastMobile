@@ -72,7 +72,7 @@ function setData(_data) {
 	
 	var eventCount = 0;
 	
-	if(_data.length) {
+	if(_data.length > 0) {
 		for(var i = 0, x = _data.length; i < x; i++) {
 			var event = _data[i];
 			var eventDatetime = Moment(event.local_date + " " + event.local_time, "YYYY-MM-DD h:mm A");
@@ -129,7 +129,18 @@ function setData(_data) {
 		
 		calculateParallax();
 	} else {
-		// TODO: Show "no events available" message
+		var noEvents = Ti.UI.createLabel({
+			text: "No events on this date",
+			color: "#7A7F9E",
+			font: {
+				fontSize: 14,
+				fontFamily: "HelveticaNeue-Medium"
+			},
+			textAlign: "center",
+			height: Ti.UI.FILL
+		});
+		
+		$.Events.add(noEvents);
 	}
 	
 	$.Events.animate({
