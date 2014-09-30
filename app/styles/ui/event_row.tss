@@ -11,7 +11,8 @@
 	contentWidth: "auto",
 	contentHeight: "auto",
 	scrollingEnabled: false,
-	scrollType: "vertical"
+	scrollType: "vertical",
+	touchEnabled: false
 },
 "#Image": {
 	width: 113,
@@ -33,7 +34,8 @@
 	left: 10,
 	right: 10,
 	height: 55,
-	layout: "vertical"
+	layout: "vertical",
+	touchEnabled: false
 },
 "#Title": {
 	height: 37,
