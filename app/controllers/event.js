@@ -108,7 +108,8 @@ function setData(_data) {
 	getComments();
 	
 	App.logEvent("Event:Open", {
-		eventId: EVENT._id
+		eventId: EVENT._id,
+		daysAhead: Moment(EVENT.datetime).diff(Moment(), "days")
 	});
 }
 

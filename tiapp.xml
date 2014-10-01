@@ -49,7 +49,6 @@
     </mobileweb>
     <modules>
         <module platform="iphone">ti.styledlabel</module>
-        <module platform="android">ti.styledlabel</module>
         <module platform="iphone">dk.napp.social</module>
     </modules>
     <deployment-targets>

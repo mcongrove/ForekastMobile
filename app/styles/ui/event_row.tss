@@ -31,10 +31,10 @@
 	zIndex: 1000
 },
 ".content": {
-	top: 17,
+	top: 15,
 	left: 85,
 	right: 10,
-	height: 54,
+	height: 55,
 	layout: "vertical",
 	touchEnabled: false
 },
