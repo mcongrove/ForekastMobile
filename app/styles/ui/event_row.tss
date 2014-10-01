@@ -1,10 +1,6 @@
 "#Row": {
 	width: Ti.UI.FILL,
-	height: 85,
-	layout: "horizontal"
-},
-"#Row[platform=android]": {
-	layout: "composite"
+	height: 85
 },
 ".imageContainer[platform=ios]": {
 	width: 75,
@@ -40,16 +36,13 @@
 	zIndex: 1000
 },
 ".content": {
-	top: 16,
-	left: 10,
+	top: 17,
+	left: 85,
 	right: 10,
-	height: 55,
+	height: 54,
 	layout: "vertical",
 	touchEnabled: false
 },
-".content[platform=android]": {
-	left: 85
-}
 "#Title": {
 	height: 37,
 	width: Ti.UI.FILL,

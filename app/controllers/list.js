@@ -135,9 +135,13 @@ function setData(_data) {
 		}
 		
 		if(OS_IOS) {
-			calculateParallax();
+			if(eventCount > 0) {
+				calculateParallax();
+			}
 		}
-	} else {
+	}
+	
+	if(eventCount == 0) {
 		var noEvents = Ti.UI.createLabel({
 			text: "No events on this date",
 			color: "#7A7F9E",
@@ -159,6 +163,12 @@ function setData(_data) {
 	});
 }
 
+function openSettings() {
+	var SettingsWindow = Alloy.createController("settings").getView();
+	
+	SettingsWindow.open();
+}
+
 function onDateChange(_event) {
 	if(_event.date != current_date) {
 		current_date = _event.date;
@@ -167,39 +177,49 @@ function onDateChange(_event) {
 	}
 }
 
-function openSettings() {
-	var SettingsWindow = Alloy.createController("settings").getView();
+function goToCurrentDay() {
+	current_date = Moment().format("YYYY-MM-DD");
 	
-	SettingsWindow.open();
+	dateSlider.DateSlider.scrollToView(0);
+	
+	getData();
 }
 
-if(OS_IOS) {
-	function goToCurrentDate() {
-		current_date = Moment().format("YYYY-MM-DD");
-		
-		dateSlider.DateSlider.scrollToView(0);
+function goToNextDay() {
+	if(dateSlider.DateSlider.currentPage < dateSlider.DateSlider.views.length - 1) {
+		dateSlider.DateSlider.moveNext();
+		current_date = Moment(current_date, "YYYY-MM-DD").add(1, "days").format("YYYY-MM-DD");
 		
 		getData();
 	}
-} else {
+}
+
+function goToPreviousDay() {
+	if(dateSlider.DateSlider.currentPage > 0) {
+		dateSlider.DateSlider.movePrevious();
+		current_date = Moment(current_date, "YYYY-MM-DD").subtract(1, "days").format("YYYY-MM-DD");
+		
+		getData();
+	}
+}
+
+if(OS_ANDROID) {
 	$.SliderIndicatorLeft.addEventListener("click", function() {
-		if(dateSlider.DateSlider.currentPage > 0) {
-			dateSlider.DateSlider.movePrevious();
-			current_date = Moment().subtract(1, "days").format("YYYY-MM-DD");
-			
-			getData();
-		}
+		goToPreviousDay();
 	});
 	
 	$.SliderIndicatorRight.addEventListener("click", function() {
-		if(dateSlider.DateSlider.currentPage < dateSlider.DateSlider.views.length - 1) {
-			dateSlider.DateSlider.moveNext();
-			current_date = Moment().add(1, "days").format("YYYY-MM-DD");
-			
-			getData();
-		}
+		goToNextDay();
 	});
 }
+
+$.Events.addEventListener("swipe", function(_event) {
+	if(_event.direction == "left") {
+		goToNextDay();
+	} else {
+		goToPreviousDay();
+	}
+});
 
 /*
 // TODO: v1.1
@@ -217,24 +237,6 @@ $.Events.addEventListener("remind", function(_event) {
 	});
 });
 */
-
-$.ListWindow.addEventListener("open", function() {
-	var anim = Ti.UI.createAnimation({
-		opacity: 0,
-		duration: 500
-	});
-	
-	anim.addEventListener("complete", function() {
-		$.ListWindow.remove($.Overlay);
-	});
-	
-	$.Overlay.animate(anim);
-	
-	init();
-	
-	// TODO: v1.1
-	// App.Push.register();
-});
 
 if(OS_IOS) {
 	$.Events.addEventListener("postlayout", function postLayoutListener(_event) {
@@ -284,6 +286,24 @@ if(OS_IOS) {
 		}
 	}
 }
+
+$.ListWindow.addEventListener("open", function() {
+	var anim = Ti.UI.createAnimation({
+		opacity: 0,
+		duration: 500
+	});
+	
+	anim.addEventListener("complete", function() {
+		$.ListWindow.remove($.Overlay);
+	});
+	
+	$.Overlay.animate(anim);
+	
+	init();
+	
+	// TODO: v1.1
+	// App.Push.register();
+});
 
 if(OS_ANDROID) {
 	$.ListWindow.open();
