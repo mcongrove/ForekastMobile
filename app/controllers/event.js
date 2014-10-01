@@ -38,7 +38,7 @@ function getData() {
 function setData(_data) {
 	EVENT = _data;
 	
-	if(EVENT.mediumUrl.charAt(0) == "/") {
+	if(EVENT.width == 0) {
 		EVENT.mediumUrl = "/images/empty_large.png";
 	}
 	

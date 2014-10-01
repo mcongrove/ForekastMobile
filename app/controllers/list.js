@@ -119,7 +119,7 @@ function setData(_data) {
 						text: event.upvotes
 					},
 					"#Image": {
-						image: event.mediumUrl.charAt(0) == "/" ? "/images/empty.png" : event.mediumUrl
+						image: event.width == 0 ? "/images/empty.png" : event.mediumUrl
 					},
 					"#ImageOverlay": {
 						image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
