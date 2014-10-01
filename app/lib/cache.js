@@ -14,7 +14,7 @@ exports.valid = function(_url) {
 		var modifiedTime = Moment(file.modificationTimestamp());
 		var difference = Moment().diff(modifiedTime, "minutes");
 
-		if(isNaN(difference) || difference > (Alloy.CFG.CacheDuration * 60 * 1000)) {
+		if(isNaN(difference) || difference > Alloy.CFG.CacheDuration) {
 			return false;
 		} else {
 			return true;
