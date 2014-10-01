@@ -52,7 +52,7 @@ exports.write = function(_url, _data) {
 	var fileName = _url.replace(/[^\w\d]/g, "");
 	var file = Ti.Filesystem.getFile(directory, fileName);
 	var data = JSON.stringify(_data);
-	
+
 	if(file.write(data) === false) {
 		Ti.API.error("Could not write to local cache");
 	}

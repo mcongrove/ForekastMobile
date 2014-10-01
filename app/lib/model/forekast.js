@@ -8,25 +8,8 @@ var Moment = require("alloy/moment"),
  * @param {Function} _params.failure The error callback
  */
 exports.getEventByDate = function(_params) {
-	var url = "https://forekast.com/api/events/eventsByDate.json?"
-			+ "&subkasts[]=TV"
-			+ "&subkasts[]=TVM"
-			+ "&subkasts[]=SE"
-			+ "&subkasts[]=ST"
-			+ "&subkasts[]=TE"
-			+ "&subkasts[]=HAW"
-			+ "&subkasts[]=PRP"
-			+ "&subkasts[]=HA"
-			+ "&subkasts[]=EDU"
-			+ "&subkasts[]=MA"
-			+ "&subkasts[]=ART"
-			+ "&subkasts[]=GM"
-			+ "&subkasts[]=OTH"
-			+ "&country=" + Ti.Locale.getCurrentCountry()
-			+ "&datetime=" + _params.date + " 00:00:00"
-			+ "&zone_offset=" + Moment().zone()
-	;
-	
+	var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
+
 	http.request({
 		url: url,
 		type: "GET",
@@ -43,11 +26,8 @@ exports.getEventByDate = function(_params) {
  * @param {Function} _params.failure The error callback
  */
 exports.getEventById = function(_params) {
-	var url = "https://forekast.com/events/"
-			+ _params.id
-			+ ".json"
-	;
-	
+	var url = "https://forekast.com/events/" + _params.id + ".json";
+
 	http.request({
 		url: url,
 		type: "GET",
@@ -64,11 +44,8 @@ exports.getEventById = function(_params) {
  * @param {Function} _params.failure The error callback
  */
 exports.getCommentsByEventId = function(_params) {
-	var url = "https://forekast.com/api/events/"
-			+ _params.id
-			+ "/comments.json?skip=0"
-	;
-	
+	var url = "https://forekast.com/api/events/" + _params.id + "/comments.json?skip=0";
+
 	http.request({
 		url: url,
 		type: "GET",
@@ -84,7 +61,7 @@ exports.getCommentsByEventId = function(_params) {
  */
 exports.getSubkastByAbbrev = function(_abbrev) {
 	var subkast = "";
-	
+
 	switch(_abbrev) {
 		case "TV":
 			subkast = "TV";
@@ -126,6 +103,6 @@ exports.getSubkastByAbbrev = function(_abbrev) {
 			subkast = "Other";
 			break;
 	}
-	
+
 	return subkast;
 };

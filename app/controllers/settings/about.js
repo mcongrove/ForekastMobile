@@ -2,9 +2,9 @@ var text = "<p>This application developed and designed by <a href='http://www.ma
 
 if(OS_IOS) {
 	var StyledLabel = require("ti.styledlabel");
-	
+
 	var style = "<style type='text/css'>body {font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 14px;color: #3E4252;}a {color: #3CA395; text-decoration: none;}p {margin: 20px 0 0;}</style>";
-	
+
 	var label = StyledLabel.createLabel({
 		height: Ti.UI.SIZE,
 		top: 0,
@@ -13,7 +13,7 @@ if(OS_IOS) {
 		left: 20,
 		html: style + text
 	});
-	
+
 	label.addEventListener("click", function(_event) {
 		if(_event.url) {
 			Ti.Platform.openURL(_event.url);

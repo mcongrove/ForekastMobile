@@ -33,9 +33,9 @@ exports.request = function(_params) {
 	} else {
 		if(Ti.Network.online) {
 			var xhr = Ti.Network.createHTTPClient();
-	
+
 			xhr.timeout = _params.timeout ? _params.timeout : 10000;
-	
+
 			/**
 			 * Data return
 			 * @param {Object} _data The HTTP response object
@@ -55,11 +55,11 @@ exports.request = function(_params) {
 							_data = this.responseText;
 							break;
 					}
-					
+
 					if(!_params.doNotCache) {
 						Cache.write(_params.url, _data);
 					}
-	
+
 					if(_params.success) {
 						if(_params.passthrough) {
 							_params.success(_data, _params.url, _params.passthrough);
@@ -71,7 +71,7 @@ exports.request = function(_params) {
 					}
 				}
 			};
-	
+
 			if(_params.ondatastream) {
 				xhr.ondatastream = function(_event) {
 					if(_params.ondatastream) {
@@ -79,7 +79,7 @@ exports.request = function(_params) {
 					}
 				};
 			}
-	
+
 			/**
 			 * Error handling
 			 * @param {Object} _event The callback object
@@ -95,30 +95,30 @@ exports.request = function(_params) {
 				} else {
 					Ti.API.error(JSON.stringify(this));
 				}
-	
+
 				Ti.API.error(_params.url);
 				Ti.API.error(_event);
 			};
-	
+
 			_params.type = _params.type ? _params.type : "GET";
 			_params.async = _params.async ? _params.async : true;
-	
+
 			xhr.open(_params.type, _params.url, _params.async);
-	
+
 			if(_params.headers) {
 				for(var i = 0, j = _params.headers.length; i < j; i++) {
 					xhr.setRequestHeader(_params.headers[i].name, _params.headers[i].value);
 				}
 			}
-	
+
 			// Overcomes the 'unsupported browser' error sometimes received
 			xhr.setRequestHeader("User-Agent", "Appcelerator Titanium/" + Ti.version + " (" + Ti.Platform.osname + "/" + Ti.Platform.version + "; " + Ti.Platform.name + "; " + Ti.Locale.currentLocale + ";)");
-	
+
 			// Weird workaround for Android
 			if(_params.format === "json") {
 				xhr.setRequestHeader("Content-Type", "application/json");
 			}
-	
+
 			if(_params.data) {
 				xhr.send(_params.data);
 			} else {
@@ -126,7 +126,7 @@ exports.request = function(_params) {
 			}
 		} else {
 			Ti.API.error("No internet connection");
-			
+
 			if(Cache.available(_params.url)) {
 				_params.success(Cache.read(_params.url));
 			} else {

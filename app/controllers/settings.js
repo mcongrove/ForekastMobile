@@ -56,32 +56,37 @@ var OPTIONS = [
 		}
 	},
 	*/
+
+
+
 	{
-		title: "About this app",
-		controller: "settings/about"
-	},
+	title: "About this app",
+	controller: "settings/about"
+},
 	{
-		title: "Send us feedback",
-		controller: "settings/feedback"
-	}
+	title: "Send us feedback",
+	controller: "settings/feedback"
+}
 ];
 
 function init() {
 	var rows = [];
-	
+
 	for(var i = 0, x = OPTIONS.length; i < x; i++) {
-		var row = Alloy.createController("ui/settings_row", { title: OPTIONS[i].title }).getView();
-		
+		var row = Alloy.createController("ui/settings_row", {
+			title: OPTIONS[i].title
+		}).getView();
+
 		if(i % 2 == 0) {
 			row.backgroundColor = "#FFF";
 		}
-		
+
 		if(OPTIONS[i].controller) {
 			row.controller = OPTIONS[i].controller;
-			
+
 			row.addEventListener("click", function(_event) {
 				var detail = Alloy.createController(_event.row.controller).getView();
-				
+
 				if(OS_IOS) {
 					$.NavWindow.openWindow(detail);
 				} else {
@@ -90,13 +95,13 @@ function init() {
 			});
 		} else if(OPTIONS[i].action) {
 			row.addEventListener("click", OPTIONS[i].action);
-			
+
 			row.remove(row.children[1]);
 		}
-		
+
 		rows.push(row);
 	}
-	
+
 	$.Table.setData(rows);
 }
 

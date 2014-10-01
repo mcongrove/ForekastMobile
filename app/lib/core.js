@@ -61,7 +61,7 @@ var App = {
 		Ti.App.addEventListener("close", App.exit);
 		Ti.App.addEventListener("resumed", App.resume);
 		Ti.Gesture.addEventListener("orientationchange", App.orientationChange);
-		
+
 		// Log app open event
 		App.logEvent("Application:Open");
 
@@ -73,7 +73,7 @@ var App = {
 	 */
 	openSettings: function() {
 		var SettingsWindow = Alloy.createController("settings").getView();
-		
+
 		SettingsWindow.open();
 	},
 	/**
@@ -81,21 +81,21 @@ var App = {
 	 * @param {Object} _event Standard Ti callback
 	 */
 	networkChange: function(_event) {
-		
+
 	},
 	/**
 	 * Exit event observer
 	 * @param {Object} _event Standard Ti callback
 	 */
 	exit: function(_event) {
-		
+
 	},
 	/**
 	 * Resume event observer
 	 * @param {Object} _event Standard Ti callback
 	 */
 	resume: function(_event) {
-		
+
 	},
 	/**
 	 * Handle the orientation change event callback
@@ -133,7 +133,7 @@ var App = {
 				App.Device.height = Ti.Platform.displayCaps.platformWidth > Ti.Platform.displayCaps.platformHeight ? Ti.Platform.displayCaps.platformHeight : Ti.Platform.displayCaps.platformWidth;
 				break;
 		}
-		
+
 		// Convert dimensions from DP to PX for Android
 		if(OS_ANDROID) {
 			App.Device.width = (App.Device.width / (App.Device.dpi / 160));

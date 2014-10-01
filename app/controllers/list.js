@@ -38,13 +38,13 @@ var events = [],
 
 function init() {
 	$.LoadingIndicator.start();
-	
+
 	getData();
-	
+
 	dateSlider = Alloy.createController("ui/dateSlider");
-	
+
 	dateSlider.on("dateChange", onDateChange);
-	
+
 	$.DateSlider.add(dateSlider.getView());
 }
 
@@ -53,7 +53,7 @@ function getData() {
 		opacity: 0,
 		duration: 100
 	});
-	
+
 	anim.addEventListener("complete", function() {
 		Forekast.getEventByDate({
 			date: current_date,
@@ -66,60 +66,60 @@ function getData() {
 			}
 		});
 	});
-	
+
 	$.Events.animate(anim);
 }
 
 function setData(_data) {
 	$.Events.removeAllChildren();
-	
+
 	events = [];
-	
+
 	var eventCount = 0;
-	
+
 	if(_data.length > 0) {
 		for(var i = 0, x = _data.length; i < x; i++) {
 			var event = _data[i];
 			var eventDatetime = Moment(event.datetime),
 				displayTime = "";
-			
+
 			// Handle event types differently
 			if(event.time_format == "tv_show") {
 				// TV SHOW
 				if(event.local_date !== current_date) {
 					continue;
 				}
-				
+
 				var hour = event.local_time.split(":")[0];
-				
+
 				displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
 			} else if(event.is_all_day) {
 				// ALL DAY EVENT
 				if(event.local_date !== current_date) {
 					continue;
 				}
-				
+
 				displayTime = "All Day";
 			} else {
 				// ALL OTHERS
 				if(eventDatetime.format("YYYY-MM-DD") !== current_date) {
 					continue;
 				}
-				
+
 				// Ignore if already over (+2 hours since start)
 				/*
 				if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
 					continue;
 				}
 				*/
-				
+
 				displayTime = eventDatetime.format("h:mma");
 			}
-			
+
 			var controller = Alloy.createController("ui/event_row", {
 				id: event._id
 			});
-			
+
 			controller.updateViews({
 				"#Row": {
 					backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
@@ -146,23 +146,23 @@ function setData(_data) {
 					image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
 				}
 			});
-			
+
 			if(OS_IOS) {
 				events.push(controller);
 			}
-			
+
 			$.Events.add(controller.getView());
-			
+
 			eventCount++;
 		}
-		
+
 		if(OS_IOS) {
 			if(eventCount > 0) {
 				calculateParallax();
 			}
 		}
 	}
-	
+
 	if(eventCount == 0) {
 		var noEvents = Ti.UI.createLabel({
 			text: "No events on this date",
@@ -175,10 +175,10 @@ function setData(_data) {
 			textAlign: "center",
 			height: Ti.UI.FILL
 		});
-		
+
 		$.Events.add(noEvents);
 	}
-	
+
 	$.Events.animate({
 		opacity: 1,
 		duration: 100
@@ -187,23 +187,23 @@ function setData(_data) {
 
 function openSettings() {
 	var SettingsWindow = Alloy.createController("settings").getView();
-	
+
 	SettingsWindow.open();
 }
 
 function onDateChange(_event) {
 	if(_event.date != current_date) {
 		current_date = _event.date;
-		
+
 		getData();
 	}
 }
 
 function goToCurrentDay() {
 	current_date = Moment().format("YYYY-MM-DD");
-	
+
 	dateSlider.DateSlider.scrollToView(0);
-	
+
 	getData();
 }
 
@@ -211,7 +211,7 @@ function goToNextDay() {
 	if(dateSlider.DateSlider.currentPage < dateSlider.DateSlider.views.length - 1) {
 		dateSlider.DateSlider.moveNext();
 		current_date = Moment(current_date, "YYYY-MM-DD").add(1, "days").format("YYYY-MM-DD");
-		
+
 		getData();
 	}
 }
@@ -220,7 +220,7 @@ function goToPreviousDay() {
 	if(dateSlider.DateSlider.currentPage > 0) {
 		dateSlider.DateSlider.movePrevious();
 		current_date = Moment(current_date, "YYYY-MM-DD").subtract(1, "days").format("YYYY-MM-DD");
-		
+
 		getData();
 	}
 }
@@ -229,7 +229,7 @@ if(OS_ANDROID) {
 	$.SliderIndicatorLeft.addEventListener("click", function() {
 		goToPreviousDay();
 	});
-	
+
 	$.SliderIndicatorRight.addEventListener("click", function() {
 		goToNextDay();
 	});
@@ -264,23 +264,23 @@ if(OS_IOS) {
 	$.Events.addEventListener("postlayout", function postLayoutListener(_event) {
 		parent_height = _event.source.rect.height;
 		parent_center = parent_height / 2;
-		
+
 		$.Events.removeEventListener("postlayout", postLayoutListener);
 	});
-	
+
 	$.Events.addEventListener("scroll", calculateParallax);
-	
+
 	function calculateParallax(_event) {
 		// How far down the screen have we scrolled?
 		var offset_y = _event && _event.source.contentOffset.y ? _event.source.contentOffset.y : 0;
-		
+
 		for(var i = 0, x = events.length; i < x; i++) {
 			var event = events[i];
-			
+
 			// Where on the Y-axis is our element
 			var position_y = (0 - offset_y) + (i * row_height) + (row_height / 2);
 			var percent_y;
-			
+
 			// Is it above or below the middle of the screen?
 			if(position_y > parent_center) {
 				// Below; calculate percentage away from center (bottom of screen is 100%, middle is 0%)
@@ -289,17 +289,17 @@ if(OS_IOS) {
 				// Above; calculate percentage away from center (top of screen is 100%, middle is 0%)
 				percent_y = (0 - (1 - (position_y / parent_center)));
 			}
-			
+
 			// New position is a percentage of the maximum slide amount
 			var new_y = movement_bounds * percent_y;
-			
+
 			// Ensure that we don't go over the maximum slide amount
 			if(new_y > 0 && new_y > movement_bounds) {
 				new_y = movement_bounds;
 			} else if(new_y < 0 && new_y < (0 - movement_bounds)) {
 				new_y = 0 - movement_bounds;
 			}
-			
+
 			event.updateViews({
 				"#Image": {
 					top: new_y
@@ -314,15 +314,15 @@ $.ListWindow.addEventListener("open", function() {
 		opacity: 0,
 		duration: 500
 	});
-	
+
 	anim.addEventListener("complete", function() {
 		$.ListWindow.remove($.Overlay);
 	});
-	
+
 	$.Overlay.animate(anim);
-	
+
 	init();
-	
+
 	// TODO: v1.1
 	// App.Push.register();
 });

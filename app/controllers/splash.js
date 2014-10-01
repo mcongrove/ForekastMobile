@@ -7,16 +7,16 @@ function animate() {
 	var transAstronautStart = Ti.UI.create2DMatrix({
 		rotate: 89
 	});
-	
+
 	var transAstronautEnd = Ti.UI.create2DMatrix({
 		rotate: 271
 	});
-	
+
 	var animStars = Ti.UI.createAnimation({
 		opacity: 1,
 		duration: 1000
 	});
-	
+
 	var animAstronaut = Ti.UI.createAnimation({
 		right: (App.Device.width + 150),
 		transform: transAstronautEnd,
@@ -24,9 +24,9 @@ function animate() {
 		duration: 3500,
 		delay: 1000
 	});
-	
+
 	animAstronaut.addEventListener("complete", complete);
-	
+
 	$.Astronaut.setTransform(transAstronautStart);
 	$.Background.animate(animStars);
 	$.Astronaut.animate(animAstronaut);
@@ -37,21 +37,21 @@ function complete() {
 		backgroundColor: "#FFF",
 		duration: 500
 	});
-	
+
 	var animStars = Ti.UI.createAnimation({
 		opacity: 0,
 		duration: 500
 	});
-	
+
 	animBackground.addEventListener("complete", close);
-	
+
 	$.SplashWindow.animate(animBackground);
 	$.Background.animate(animStars);
 }
 
 function close() {
 	App.MainWindow.open();
-	
+
 	$.SplashWindow.close();
 }
 

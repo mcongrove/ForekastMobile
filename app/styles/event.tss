@@ -5,10 +5,10 @@
 	extendEdges: [
 		Ti.UI.EXTEND_EDGE_TOP
 	],
-    includeOpaqueBars: true,
-    autoAdjustScrollViewInsets: true,
-    translucent: true,
-    navTintColor: "#FFF",
+	includeOpaqueBars: true,
+	autoAdjustScrollViewInsets: true,
+	translucent: true,
+	navTintColor: "#FFF",
 	tintColor: "#FFF",
 	barImage: "/images/semitransparent.png",
 	hideShadow: true
@@ -43,14 +43,14 @@
 		},
 		colors: [
 			{
-				color: "#00000D16",
-				offset: 0
-			},
+			color: "#00000D16",
+			offset: 0
+		},
 			{
-				color: "#FF000D16",
-				offset: 1
-			}
-		]
+			color: "#FF000D16",
+			offset: 1
+		}
+]
 	}
 },
 ".navbarOverlay": {
@@ -70,14 +70,14 @@
 		},
 		colors: [
 			{
-				color: "#FF000D16",
-				offset: 0
-			},
+			color: "#FF000D16",
+			offset: 0
+		},
 			{
-				color: "#00000D16",
-				offset: 1
-			}
-		]
+			color: "#00000D16",
+			offset: 1
+		}
+]
 	}
 },
 "#ScrollView": {

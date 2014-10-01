@@ -13,12 +13,12 @@ exports.register = function() {
 						error: deviceTokenError,
 						callback: receiveNotification
 					});
-					
+
 					Ti.App.iOS.removeEventListener("usernotificationsettings", registerForPush);
 				}
-				
+
 				Ti.App.iOS.addEventListener("usernotificationsettings", registerForPush);
-				
+
 				Ti.App.iOS.registerUserNotificationSettings({
 					types: [
 						Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE,
@@ -40,13 +40,13 @@ exports.register = function() {
 			}
 		}
 	} else {
-		
+
 	}
 };
 
 function deviceTokenSuccess(_event) {
 	exports.pushDeviceToken = _event.deviceToken;
-	
+
 	Ti.App.Properties.setString("PushDeviceToken", exports.pushDeviceToken);
 
 	Ti.App.fireEvent("Push:TokenReceived", {
@@ -56,16 +56,16 @@ function deviceTokenSuccess(_event) {
 
 function deviceTokenError(_event) {
 	Ti.API.error("Device token could not be retrieved");
-	
+
 	Ti.API.error(JSON.stringify(_event.error));
 }
 
 function receiveNotification(_event) {
 	Ti.API.warn("PUSH RECEIVED");
 	Ti.API.error(JSON.stringify(_event));
-	
+
 	var payload = null;
-	
+
 	if(_event.data) {
 		payload = _event.data;
 	} else if(_event.payload) {

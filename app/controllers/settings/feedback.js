@@ -1,12 +1,8 @@
 var Mailgun = require("mailgun");
 
 function submitForm() {
-	var message = "From: " + $.FieldName.value + "\n"
-				+ "Email: " + $.FieldEmail.value + "\n"
-				+ "Twitter: " + $.FieldTwitter.value + "\n"
-				+ "Message: " + $.FieldMessage.value + "\n"
-	;
-	
+	var message = "From: " + $.FieldName.value + "\n" + "Email: " + $.FieldEmail.value + "\n" + "Twitter: " + $.FieldTwitter.value + "\n" + "Message: " + $.FieldMessage.value + "\n";
+
 	Mailgun.sendMail({
 		message: message,
 		success: onSuccess,
@@ -20,11 +16,11 @@ function onSuccess() {
 		message: "We've received your feedback",
 		ok: "OK"
 	});
-	
+
 	dialog.addEventListener("click", function() {
 		$.SettingsFeedbackWindow.close();
 	});
-	
+
 	dialog.show();
 }
 
@@ -34,7 +30,7 @@ function onError() {
 		message: "We weren't able to send your message",
 		ok: "Try Again"
 	});
-	
+
 	dialog.show();
 }
 

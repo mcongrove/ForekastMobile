@@ -1,0 +1,51 @@
+task("pre:compile", function(event, logger) {
+	logger.showTimestamp = true;
+	
+	var jsBeautify = require(event.dir.project + "/package/beautify/beautify").js_beautify;
+	var fs = require("fs");
+	
+	function beautify(_directory) {
+		fs.readdir(_directory, function(err, files) {
+			logger.info("[js-beautify] Reading " + _directory);
+			
+			if(files && files.length > 0) {
+				files.forEach(function(file) {
+					fs.stat(_directory + "/" + file, function(err, stat) {
+						var filePath = _directory + "/" + file;
+						
+						if(stat && stat.isDirectory()) {
+							if(file !== "html") {
+								beautify(filePath);
+							}
+						} else if(stat && stat.isFile()) {
+							var bits = file.split(".");
+							
+							if((bits[bits.length - 1] == "js" || bits[bits.length - 1] == "tss") && bits[bits.length - 2] !== "mocha") {
+								logger.info("[js-beautify] Beautifying " + filePath);
+								
+								var data = fs.readFileSync(filePath, "utf8");
+								
+								var newData = jsBeautify(data, {
+									indent_char: "\t",
+									indent_size: 1,
+									preserve_newlines: true,
+									max_preserve_newlines: 1,
+									keep_array_indentation: true,
+									space_before_conditional: false,
+									brace_style: "collapse"
+								});
+								
+								fs.writeFile(filePath, newData);
+							}
+						}
+					});
+				});
+			}
+		});
+	}
+	
+	beautify(event.dir.project + "/app/controllers");
+	beautify(event.dir.project + "/app/lib");
+	beautify(event.dir.project + "/app/styles");
+	beautify(event.dir.project + "/app/widgets");
+});

@@ -25,11 +25,11 @@ function getData() {
 				message: "This event is no longer available for viewing",
 				ok: "OK"
 			});
-			
+
 			dialog.addEventListener("click", function() {
 				$.EventWindow.close();
 			});
-			
+
 			dialog.show();
 		}
 	});
@@ -37,15 +37,15 @@ function getData() {
 
 function setData(_data) {
 	EVENT = _data;
-	
+
 	var eventDatetime = Moment(EVENT.datetime),
 		displayTime = "",
 		displayRelativeTime = "";
-	
+
 	// Handle event types differently
 	if(EVENT.time_format == "tv_show") {
 		var hour = EVENT.local_time.split(":")[0];
-		
+
 		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
 		displayRelativeTime = "Check Local Listings";
 	} else if(EVENT.is_all_day) {
@@ -55,29 +55,29 @@ function setData(_data) {
 		displayTime = eventDatetime.format("h:mma");
 		displayRelativeTime = eventDatetime.fromNow();
 	}
-	
+
 	if(EVENT.width == 0) {
 		EVENT.mediumUrl = "/images/empty_large.png";
 	}
-	
+
 	if(OS_IOS) {
 		$.Image.image = EVENT.mediumUrl;
 	} else {
 		$.Image.backgroundImage = EVENT.mediumUrl;
 	}
-	
+
 	$.Title.text = EVENT.name;
 	$.Time.text = displayTime;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
 	$.TimeFromNow.text = displayRelativeTime;
 	$.Author.text = "by " + EVENT.user;
-	
+
 	var description = Util.linkify(EVENT.description);
-	
+
 	if(OS_IOS) {
 		var html = "<style type='text/css'>body {font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
-		
+
 		var label = StyledLabel.createLabel({
 			height: Ti.UI.SIZE,
 			top: 25,
@@ -86,7 +86,7 @@ function setData(_data) {
 			backgroundColor: "transparent",
 			html: html + description
 		});
-		
+
 		label.addEventListener("click", function(_event) {
 			if(_event.url) {
 				Ti.Platform.openURL(_event.url);
@@ -102,11 +102,11 @@ function setData(_data) {
 			html: description
 		});
 	}
-	
+
 	$.Content.add(label);
-	
+
 	getComments();
-	
+
 	App.logEvent("Event:Open", {
 		eventId: EVENT._id,
 		daysAhead: Moment(EVENT.datetime).diff(Moment(), "days")
@@ -124,17 +124,17 @@ function getComments() {
 function setComments(_data) {
 	var rows = [],
 		comments = [];
-	
+
 	// TODO: v1.1
 	if(_data.length < 1) {
 		$.Comments.backgroundGradient = {};
-		
+
 		return;
 	}
-	
+
 	// This loops through all the replies and grabs EVERY comment
 	extractComments(_data, 0);
-	
+
 	// Hacking, because the gradient doesn't update when content is added
 	$.Comments.setBackgroundGradient({
 		type: "linear",
@@ -148,35 +148,35 @@ function setComments(_data) {
 		},
 		colors: [
 			{
-				color: "#2B2D38",
-				offset: 0
-			},
+			color: "#2B2D38",
+			offset: 0
+		},
 			{
-				color: "#2B2D38",
-				offset: 0.5
-			},
+			color: "#2B2D38",
+			offset: 0.5
+		},
 			{
-				color: "#000D16",
-				offset: 1
-			}
-		]
+			color: "#000D16",
+			offset: 1
+		}
+]
 	});
 }
 
 function extractComments(_data, _depth) {
 	for(var i = 0, x = _data.length; i < x; i++) {
 		var comment = _data[i];
-		
+
 		if(comment.status == "active") {
 			var commentView = Alloy.createController("ui/comment", {
 				author: comment.username,
 				comment: comment.message,
 				depth: _depth
 			}).getView();
-			
+
 			$.CommentsContainer.add(commentView);
 		}
-		
+
 		if(comment.replies.length > 0) {
 			extractComments(comment.replies, _depth + 1);
 		}
@@ -273,11 +273,10 @@ $.Upvote.addEventListener("click", function() {
 });
 */
 
-
 $.ScrollView.addEventListener("scroll", function(_event) {
 	var offset = _event.y;
 	var opacity = 1;
-	
+
 	if(offset <= 0) {
 		if(OS_IOS) {
 			var height = 200 - offset;
@@ -285,16 +284,16 @@ $.ScrollView.addEventListener("scroll", function(_event) {
 			var transform = Ti.UI.create2DMatrix({
 				scale: scale
 			});
-			
-			transform = transform.translate(0, -offset/(2*scale));
-			
+
+			transform = transform.translate(0, -offset / (2 * scale));
+
 			$.Image.setTransform(transform);
 		}
-		
+
 		$.Image.setOpacity(1);
 	} else if(offset > 0) {
 		opacity = Math.max(1 - (offset / 200), 0.3);
-		
+
 		$.Image.setOpacity(opacity);
 	}
 });
@@ -333,7 +332,7 @@ $.ScrollView.addEventListener("click", function(_event) {
 
 $.Share.addEventListener("click", function(_event) {
 	Social.share("https://forekast.com/events/show/" + EVENT._id);
-	
+
 	App.logEvent("Event:Share", {
 		eventId: 12345
 	});

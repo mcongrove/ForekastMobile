@@ -181,22 +181,22 @@ exports.xmlNormalize = function(_string) {
  * @param {String} _string The string to perform the action on
  */
 exports.linkify = function(_string) {
-    if(_string) {
-        _string = _string.replace(
-            /((https?\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,
-            function(_url) {
-                var full_url = _url;
-                
-                if(!full_url.match('^https?:\/\/')) {
-                    full_url = 'http://' + full_url;
-                }
-                
-                return '<a href="' + full_url + '">' + _url + '</a>';
-            }
-        );
-    }
-    
-    return _string;
+	if(_string) {
+		_string = _string.replace(
+			/((https?\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,
+
+		function(_url) {
+			var full_url = _url;
+
+			if(!full_url.match('^https?:\/\/')) {
+				full_url = 'http://' + full_url;
+			}
+
+			return '<a href="' + full_url + '">' + _url + '</a>';
+		});
+	}
+
+	return _string;
 };
 
 /**

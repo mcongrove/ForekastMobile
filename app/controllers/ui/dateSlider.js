@@ -13,7 +13,7 @@ var date = Moment(),
 function init() {
 	if(OS_IOS) {
 		$.DateSlider.width = itemWidth;
-		
+
 		$.DateSlider.hitRect = {
 			width: App.Device.width,
 			height: 44,
@@ -21,10 +21,10 @@ function init() {
 			y: 0
 		};
 	}
-	
+
 	for(var i = 0, x = dateDiff; i < x; i++) {
 		var text;
-		
+
 		if(i == 0) {
 			text = "Today";
 		} else if(i == 1) {
@@ -32,17 +32,17 @@ function init() {
 		} else {
 			text = date.format("MMM Do");
 		}
-		
+
 		var item = Ti.UI.createView({
 			top: 0,
 			width: itemWidth,
 			height: 44
 		});
-		
+
 		if(i == 0) {
 			selectedView = item;
 		}
-		
+
 		var label = Ti.UI.createLabel({
 			width: Ti.UI.FILL,
 			height: 44,
@@ -56,11 +56,11 @@ function init() {
 			text: text,
 			touchEnabled: false
 		});
-		
+
 		item.add(label);
-		
+
 		$.DateSlider.addView(item);
-		
+
 		date.add(1, "days");
 	}
 }
@@ -69,7 +69,7 @@ $.DateSlider.addEventListener("scrollend", function(_event) {
 	$.trigger("dateChange", {
 		date: Moment().add(_event.currentPage, "days").format("YYYY-MM-DD")
 	});
-	
+
 	var children = $.DateSlider.getViews();
 	selectedView.children[0].setColor("#6E7690");
 	selectedView = children[_event.currentPage];

@@ -23,17 +23,17 @@ $.setOptions = function(_data) {
 	}
 
 	$.Table.setData(rows);
-	
+
 	if(len > 5) {
 		len = 5;
-		
+
 		$.Table.scrollable = true;
 	} else {
 		$.Table.scrollable = false;
 	}
-	
+
 	height = 48 * len;
-	
+
 	$.Table.height = height;
 	$.Container.bottom = height;
 };
