@@ -88,9 +88,11 @@ function setData(_data) {
 			}
 			
 			// Ignore if already over (+2 hours since start)
+			/*
 			if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
 				continue;
 			}
+			*/
 			
 			if(event.local_date == current_date) {
 				var controller = Alloy.createController("ui/event_row", {
@@ -117,7 +119,7 @@ function setData(_data) {
 						text: event.upvotes
 					},
 					"#Image": {
-						image: event.mediumUrl
+						image: event.mediumUrl.charAt(0) == "/" ? "/images/empty.png" : event.mediumUrl
 					},
 					"#ImageOverlay": {
 						image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
