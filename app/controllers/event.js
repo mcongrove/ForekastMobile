@@ -54,13 +54,14 @@ function setData(_data) {
 	var description = Util.linkify(EVENT.description);
 	
 	if(OS_IOS) {
-		var html = "<style type='text/css'>body {background: #000D16;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
+		var html = "<style type='text/css'>body {font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;font-size: 16px;color: #FFF;}a {color: #4ED5C3;text-decoration: none;}p, br {margin: 20px 0 0;}</style>";
 		
 		var label = StyledLabel.createLabel({
 			height: Ti.UI.SIZE,
 			top: 25,
 			right: 0,
 			left: 0,
+			backgroundColor: "transparent",
 			html: html + description
 		});
 		
