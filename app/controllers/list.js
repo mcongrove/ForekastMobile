@@ -80,60 +80,80 @@ function setData(_data) {
 	if(_data.length > 0) {
 		for(var i = 0, x = _data.length; i < x; i++) {
 			var event = _data[i];
-			var eventDatetime = Moment(event.local_date + " " + event.local_time, "YYYY-MM-DD h:mm A");
+			var eventDatetime = Moment(event.datetime),
+				displayTime = "";
 			
-			// Ignore if not today
-			if(event.local_date !== current_date) {
-				continue;
-			}
-			
-			// Ignore if already over (+2 hours since start)
-			/*
-			if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
-				continue;
-			}
-			*/
-			
-			if(event.local_date == current_date) {
-				var controller = Alloy.createController("ui/event_row", {
-					id: event._id
-				});
-				
-				controller.updateViews({
-					"#Row": {
-						backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
-					},
-					"#Container": {
-						backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
-					},
-					"#Title": {
-						text: event.name
-					},
-					"#Time": {
-						text: event.is_all_day ? "All Day" : event.local_time
-					},
-					"#Subkast": {
-						text: Forekast.getSubkastByAbbrev(event.subkast)
-					},
-					"#UpvoteCount": {
-						text: event.upvotes
-					},
-					"#Image": {
-						image: event.width == 0 ? "/images/empty.png" : event.mediumUrl
-					},
-					"#ImageOverlay": {
-						image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
-					}
-				});
-				
-				if(OS_IOS) {
-					events.push(controller);
+			// Handle event types differently
+			if(event.time_format == "tv_show") {
+				// TV SHOW
+				if(event.local_date !== current_date) {
+					continue;
 				}
 				
-				$.Events.add(controller.getView());
+				var hour = event.local_time.split(":")[0];
 				
-				eventCount++;
+				displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
+			} else if(event.is_all_day) {
+				// ALL DAY EVENT
+				if(event.local_date !== current_date) {
+					continue;
+				}
+				
+				displayTime = "All Day";
+			} else {
+				// ALL OTHERS
+				if(eventDatetime.format("YYYY-MM-DD") !== current_date) {
+					continue;
+				}
+				
+				// Ignore if already over (+2 hours since start)
+				/*
+				if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
+					continue;
+				}
+				*/
+				
+				displayTime = eventDatetime.format("h:mma");
 			}
+			
+			var controller = Alloy.createController("ui/event_row", {
+				id: event._id
+			});
+			
+			controller.updateViews({
+				"#Row": {
+					backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
+				},
+				"#Container": {
+					backgroundColor: (eventCount % 2 == 0) ? "#FFF" : "#F6F6F6"
+				},
+				"#Title": {
+					text: event.name
+				},
+				"#Time": {
+					text: displayTime
+				},
+				"#Subkast": {
+					text: Forekast.getSubkastByAbbrev(event.subkast)
+				},
+				"#UpvoteCount": {
+					text: event.upvotes
+				},
+				"#Image": {
+					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl
+				},
+				"#ImageOverlay": {
+					image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
+				}
+			});
+			
+			if(OS_IOS) {
+				events.push(controller);
+			}
+			
+			$.Events.add(controller.getView());
+			
+			eventCount++;
 		}
 		
 		if(OS_IOS) {

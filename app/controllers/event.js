@@ -38,6 +38,24 @@ function getData() {
 function setData(_data) {
 	EVENT = _data;
 	
+	var eventDatetime = Moment(EVENT.datetime),
+		displayTime = "",
+		displayRelativeTime = "";
+	
+	// Handle event types differently
+	if(EVENT.time_format == "tv_show") {
+		var hour = EVENT.local_time.split(":")[0];
+		
+		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
+		displayRelativeTime = "Check Local Listings";
+	} else if(EVENT.is_all_day) {
+		displayTime = "All Day";
+		displayRelativeTime = "";
+	} else {
+		displayTime = eventDatetime.format("h:mma");
+		displayRelativeTime = eventDatetime.fromNow();
+	}
+	
 	if(EVENT.width == 0) {
 		EVENT.mediumUrl = "/images/empty_large.png";
 	}
@@ -49,10 +67,10 @@ function setData(_data) {
 	}
 	
 	$.Title.text = EVENT.name;
-	$.Time.text = EVENT.is_all_day ? "All Day" : EVENT.local_time;
+	$.Time.text = displayTime;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
-	$.TimeFromNow.text = EVENT.is_all_day ? "" : Moment(EVENT.local_date + " " + EVENT.local_time, "YYYY-MM-DD h:mm A").fromNow();
+	$.TimeFromNow.text = displayRelativeTime;
 	$.Author.text = "by " + EVENT.user;
 	
 	var description = Util.linkify(EVENT.description);
