@@ -62,9 +62,6 @@
 "#FieldTwitter": {
 	keyboardType: Ti.UI.KEYBOARD_DEFAULT
 },
-"#FieldMessage": {
-	
-},
 "Button": {
 	top: 10,
 	left: 20,

@@ -2,23 +2,18 @@
 	width: Ti.UI.FILL,
 	height: 85
 },
-".imageContainer[platform=ios]": {
+".imageContainer": {
 	width: 75,
 	height: 85,
 	left: 0,
 	top: 0,
+	touchEnabled: false
+},
+".imageContainer[platform=ios]": {
 	contentWidth: "auto",
 	contentHeight: "auto",
 	scrollingEnabled: false,
-	scrollType: "vertical",
-	touchEnabled: false
-},
-".imageContainer[platform=android]": {
-	width: 75,
-	height: 85,
-	left: 0,
-	top: 0,
-	touchEnabled: false
+	scrollType: "vertical"
 },
 "#Image": {
 	width: 113,

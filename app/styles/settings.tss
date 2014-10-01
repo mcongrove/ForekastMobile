@@ -1,9 +1,6 @@
 "NavigationWindow": {
 	modal: true
 },
-"Window": {
-	
-},
 "TableView[platform=ios]": {
 	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 }

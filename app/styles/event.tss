@@ -1,3 +1,6 @@
+"Window": {
+	backgroundColor: "#000D16"
+},
 "Window[platform=ios]": {
 	extendEdges: [
 		Ti.UI.EXTEND_EDGE_TOP
@@ -8,8 +11,7 @@
     navTintColor: "#FFF",
 	tintColor: "#FFF",
 	barImage: "/images/semitransparent.png",
-	hideShadow: true,
-	backgroundColor: "#000D16"
+	hideShadow: true
 },
 ".imageContainer": {
 	top: 0,
