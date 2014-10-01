@@ -21,6 +21,8 @@ Any feedback, requests, or code changes are absolutely welcome and appreciated.
 
 Feature requests and bug reports can be created as a [GitHub Issue](https://github.com/mcongrove/ForekastMobile/issues).
 
+##### Code Contributions
+
 Code changes require a bit more effort. To get started, you'll need to download [Appcelerator Titanium](http://www.appcelerator.com/titanium/download-titanium/) and follow the [Quick Start](http://docs.appcelerator.com/titanium/latest/#!/guide/Quick_Start) guide. Titanium is well-documented with API information, guides, and tutorials.
 
 To submit a code change, please [fork this repository](https://github.com/mcongrove/ForekastMobile/fork) to your personal GitHub account. After making your changes, submit a [pull request](https://github.com/mcongrove/ForekastMobile/pulls). Your changes will be reviewed by one of the project administrators for various checks, including:
@@ -39,9 +41,14 @@ If you'd like to add a completely new feature, please submit an [Issue](https://
 
 Anyone who submits a few successfully merged pull requests will be added to the contributors list, at the discretion of project administrators.
 
-###### Notice
+###### Developer Notices
 
 To protect private key information, the `app/config.json` file has been cleansed and renamed to `app/config.json.example`. Please remove the `.example` from the file before compiling the application.
+
+You'll also need to install the following modules:
+
+ * [StyledLabel](https://github.com/appcelerator/titanium_modules/tree/master/styledlabel) for iOS
+ * [TiSocial](https://github.com/viezel/TiSocial.Framework) for iOS
 
 ### Code Standards
 
