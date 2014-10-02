@@ -62,11 +62,28 @@ var App = {
 		Ti.App.addEventListener("resumed", App.resume);
 		Ti.Gesture.addEventListener("orientationchange", App.orientationChange);
 
+		if(OS_IOS) {
+			Ti.App.iOS.addEventListener("notification", App.notification);
+		}
+
 		// Log app open event
 		App.logEvent("Application:Open");
 
 		// Get device dimensions
 		App.getDeviceDimensions();
+
+		// Register for notification alerts
+		if(OS_IOS) {
+			if(App.Device.versionMajor >= 8) {
+				Ti.App.iOS.registerUserNotificationSettings({
+					types: [
+						Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE,
+						Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT,
+						Ti.App.iOS.USER_NOTIFICATION_TYPE_SOUND
+					]
+				});
+			}
+		}
 	},
 	/**
 	 * Opens the settings screen
@@ -75,6 +92,45 @@ var App = {
 		var SettingsWindow = Alloy.createController("settings").getView();
 
 		SettingsWindow.open();
+	},
+	/**
+	 * Notification event observer
+	 * @param {Object} _event Standard Ti callback
+	 */
+	notification: function(_notification) {
+		if(_notification.userInfo.eventId) {
+			var dialog = Ti.UI.createAlertDialog({
+				title: "Open Event?",
+				message: _notification.userInfo.eventName,
+				buttonNames: ["Yes", "No"],
+				cancel: 1
+			});
+
+			dialog.addEventListener("click", function(_event) {
+				if(_event.index === 0) {
+					var event = Alloy.createController("event", {
+						id: _notification.userInfo.eventId
+					}).getView();
+
+					event.rightNavButton = Ti.UI.createButton({
+						systemButton: Ti.UI.iPhone.SystemButton.DONE
+					});
+
+					var win = Ti.UI.iOS.createNavigationWindow({
+						window: event,
+						modal: true
+					});
+
+					event.rightNavButton.addEventListener("click", function() {
+						win.close();
+					});
+
+					win.open();
+				}
+			});
+
+			dialog.show();
+		}
 	},
 	/**
 	 * Global network event handler

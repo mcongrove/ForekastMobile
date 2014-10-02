@@ -50,6 +50,7 @@
     <modules>
         <module platform="iphone">ti.styledlabel</module>
         <module platform="iphone">dk.napp.social</module>
+        <module platform="iphone">bencoding.localnotify</module>
     </modules>
     <deployment-targets>
         <target device="tizen">false</target>

@@ -1,11 +1,8 @@
 <Alloy>
 	<Window id="EventWindow">
-		<!--
-		// TODO: v1.1
 		<RightNavButton platform="ios">
-			<ImageView image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
+			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
-		-->
 		
 		<View class="imageContainer">
 			<ImageView id="Image" platform="ios" />

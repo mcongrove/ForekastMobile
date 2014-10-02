@@ -4,7 +4,8 @@ var App = require("core"),
 	Forekast = require("model/forekast"),
 	Social = require("social"),
 	StyledLabel = OS_IOS ? require("ti.styledlabel") : null,
-	Util = require("utilities");
+	Util = require("utilities"),
+	Reminder = require("reminder");
 
 var args = arguments[0] || {};
 
@@ -12,10 +13,11 @@ var EVENT = {
 	_id: args.id
 };
 
-var reminder = false,
-	upvote_notice;
+var upvote_notice;
+// TODO: v1.1
+// var reminder = false;
 
-function getData() {
+function init() {
 	Forekast.getEventById({
 		id: EVENT._id,
 		success: setData,
@@ -33,27 +35,38 @@ function getData() {
 			dialog.show();
 		}
 	});
+
+	if(Reminder.isReminderSet(EVENT._id)) {
+		$.Reminder.image = "/images/icon_reminder_active.png";
+	}
 }
 
 function setData(_data) {
 	EVENT = _data;
 
-	var eventDatetime = Moment(EVENT.datetime),
-		displayTime = "",
+	EVENT.datetime = Moment(EVENT.datetime);
+
+	var displayTime = "",
 		displayRelativeTime = "";
 
 	// Handle event types differently
 	if(EVENT.time_format == "tv_show") {
 		var hour = EVENT.local_time.split(":")[0];
+		var isDST = Moment(EVENT.local_date).isDST();
+		var offset = isDST ? "-0400" : "-0500";
+
+		EVENT.datetime = Moment(EVENT.local_date + " " + EVENT.local_time + " " + offset, "YYYY-MM-DD h:mm A Z");
 
 		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
-		displayRelativeTime = "Check Local Listings";
+		displayRelativeTime = EVENT.datetime.fromNow();
 	} else if(EVENT.is_all_day) {
+		EVENT.datetime = Moment();
+
 		displayTime = "All Day";
 		displayRelativeTime = "";
 	} else {
-		displayTime = eventDatetime.format("h:mma");
-		displayRelativeTime = eventDatetime.fromNow();
+		displayTime = EVENT.datetime.format("h:mma");
+		displayRelativeTime = EVENT.datetime.fromNow();
 	}
 
 	if(EVENT.width == 0) {
@@ -109,8 +122,14 @@ function setData(_data) {
 
 	App.logEvent("Event:Open", {
 		eventId: EVENT._id,
-		daysAhead: Moment(EVENT.datetime).diff(Moment(), "days")
+		daysAhead: EVENT.datetime.diff(Moment(), "days")
 	});
+
+	// Hide reminder option if event is within an hour, or in past
+	// TODO: v1.1
+	if(EVENT.datetime.diff(Moment(), "hours") > 1) {
+		$.Reminder.visible = true;
+	}
 }
 
 function getComments() {
@@ -183,6 +202,26 @@ function extractComments(_data, _depth) {
 	}
 }
 
+function toggleReminder(_event) {
+	if(Reminder.isReminderSet(EVENT._id)) {
+		Reminder.cancelReminder(EVENT._id);
+
+		$.Reminder.image = "/images/icon_reminder.png";
+	} else {
+		Reminder.setReminder({
+			id: EVENT._id,
+			name: EVENT.name,
+			datetime: EVENT.datetime
+		});
+
+		$.Reminder.image = "/images/icon_reminder_active.png";
+
+		App.logEvent("Event:Remind", {
+			eventId: 12345
+		});
+	}
+}
+
 /*
 // TODO: v1.1
 function toggleReminder(_event) {
@@ -227,11 +266,11 @@ function toggleReminder(_event) {
 			if(_data == "cancel") {
 				reminder = false;
 				
-				_event.source.image = "/images/icon_reminder.png";
+				$.Reminder.image = "/images/icon_reminder.png";
 			} else {
 				reminder = _data;
 				
-				_event.source.image = "/images/icon_reminder_active.png";
+				$.Reminder.image = "/images/icon_reminder_active.png";
 				
 				App.logEvent("Event:Remind", {
 					eventId: 12345
@@ -246,17 +285,7 @@ function toggleReminder(_event) {
 	
 	picker.open();
 }
-*/
 
-$.EventWindow.addEventListener("open", function(_event) {
-	$.ScrollView.animate({
-		opacity: 1,
-		duration: 500,
-		delay: 250
-	});
-});
-
-/*
 // TODO: v1.1
 $.Upvote.addEventListener("click", function() {
 	if(!upvote_notice) {
@@ -271,34 +300,7 @@ $.Upvote.addEventListener("click", function() {
 		eventId: 12345
 	});
 });
-*/
 
-$.ScrollView.addEventListener("scroll", function(_event) {
-	var offset = _event.y;
-	var opacity = 1;
-
-	if(offset <= 0) {
-		if(OS_IOS) {
-			var height = 200 - offset;
-			var scale = height / 200;
-			var transform = Ti.UI.create2DMatrix({
-				scale: scale
-			});
-
-			transform = transform.translate(0, -offset / (2 * scale));
-
-			$.Image.setTransform(transform);
-		}
-
-		$.Image.setOpacity(1);
-	} else if(offset > 0) {
-		opacity = Math.max(1 - (offset / 200), 0.3);
-
-		$.Image.setOpacity(opacity);
-	}
-});
-
-/*
 // TODO: v1.1
 $.CommentBox.addEventListener("focus", function(_event) {
 	if($.CommentBox.value == "\nLeave a comment...") {
@@ -338,10 +340,37 @@ $.Share.addEventListener("click", function(_event) {
 	});
 });
 
-if(OS_IOS) {
-	App.MainWindow.openWindow($.EventWindow);
-} else {
-	$.EventWindow.open();
-}
+$.ScrollView.addEventListener("scroll", function(_event) {
+	var offset = _event.y;
+	var opacity = 1;
 
-getData();
+	if(offset <= 0) {
+		if(OS_IOS) {
+			var height = 200 - offset;
+			var scale = height / 200;
+			var transform = Ti.UI.create2DMatrix({
+				scale: scale
+			});
+
+			transform = transform.translate(0, -offset / (2 * scale));
+
+			$.Image.setTransform(transform);
+		}
+
+		$.Image.setOpacity(1);
+	} else if(offset > 0) {
+		opacity = Math.max(1 - (offset / 200), 0.3);
+
+		$.Image.setOpacity(opacity);
+	}
+});
+
+$.EventWindow.addEventListener("open", function(_event) {
+	$.ScrollView.animate({
+		opacity: 1,
+		duration: 500,
+		delay: 250
+	});
+});
+
+init();

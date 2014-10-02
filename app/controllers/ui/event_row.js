@@ -4,9 +4,15 @@ var App = require("core");
 var args = arguments[0] || {};
 
 $.Row.addEventListener("click", function(_event) {
-	Alloy.createController("event", {
+	var event = Alloy.createController("event", {
 		id: args.id
-	});
+	}).getView();
+
+	if(OS_IOS) {
+		App.MainWindow.openWindow(event);
+	} else {
+		event.open();
+	}
 });
 
 /*

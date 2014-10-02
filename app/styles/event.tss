@@ -13,6 +13,9 @@
 	barImage: "/images/semitransparent.png",
 	hideShadow: true
 },
+"#Reminder[platform=ios]": {
+	visible: false
+},
 ".imageContainer": {
 	top: 0,
 	width: Ti.UI.FILL,
