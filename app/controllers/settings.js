@@ -56,20 +56,11 @@ var App = require("core");
 	},
 */
 
-var OPTIONS = [
-	{
-	title: "About this app",
-	controller: "settings/about"
-},
-	{
-	title: "Send us feedback",
-	controller: "settings/feedback"
-}
-];
+var OPTIONS = [];
 
 if(OS_IOS) {
 	OPTIONS.push({
-		title: "Cancel all reminders",
+		title: "Cancel all event reminders",
 		action: function() {
 			var manager = require("bencoding.localnotify");
 
@@ -85,6 +76,16 @@ if(OS_IOS) {
 		}
 	});
 }
+
+OPTIONS.push({
+	title: "About this app",
+	controller: "settings/about"
+});
+
+OPTIONS.push({
+	title: "Send us feedback",
+	controller: "settings/feedback"
+});
 
 function init() {
 	var rows = [];
