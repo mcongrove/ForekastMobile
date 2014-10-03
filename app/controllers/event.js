@@ -22,14 +22,16 @@ function init() {
 		id: EVENT._id,
 		success: setData,
 		failure: function() {
-			var dialog = Ti.UI.createAlertDialog({
-				title: "Event Unavailable",
-				message: "This event is no longer available for viewing",
-				ok: "OK"
+			$.EventWindow.close();
+
+			$.EventWindow.addEventListener("open", function(_event) {
+				$.EventWindow.close();
 			});
 
-			dialog.addEventListener("click", function() {
-				$.EventWindow.close();
+			var dialog = Ti.UI.createAlertDialog({
+				title: "Event Unavailable",
+				message: Ti.Network.online ? "This event is no longer available for viewing" : "Please check your internet connection",
+				ok: "OK"
 			});
 
 			dialog.show();

@@ -58,12 +58,7 @@ function getData() {
 		Forekast.getEventByDate({
 			date: current_date,
 			success: setData,
-			failure: function() {
-				$.Events.animate({
-					opacity: 1,
-					duration: 100
-				});
-			}
+			failure: setData
 		});
 	});
 
@@ -77,7 +72,7 @@ function setData(_data) {
 
 	var eventCount = 0;
 
-	if(_data.length > 0) {
+	if(_data && _data.length > 0) {
 		for(var i = 0, x = _data.length; i < x; i++) {
 			var event = Forekast.calculateTimes(_data[i]);
 
