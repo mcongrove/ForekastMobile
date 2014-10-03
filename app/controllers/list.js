@@ -212,7 +212,7 @@ if(OS_ANDROID) {
 $.Events.addEventListener("swipe", function(_event) {
 	if(_event.direction == "left") {
 		goToNextDay();
-	} else {
+	} else if(_event.direction == "right") {
 		goToPreviousDay();
 	}
 });
