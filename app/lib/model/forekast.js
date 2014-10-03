@@ -7,7 +7,7 @@ var Moment = require("alloy/moment"),
  * @param {Function} _params.success The success callback
  * @param {Function} _params.failure The error callback
  */
-exports.getEventByDate = function(_params) {
+exports.getEventsByDate = function(_params) {
 	var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
 
 	http.request({

@@ -63,6 +63,6 @@ if(ENV_DEV) {
 
 $.SplashWindow.open();
 
-Forekast.getEventByDate({
+Forekast.getEventsByDate({
 	date: Moment().format("YYYY-MM-DD")
 });

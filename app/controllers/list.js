@@ -76,7 +76,7 @@ function getData() {
 	});
 
 	anim.addEventListener("complete", function() {
-		Forekast.getEventByDate({
+		Forekast.getEventsByDate({
 			date: current_date,
 			success: setData,
 			failure: setData
