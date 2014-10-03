@@ -228,7 +228,7 @@ function toggleReminder(_event) {
 		});
 
 		App.logEvent("Event:Remind", {
-			eventId: 12345
+			eventId: EVENT._id
 		});
 	} else {
 		// For Android, let them know the reminder wasn't set
@@ -294,7 +294,7 @@ function toggleReminder(_event) {
 				$.Reminder.image = "/images/icon_reminder_active.png";
 				
 				App.logEvent("Event:Remind", {
-					eventId: 12345
+					eventId: EVENT._id
 				});
 			}
 		}
@@ -318,7 +318,7 @@ $.Upvote.addEventListener("click", function() {
 	upvote_notice.show();
 	
 	App.logEvent("Event:Upvote", {
-		eventId: 12345
+		eventId: EVENT._id
 	});
 });
 
@@ -343,7 +343,7 @@ $.CommentBox.addEventListener("blur", function(_event) {
 // TODO: v1.1
 $.CommentBox.addEventListener("return", function(_event) {
 	App.logEvent("Event:Comment", {
-		eventId: 12345
+		eventId: EVENT._id
 	});
 });
 
@@ -357,7 +357,7 @@ $.Share.addEventListener("click", function(_event) {
 	Social.share("https://forekast.com/events/show/" + EVENT._id);
 
 	App.logEvent("Event:Share", {
-		eventId: 12345
+		eventId: EVENT._id
 	});
 });
 
