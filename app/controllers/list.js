@@ -41,11 +41,32 @@ function init() {
 
 	getData();
 
+	Ti.App.Properties.setString("GenerationDate", Moment().format("YYYY-MM-DD"));
+
 	dateSlider = Alloy.createController("ui/dateSlider");
 
 	dateSlider.on("dateChange", onDateChange);
 
 	$.DateSlider.add(dateSlider.getView());
+}
+
+function checkReset() {
+	current_date = Moment().format("YYYY-MM-DD");
+
+	var generationDate = Ti.App.Properties.getString("GenerationDate", current_date);
+
+	if(generationDate !== current_date) {
+		getData();
+
+		Ti.App.Properties.setString("GenerationDate", current_date);
+
+		dateSlider = Alloy.createController("ui/dateSlider");
+
+		dateSlider.on("dateChange", onDateChange);
+
+		$.DateSlider.removeAllChildren();
+		$.DateSlider.add(dateSlider.getView());
+	}
 }
 
 function getData() {
@@ -278,7 +299,19 @@ if(OS_IOS) {
 	}
 }
 
+Ti.App.addEventListener("resumed", checkReset);
+
 $.ListWindow.addEventListener("open", function() {
+	if(OS_ANDROID) {
+		$.ListWindow.activity.addEventListener("resume", function(_event) {
+			Ti.App.fireEvent("resumed");
+		});
+
+		$.ListWindow.activity.addEventListener("pause", function(_event) {
+			Ti.App.fireEvent("pause");
+		});
+	}
+
 	var anim = Ti.UI.createAnimation({
 		opacity: 0,
 		duration: 500
