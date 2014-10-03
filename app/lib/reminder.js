@@ -2,13 +2,7 @@ var Moment = require("alloy/moment"),
 	Manager = OS_IOS ? require("bencoding.localnotify") : require("bencoding.alarmmanager").createAlarmManager();
 
 exports.setReminder = function(_params) {
-	var datetime;
-
-	if(_params.atStart) {
-		datetime = _params.datetime.toDate();
-	} else {
-		datetime = _params.datetime.subtract(1, "hours").toDate();
-	}
+	var datetime = _params.time.toDate();
 
 	/*
 	if(_params.atStart) {
@@ -20,7 +14,7 @@ exports.setReminder = function(_params) {
 
 	if(OS_IOS) {
 		Manager.scheduleLocalNotification({
-			alertBody: (_params.atStart ? "Happening Now: " : "In 1 Hour: ") + _params.name,
+			alertBody: _params.text + ": ",
 			alertAction: "Show Event",
 			userInfo: {
 				eventId: _params.id,
@@ -36,7 +30,7 @@ exports.setReminder = function(_params) {
 			day: datetime.getDate(),
 			hour: datetime.getHours(),
 			minute: datetime.getMinutes(),
-			contentTitle: (_params.atStart ? "Happening Now:" : "In 1 Hour:"),
+			contentTitle: _params.text + ":",
 			contentText: _params.name,
 			icon: Ti.App.Android.R.drawable.appicon,
 			showLights: true,

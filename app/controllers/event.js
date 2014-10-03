@@ -44,32 +44,7 @@ function init() {
 }
 
 function setData(_data) {
-	EVENT = _data;
-
-	EVENT.datetime = Moment(EVENT.datetime);
-
-	var displayTime = "",
-		displayRelativeTime = "";
-
-	// Handle event types differently
-	if(EVENT.time_format == "tv_show") {
-		var hour = EVENT.local_time.split(":")[0];
-		var isDST = Moment(EVENT.local_date).isDST();
-		var offset = isDST ? "-0400" : "-0500";
-
-		EVENT.datetime = Moment(EVENT.local_date + " " + EVENT.local_time + " " + offset, "YYYY-MM-DD h:mm A Z");
-
-		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
-		displayRelativeTime = EVENT.datetime.fromNow();
-	} else if(EVENT.is_all_day) {
-		EVENT.datetime = Moment();
-
-		displayTime = "All Day";
-		displayRelativeTime = "";
-	} else {
-		displayTime = EVENT.datetime.format("h:mma");
-		displayRelativeTime = EVENT.datetime.fromNow();
-	}
+	EVENT = Forekast.calculateTimes(_data);
 
 	if(EVENT.width == 0) {
 		EVENT.mediumUrl = "/images/empty_large.png";
@@ -82,10 +57,10 @@ function setData(_data) {
 	}
 
 	$.Title.text = EVENT.name;
-	$.Time.text = displayTime;
+	$.Time.text = EVENT.time.display.time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
-	$.TimeFromNow.text = displayRelativeTime;
+	$.TimeFromNow.text = EVENT.time.display.relative;
 	$.Author.text = "by " + EVENT.user;
 
 	var description = Util.linkify(EVENT.description);
@@ -124,12 +99,12 @@ function setData(_data) {
 
 	App.logEvent("Event:Open", {
 		eventId: EVENT._id,
-		daysAhead: EVENT.datetime.diff(Moment(), "days")
+		daysAhead: EVENT.time.daysAhead
 	});
 
 	// Hide reminder option if event is in the past
 	if(OS_IOS) {
-		if(EVENT.datetime.diff(Moment(), "hours") < 0) {
+		if(EVENT.reminder.available) {
 			$.Reminder.visible = false;
 		}
 	}
@@ -207,7 +182,7 @@ function extractComments(_data, _depth) {
 
 function toggleReminder(_event) {
 	// Check if event is still to occur
-	if(EVENT.datetime.diff(Moment(), "minutes") > 0) {
+	if(EVENT.time.datetime.diff(Moment(), "minutes") > 0) {
 		if(OS_IOS) {
 			if(Reminder.isReminderSet(EVENT._id)) {
 				Reminder.cancelReminder(EVENT._id);
@@ -223,8 +198,8 @@ function toggleReminder(_event) {
 		Reminder.setReminder({
 			id: EVENT._id,
 			name: EVENT.name,
-			datetime: EVENT.datetime,
-			atStart: (EVENT.datetime.diff(Moment(), "hours") < 2) ? true : false
+			time: EVENT.reminder.time,
+			text: EVENT.reminder.text
 		});
 
 		App.logEvent("Event:Remind", {

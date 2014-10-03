@@ -106,3 +106,88 @@ exports.getSubkastByAbbrev = function(_abbrev) {
 
 	return subkast;
 };
+
+/**
+ * Performs some time calculations
+ * @param {Object} _event The event
+ */
+exports.calculateTimes = function(_event) {
+	var datetime = Moment(_event.datetime),
+		now = Moment(),
+		userOffset = now.zone(),
+		displayTime,
+		displayRelativeTime,
+		reminderTime,
+		reminderText;
+
+	if(_event.time_format == "tv_show") {
+		var hour = _event.local_time.split(":")[0],
+			isDST = Moment(_event.local_date).isDST(),
+			eastOffset,
+			westOffset;
+
+		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
+
+		if(isDST) {
+			eastOffset = "-0400";
+			westOffset = 360;
+		} else {
+			eastOffset = "-0500";
+			westOffset = 420;
+		}
+
+		datetime = Moment(_event.local_date + " " + _event.local_time + " " + eastOffset, "YYYY-MM-DD h:mm A Z");
+
+		if(userOffset >= westOffset) {
+			datetime = datetime.subtract(2, "hours");
+		}
+
+		displayRelativeTime = datetime.fromNow();
+	} else if(_event.is_all_day) {
+		datetime = Moment(_event.datetime.split("T")[0] + " 12:00", "YYYY-MM-DD HH:mm");
+
+		displayTime = "All Day";
+		displayRelativeTime = "";
+	} else {
+		displayTime = datetime.format("h:mma");
+		displayRelativeTime = datetime.fromNow();
+	}
+
+	_event.time = {
+		datetime: datetime,
+		display: {
+			time: displayTime,
+			relative: displayRelativeTime
+		},
+		daysAhead: datetime.diff(now, "days")
+	};
+
+	if(_event.time_format == "tv_show") {
+		if(datetime.diff(now, "hours") < 2) {
+			reminderTime = datetime;
+			reminderText = "Happening Now";
+		} else {
+			reminderTime = datetime.clone().subtract(1, "hours");
+			reminderText = "In 1 Hour";
+		}
+	} else if(_event.is_all_day) {
+		reminderTime = datetime.clone().subtract(1, "days").hour(21);
+		reminderText = "Tomorrow";
+	} else {
+		if(datetime.diff(now, "hours") < 2) {
+			reminderTime = datetime;
+			reminderText = "Happening Now";
+		} else {
+			reminderTime = datetime.clone().subtract(1, "hours");
+			reminderText = "In 1 Hour";
+		}
+	}
+
+	_event.reminder = {
+		available: (datetime.diff(now, "hours") < 0) ? false : true,
+		time: reminderTime,
+		text: reminderText
+	};
+
+	return _event;
+};

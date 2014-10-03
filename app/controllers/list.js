@@ -79,41 +79,15 @@ function setData(_data) {
 
 	if(_data.length > 0) {
 		for(var i = 0, x = _data.length; i < x; i++) {
-			var event = _data[i];
-			var eventDatetime = Moment(event.datetime),
-				displayTime = "";
+			var event = Forekast.calculateTimes(_data[i]);
 
-			// Handle event types differently
-			if(event.time_format == "tv_show") {
-				// TV SHOW
-				if(event.local_date !== current_date) {
+			// Ensure event is happening today
+			if(event.time.datetime.format("YYYY-MM-DD") !== current_date) {
+				if(event.is_all_day && event.local_date == current_date) {
+					// Weird edge-case; datetime is wrong, but local time is today
+				} else {
 					continue;
 				}
-
-				var hour = event.local_time.split(":")[0];
-
-				displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
-			} else if(event.is_all_day) {
-				// ALL DAY EVENT
-				if(event.local_date !== current_date) {
-					continue;
-				}
-
-				displayTime = "All Day";
-			} else {
-				// ALL OTHERS
-				if(eventDatetime.format("YYYY-MM-DD") !== current_date) {
-					continue;
-				}
-
-				// Ignore if already over (+2 hours since start)
-				/*
-				if(!event.is_all_day && eventDatetime.diff(Moment(), "hours") < -2) {
-					continue;
-				}
-				*/
-
-				displayTime = eventDatetime.format("h:mma");
 			}
 
 			var controller = Alloy.createController("ui/event_row", {
@@ -131,7 +105,7 @@ function setData(_data) {
 					text: event.name
 				},
 				"#Time": {
-					text: displayTime
+					text: event.time.display.time
 				},
 				"#Subkast": {
 					text: Forekast.getSubkastByAbbrev(event.subkast)
