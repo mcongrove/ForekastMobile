@@ -14,7 +14,7 @@
 	hideShadow: true
 },
 "#Reminder[platform=ios]": {
-	visible: false
+	visible: true
 },
 ".imageContainer": {
 	top: 0,

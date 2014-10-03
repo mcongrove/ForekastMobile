@@ -36,8 +36,10 @@ function init() {
 		}
 	});
 
-	if(Reminder.isReminderSet(EVENT._id)) {
-		$.Reminder.image = "/images/icon_reminder_active.png";
+	if(OS_IOS) {
+		if(Reminder.isReminderSet(EVENT._id)) {
+			$.Reminder.image = "/images/icon_reminder_active.png";
+		}
 	}
 }
 
@@ -125,10 +127,11 @@ function setData(_data) {
 		daysAhead: EVENT.datetime.diff(Moment(), "days")
 	});
 
-	// Hide reminder option if event is within an hour, or in past
-	// TODO: v1.1
-	if(EVENT.datetime.diff(Moment(), "hours") > 1) {
-		$.Reminder.visible = true;
+	// Hide reminder option if event is in the past
+	if(OS_IOS) {
+		if(EVENT.datetime.diff(Moment(), "hours") < 0) {
+			$.Reminder.visible = false;
+		}
 	}
 }
 
@@ -203,22 +206,40 @@ function extractComments(_data, _depth) {
 }
 
 function toggleReminder(_event) {
-	if(Reminder.isReminderSet(EVENT._id)) {
-		Reminder.cancelReminder(EVENT._id);
+	// Check if event is still to occur
+	if(EVENT.datetime.diff(Moment(), "minutes") > 0) {
+		if(OS_IOS) {
+			if(Reminder.isReminderSet(EVENT._id)) {
+				Reminder.cancelReminder(EVENT._id);
 
-		$.Reminder.image = "/images/icon_reminder.png";
-	} else {
+				$.Reminder.image = "/images/icon_reminder.png";
+
+				return;
+			} else {
+				$.Reminder.image = "/images/icon_reminder_active.png";
+			}
+		}
+
 		Reminder.setReminder({
 			id: EVENT._id,
 			name: EVENT.name,
-			datetime: EVENT.datetime
+			datetime: EVENT.datetime,
+			atStart: (EVENT.datetime.diff(Moment(), "hours") < 2) ? true : false
 		});
-
-		$.Reminder.image = "/images/icon_reminder_active.png";
 
 		App.logEvent("Event:Remind", {
 			eventId: 12345
 		});
+	} else {
+		// For Android, let them know the reminder wasn't set
+		if(OS_ANDROID) {
+			var toast = Ti.UI.createNotification({
+				message: "This event has already occurred; reminder not set",
+				duration: Ti.UI.NOTIFICATION_DURATION_LONG
+			});
+
+			toast.show();
+		}
 	}
 }
 
