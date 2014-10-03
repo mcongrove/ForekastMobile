@@ -67,6 +67,25 @@ var OPTIONS = [
 }
 ];
 
+if(OS_IOS) {
+	OPTIONS.push({
+		title: "Cancel all reminders",
+		action: function() {
+			var manager = require("bencoding.localnotify");
+
+			manager.cancelAllLocalNotifications();
+
+			var dialog = Ti.UI.createAlertDialog({
+				title: "Reminders Cancelled",
+				message: "All event reminders have been cancelled",
+				ok: "OK"
+			});
+
+			dialog.show();
+		}
+	});
+}
+
 function init() {
 	var rows = [];
 
