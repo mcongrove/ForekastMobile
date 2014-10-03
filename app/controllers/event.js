@@ -106,7 +106,7 @@ function setData(_data) {
 
 	// Hide reminder option if event is in the past
 	if(OS_IOS) {
-		if(EVENT.reminder.available) {
+		if(!EVENT.reminder.available) {
 			$.Reminder.visible = false;
 		}
 	}

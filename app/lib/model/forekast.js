@@ -10,6 +10,10 @@ var Moment = require("alloy/moment"),
 exports.getEventsByDate = function(_params) {
 	var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
 
+	// Use this data for screenshots
+	// url = "http://www.mattcongrove.com/forekast/events.json";
+	// forceFresh: true,
+
 	http.request({
 		url: url,
 		type: "GET",
@@ -27,6 +31,10 @@ exports.getEventsByDate = function(_params) {
  */
 exports.getEventById = function(_params) {
 	var url = "https://forekast.com/events/" + _params.id + ".json";
+
+	// Use this data for screenshots
+	// url = "http://www.mattcongrove.com/forekast/event.json";
+	// forceFresh: true,
 
 	http.request({
 		url: url,
@@ -184,7 +192,7 @@ exports.calculateTimes = function(_event) {
 	}
 
 	_event.reminder = {
-		available: (datetime.diff(now, "hours") < 0) ? false : true,
+		available: (datetime.diff(now, "minutes") < 10) ? false : true,
 		time: reminderTime,
 		text: reminderText
 	};
