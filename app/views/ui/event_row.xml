@@ -7,6 +7,7 @@
 		
 		<View class="imageContainer" platform="android">
 			<ImageView id="Image" />
+			<ImageView id="ImageOverlay" />
 		</View>
 		
 		<View class="content">

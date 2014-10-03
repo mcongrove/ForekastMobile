@@ -16,14 +16,16 @@
 	scrollType: "vertical"
 },
 "#Image": {
-	width: 113,
 	height: 85,
 	top: 0,
 	left: -19,
 	zIndex: 1,
 	preventDefaultImage: true
 },
-"#ImageOverlay[platform=ios]": {
+"#Image[platform=ios]": {
+	width: 113
+},
+"#ImageOverlay": {
 	width: 75,
 	height: 85,
 	top: 0,
@@ -32,7 +34,7 @@
 },
 ".content": {
 	top: 15,
-	left: 85,
+	left: 75,
 	right: 10,
 	height: 55,
 	layout: "vertical",
