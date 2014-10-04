@@ -78,6 +78,11 @@ if(OS_IOS) {
 }
 
 OPTIONS.push({
+	title: "Frequently asked questions",
+	controller: "settings/faq"
+});
+
+OPTIONS.push({
 	title: "About this app",
 	controller: "settings/about"
 });

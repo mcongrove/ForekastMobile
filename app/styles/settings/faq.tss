@@ -1,0 +1,44 @@
+"Window": {
+	layout: "vertical"
+},
+"#ScrollView": {
+	top: 0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	contentHeight: "auto",
+	layout: "vertical"
+},
+".container": {
+	top: 0,
+	backgroundColor: "#FFF",
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical"
+},
+".alternate": {
+	backgroundColor: "#F6F6F6"
+},
+".question": {
+	top: 20,
+	left: 20,
+	right: 20,
+	font: {
+		fontSize: 14,
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
+	}
+},
+".duplicate": {
+	top: 10
+},
+".answer": {
+	top: 10,
+	left: 20,
+	right: 20,
+	bottom: 20,
+	font: {
+		fontSize: 14,
+		fontFamily: Alloy.CFG.Font.Light,
+		fontWeight: "light"
+	}
+}

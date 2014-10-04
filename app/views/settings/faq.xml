@@ -1,0 +1,71 @@
+<Alloy>
+	<Window id="SettingsFaqWindow" title="FAQ">
+		<ScrollView id="ScrollView">
+			<View class="container">
+				<Label class="question">
+					Why can't I log in to my Forekast account?
+				</Label>
+				<Label class="answer">
+					We're working with Forekast every day to improve the communication between their website and this application. The next major release of this app will include the ability to log in to your Forekast account (or sign up for one). 
+				</Label>
+			</View>
+			
+			<View class="container alternate">
+				<Label class="question">
+					When will I be reminded about an event?
+				</Label>
+				<Label class="answer">
+					For all-day events, the night before at 9PM local time.\n\nFor other events, one-hour before the start of the event (unless that event is occuring within the hour, then you'll instead be reminded at the event start time). 
+				</Label>
+			</View>
+				
+			<View class="container">
+				<Label class="question">
+					Are reminders I set on the website sent to my phone?
+				</Label>
+				<Label class="question duplicate">
+					Why can't I upvote / comment on an event?
+				</Label>
+				<Label class="answer">
+					See the answer to the first FAQ question.
+				</Label>
+			</View>
+				
+			<View class="container alternate">
+				<Label class="question">
+					Why can't I click on links in comments?
+				</Label>
+				<Label class="question duplicate">
+					Can I filter events like I do on the website?
+				</Label>
+				<Label class="question duplicate">
+					Can I add an event to my phone's calendar?
+				</Label>
+				<Label class="question duplicate">
+					Why doesn't this application work on my tablet device?
+				</Label>
+				<Label class="answer">
+					We're actively working on adding this functionality and hope to release it soon.
+				</Label>
+			</View>
+				
+			<View class="container">
+				<Label class="question">
+					I want to see a day that's more than a month away. Why can't I?
+				</Label>
+				<Label class="answer">
+					To keep this application quick, we've limited the number of days worth of events you can browse to one month.
+				</Label>
+			</View>
+				
+			<View class="container alternate">
+				<Label class="question">
+					My event days / times are incorrect!
+				</Label>
+				<Label class="answer">
+					Please use the "Send Feedback" option in the Settings menu to send us a note; we promise we'll look into it.
+				</Label>
+			</View>
+		</ScrollView>
+	</Window>
+</Alloy>
