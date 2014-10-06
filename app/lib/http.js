@@ -2,6 +2,7 @@
  * HTTP request class
  * 
  * @class http
+ * @uses cache
  */
 
 var Cache = require("cache");
@@ -15,8 +16,8 @@ var Cache = require("cache");
  * @param {String} _params.url The URL source to call
  * @param {Array} _params.headers Array of request headers to send
  * @param {Mixed} _params.data The data to send
- * @param {Mixed} _params.forceFresh Whether to force new data, bypassing cache
- * @param {Mixed} _params.doNotCache Whether or not to cache the data
+ * @param {Boolean} _params.forceFresh Whether to force new data, bypassing cache
+ * @param {Boolean} _params.doNotCache Whether or not to cache the data
  * @param {Function} _params.failure A function to execute when there is an XHR error
  * @param {Function} _params.success A function to execute when when successful
  * @param {Function} _params.passthrough Parameters to pass through to the failure or success callbacks
@@ -37,7 +38,7 @@ exports.request = function(_params) {
 			xhr.timeout = _params.timeout ? _params.timeout : 10000;
 
 			/**
-			 * Data return
+			 * Data return handler
 			 * @param {Object} _data The HTTP response object
 			 * @ignore
 			 */

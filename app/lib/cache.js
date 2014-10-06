@@ -1,11 +1,18 @@
 /**
- * Caching functions class
- * @class Cache
+ * HTTP request caching class
+ * 
+ * @class cache
+ * @uses alloy/moment
  */
 var Moment = require("alloy/moment");
 
 var directory = Ti.Filesystem.applicationCacheDirectory;
 
+/**
+ * Checks if the URL request has a valid (warm) cache item
+ * @param {Object} _url The URL to check
+ * @return {Boolean} Whether the URL has a warm cache item
+ */
 exports.valid = function(_url) {
 	var fileName = _url.replace(/[^\w\d]/g, "");
 	var file = Ti.Filesystem.getFile(directory, fileName);
@@ -24,6 +31,11 @@ exports.valid = function(_url) {
 	}
 };
 
+/**
+ * Checks if the URL request has any available (warm or cold) cache item
+ * @param {Object} _url The URL to check
+ * @return {Boolean} Whether the URL has a cache item
+ */
 exports.available = function(_url) {
 	var fileName = _url.replace(/[^\w\d]/g, "");
 	var file = Ti.Filesystem.getFile(directory, fileName);
@@ -35,6 +47,11 @@ exports.available = function(_url) {
 	}
 };
 
+/**
+ * Reads from a URL request cache item
+ * @param {Object} _url The URL of the cache item to retrieve
+ * @return {String} The file data
+ */
 exports.read = function(_url) {
 	var fileName = _url.replace(/[^\w\d]/g, "");
 	var file = Ti.Filesystem.getFile(directory, fileName);
@@ -48,6 +65,11 @@ exports.read = function(_url) {
 	return JSON.parse(data);
 };
 
+/**
+ * Writes to a URL request cache item
+ * @param {Object} _url The URL of the cache item to store
+ * @param {Object} _data The data to cache
+ */
 exports.write = function(_url, _data) {
 	var fileName = _url.replace(/[^\w\d]/g, "");
 	var file = Ti.Filesystem.getFile(directory, fileName);

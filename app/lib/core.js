@@ -1,24 +1,24 @@
+var Alloy = require("alloy");
+
 /**
- * The main app singleton used throughout the app.  This singleton
+ * The main app singleton used throughout the app. This singleton
  * can manage your navigation flow, special events that happen throughout
  * the app lifecycle, etc.
  *
  * It's important to understand that this should mainly be a simple app singleton
- * for managing global things throughout your app.  i.e. If you want to sanitize
+ * for managing global things throughout your app, i.e. if you want to sanitize
  * some html, you shouldn't put a function to handle that here.
  *
  * @class core
  * @singleton
  */
-var Alloy = require("alloy");
-
 var App = {
 	/**
 	 * Device information, some come from the Ti API calls and can be referenced
 	 * from here so multiple bridge calls aren't necessary, others generated here
 	 * for ease of calculations and such.
 	 *
-	 * @type {Object}
+	 * @property {Object}
 	 * @param {String} version The version of the OS
 	 * @param {Number} versionMajor The major version of the OS
 	 * @param {Number} versionMinor The minor version of the OS
@@ -26,7 +26,7 @@ var App = {
 	 * @param {Number} height The height of the device screen
 	 * @param {Number} dpi The DPI of the device screen
 	 * @param {String} orientation The device orientation, either "landscape" or "portrait"
-	 * @param {String} statusBarOrientation A Ti.UI orientation value
+	 * @readonly
 	 */
 	Device: {
 		version: Ti.Platform.version,
@@ -39,15 +39,18 @@ var App = {
 	},
 	/**
 	 * Parse module for analytics and push notifications
+	 * @type {Class}
 	 */
 	Parse: require("parse"),
 	/**
 	 * Push notifications library
+	 * @type {Class}
 	 */
 	// TODO: v1.1
 	// Push: require("push"),
 	/**
-	 * Access to the main window
+	 * Accessor for the main window
+	 * @property {Object}
 	 */
 	MainWindow: null,
 	/**
@@ -95,7 +98,7 @@ var App = {
 	},
 	/**
 	 * Notification event observer
-	 * @param {Object} _event Standard Ti callback
+	 * @param {Object} _notification Standard Titanium callback event
 	 */
 	notification: function(_notification) {
 		if(_notification.userInfo.eventId) {
@@ -133,29 +136,29 @@ var App = {
 		}
 	},
 	/**
-	 * Global network event handler
-	 * @param {Object} _event Standard Ti callback
+	 * Network change event observer
+	 * @param {Object} _event Standard Titanium callback event
 	 */
 	networkChange: function(_event) {
 
 	},
 	/**
 	 * Exit event observer
-	 * @param {Object} _event Standard Ti callback
+	 * @param {Object} _event Standard Titanium callback event
 	 */
 	exit: function(_event) {
 
 	},
 	/**
 	 * Resume event observer
-	 * @param {Object} _event Standard Ti callback
+	 * @param {Object} _event Standard Titanium callback event
 	 */
 	resume: function(_event) {
 
 	},
 	/**
-	 * Handle the orientation change event callback
-	 * @param {Object} _event Standard Ti Callback
+	 * Orientation change event observer
+	 * @param {Object} _event Standard Titanium callback event
 	 */
 	orientationChange: function(_event) {
 		// Ignore face-up, face-down and unknown orientation
@@ -167,9 +170,9 @@ var App = {
 
 		/**
 		 * Fires an event for orientation change handling throughout the app
-		 * @event orientationChange
+		 * @event OrientationChange
 		 */
-		Ti.App.fireEvent("orientationChange", {
+		Ti.App.fireEvent("OrientationChange", {
 			orientation: App.Device.orientation
 		});
 	},

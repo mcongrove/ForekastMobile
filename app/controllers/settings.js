@@ -62,9 +62,9 @@ if(OS_IOS) {
 	OPTIONS.push({
 		title: "Cancel all event reminders",
 		action: function() {
-			var manager = require("bencoding.localnotify");
+			var reminder = require("reminder");
 
-			manager.cancelAllLocalNotifications();
+			reminder.cancelAllReminders();
 
 			var dialog = Ti.UI.createAlertDialog({
 				title: "Reminders Cancelled",

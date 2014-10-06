@@ -1,33 +1,37 @@
-/**
- * Parse.com REST library
- * @singleton
- * @class Parse
- * @uses alloy
- * @uses http
- */
 var Alloy = require("alloy"),
 	http = require("http");
 
+/**
+ * Parse.com REST library
+ * 
+ * @singleton
+ * @class parse
+ * @uses http
+ */
 var Parse = {
 	/**
 	 * Application ID
 	 * @property {String}
+	 * @private
 	 */
 	applicationId: Alloy.CFG.Parse.ApplicationId,
 	/**
 	 * REST Key
 	 * @property {String}
+	 * @private
 	 */
 	restKey: Alloy.CFG.Parse.RestKey,
 	/**
 	 * Default endpoint
+	 * @property {String}
+	 * @private
 	 */
 	url: "https://api.parse.com/1/",
 	/**
 	 * Update a specific installation object
 	 * @param {String} _id ID of object to save
-	 * @param {Object} _params The params to save to the object
-	 * @param {Function} _callback
+	 * @param {Object} _params The parameters to save to the object
+	 * @param {Function} _callback The success and error callback
 	 */
 	updateInstallation: function(_id, _params, _callback) {
 		var headers = [
@@ -66,8 +70,8 @@ var Parse = {
 	},
 	/**
 	 * Get an installation object by ID
-	 * @param {String} _id
-	 * @param {Function} _callback
+	 * @param {String} _id The ID of the object
+	 * @param {Function} _callback The success and error callback
 	 */
 	getInstallation: function(_id, _callback) {
 		var headers = [
@@ -105,9 +109,9 @@ var Parse = {
 	},
 	/**
 	 * Register device for push
-	 * @param {String} _token
-	 * @param {Array} _channels
-	 * @param {Function} _callback
+	 * @param {String} _token The token of the device
+	 * @param {Array} _channels Channels to register the device for
+	 * @param {Function} _callback The success and error callback
 	 */
 	registerDeviceToken: function(_token, _channels, _callback) {
 		var headers = [
@@ -158,9 +162,9 @@ var Parse = {
 	},
 	/**
 	 * Log an event
-	 * @param {String} _name
-	 * @param {Object} _data
-	 * @param {Function} _callback
+	 * @param {String} _name The name of the event
+	 * @param {Object} _data The data to log
+	 * @param {Function} _callback The success and error callback
 	 */
 	event: function(_name, _data, _callback) {
 		var headers = [
