@@ -12,7 +12,7 @@ function animate() {
 		rotate: 271
 	});
 
-	var animStars = Ti.UI.createAnimation({
+	var animFadeIn = Ti.UI.createAnimation({
 		opacity: 1,
 		duration: 1000
 	});
@@ -28,7 +28,8 @@ function animate() {
 	animAstronaut.addEventListener("complete", complete);
 
 	$.Astronaut.setTransform(transAstronautStart);
-	$.Background.animate(animStars);
+	$.Background.animate(animFadeIn);
+	$.Forekast.animate(animFadeIn);
 	$.Astronaut.animate(animAstronaut);
 }
 
@@ -38,7 +39,7 @@ function complete() {
 		duration: 500
 	});
 
-	var animStars = Ti.UI.createAnimation({
+	var animFadeOut = Ti.UI.createAnimation({
 		opacity: 0,
 		duration: 500
 	});
@@ -46,7 +47,7 @@ function complete() {
 	animBackground.addEventListener("complete", close);
 
 	$.SplashWindow.animate(animBackground);
-	$.Background.animate(animStars);
+	$.Background.animate(animFadeOut);
 }
 
 function close() {

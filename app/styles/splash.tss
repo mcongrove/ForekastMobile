@@ -15,4 +15,14 @@
 	right: -150,
 	width: 100,
 	height: 117
+},
+"#Forekast": {
+	opacity: 0,
+	color: Alloy.CFG.Color.Bright,
+	font: {
+		fontSize: 20,
+		fontFamily: Alloy.CFG.Font.Light
+	},
+	textAlign: "center",
+	bottom: 20
 }

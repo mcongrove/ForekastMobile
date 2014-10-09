@@ -5,5 +5,9 @@
 		<View class="container">
 			<ImageView id="Astronaut" image="/images/astronaut.png" />
 		</View>
+		
+		<Label id="Forekast">
+			Forekast.com
+		</Label>
 	</Window>
 </Alloy>

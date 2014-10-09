@@ -6,7 +6,7 @@
     <publisher>Matthew Congrove</publisher>
     <url>http://www.forekast.com</url>
     <description>The mobile app for Forekast.</description>
-    <copyright>2014 by Forekast</copyright>
+    <copyright>2014 by Matthew Congrove</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
@@ -24,13 +24,11 @@
                 <array>
                     <string>UIInterfaceOrientationPortrait</string>
                     <string>UIInterfaceOrientationPortraitUpsideDown</string>
-                    <string>UIInterfaceOrientationLandscapeLeft</string>
-                    <string>UIInterfaceOrientationLandscapeRight</string>
                 </array>
                 <key>UIRequiresPersistentWiFi</key>
                 <false/>
                 <key>UIPrerenderedIcon</key>
-                <false/>
+                <true/>
                 <key>UIStatusBarHidden</key>
                 <false/>
                 <key>UIStatusBarStyle</key>
