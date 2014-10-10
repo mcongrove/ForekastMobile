@@ -21,7 +21,7 @@ var Reminder = {
 
 		if(OS_IOS) {
 			Manager.scheduleLocalNotification({
-				alertBody: _params.text + ": ",
+				alertBody: _params.text + ": " + _params.name,
 				alertAction: "Show Event",
 				userInfo: {
 					eventId: _params.id,
