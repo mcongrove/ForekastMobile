@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.mcongrove.forekast</id>
     <name>Forekast</name>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <publisher>Matthew Congrove</publisher>
     <url>http://www.forekast.com</url>
     <description>The mobile app for Forekast.</description>
