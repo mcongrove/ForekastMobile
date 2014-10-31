@@ -7,7 +7,7 @@
 		</View>
 		
 		<Label id="Forekast">
-			Forekast.com
+			forekast.com
 		</Label>
 	</Window>
 </Alloy>
