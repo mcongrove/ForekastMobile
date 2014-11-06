@@ -206,7 +206,7 @@ var Parse = {
 
 		if(_data) {
 			_data.os = OS_IOS ? "ios" : "android";
-			
+
 			payload.data = JSON.stringify({
 				dimensions: _data
 			});

@@ -3,11 +3,8 @@
 		<ImageView id="Background" image="/images/stars.jpg" />
 		
 		<View class="container">
+			<ImageView id="Forekast" image="/images/forekast.png" />
 			<ImageView id="Astronaut" image="/images/astronaut.png" />
 		</View>
-		
-		<Label id="Forekast">
-			forekast.com
-		</Label>
 	</Window>
 </Alloy>

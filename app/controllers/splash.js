@@ -48,6 +48,7 @@ function complete() {
 
 	$.SplashWindow.animate(animBackground);
 	$.Background.animate(animFadeOut);
+	$.Forekast.animate(animFadeOut);
 }
 
 function close() {
@@ -57,7 +58,7 @@ function close() {
 }
 
 if(ENV_DEV) {
-	$.SplashWindow.addEventListener("open", close);
+	$.SplashWindow.addEventListener("open", animate);
 } else {
 	$.SplashWindow.addEventListener("open", animate);
 }
