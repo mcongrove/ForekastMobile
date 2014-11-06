@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.mcongrove.forekast</id>
     <name>Forekast</name>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <publisher>Matthew Congrove</publisher>
     <url>http://www.forekast.com</url>
     <description>The mobile app for Forekast.</description>
@@ -24,6 +24,8 @@
                 <array>
                     <string>UIInterfaceOrientationPortrait</string>
                     <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
                 </array>
                 <key>UIRequiresPersistentWiFi</key>
                 <false/>
@@ -55,7 +57,7 @@
         <target device="tizen">false</target>
         <target device="android">true</target>
         <target device="blackberry">false</target>
-        <target device="ipad">false</target>
+        <target device="ipad">true</target>
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>

@@ -1,10 +1,7 @@
 "Window": {
 	fullscreen: true,
 	navBarHidden: true,
-	backgroundColor: "#000D16",
-	orientationModes: [
-		Ti.UI.PORTRAIT
-	]
+	backgroundColor: "#000D16"
 },
 "#Background": {
 	opacity: 0,

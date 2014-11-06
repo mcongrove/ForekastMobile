@@ -9,3 +9,7 @@ tmp
 .settings
 Thumbs.db
 /app/config.json
+
+/README
+
+/LICENSE

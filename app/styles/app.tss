@@ -6,7 +6,16 @@
 		color: "#FFF"
 	},
 	orientationModes: [
-		Ti.UI.PORTRAIT
+		Ti.UI.PORTRAIT,
+		Ti.UI.UPSIDE_PORTRAIT
+	]
+},
+"Window[formFactor=tablet]": {
+	orientationModes: [
+		Ti.UI.PORTRAIT,
+		Ti.UI.UPSIDE_PORTRAIT,
+		Ti.UI.LANDSCAPE_LEFT,
+		Ti.UI.LANDSCAPE_RIGHT
 	]
 },
 "Window[platform=ios]": {
