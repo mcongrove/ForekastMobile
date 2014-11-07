@@ -85,7 +85,7 @@
 	height: 16,
 	right: 0,
 	/*
-	// TODO: v1.1
+	// TODO: v1.2
 	bubbleParent: false
 	*/
 },
