@@ -40,6 +40,9 @@
 			"Regular": "Roboto-Regular",
 			"Medium": "Roboto-Medium",
 			"Bold": "Roboto-Bold"
+		},
+		"Color": {
+			"Bright": "#4ED5C3"
 		}
 	},
 	"os:ios": {
@@ -48,6 +51,9 @@
 			"Regular": "HelveticaNeue-Regular",
 			"Medium": "HelveticaNeue-Medium",
 			"Bold": "HelveticaNeue-Bold"
+		},
+		"Color": {
+			"Bright": "#33B5E5"
 		}
 	},
 	"os:blackberry": {},
