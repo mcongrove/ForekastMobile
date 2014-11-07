@@ -9,7 +9,7 @@
 	height: Ti.UI.FILL
 },
 ".container": {
-	height: 207
+	height: 225
 },
 "#Astronaut": {
 	right: -150,
@@ -21,5 +21,5 @@
 	opacity: 0,
 	top: 177,
 	width: 200,
-	height: 30
+	height: 48
 }
