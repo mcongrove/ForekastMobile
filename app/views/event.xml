@@ -6,10 +6,6 @@
 			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
 		
-		<Menu id="Reminder" platform="android">
-			<MenuItem title="Set Reminder" showAsAction="Ti.Android.SHOW_AS_ACTION_NEVER" onClick="toggleReminder" />
-		</Menu>
-		
 		<View class="imageContainer">
 			<ImageView id="Image" />
 			
@@ -18,6 +14,8 @@
 		
 		<ScrollView id="ScrollView">
 			<View id="Content">
+				<ImageView id="Reminder" platform="android" image="/images/icon_reminder.png" onClick="toggleReminder" />
+				
 				<Label id="Title" />
 				
 				<View class="details">

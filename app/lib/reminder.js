@@ -9,6 +9,16 @@ var Moment = require("alloy/moment"),
  */
 var Reminder = {
 	/**
+	 * Normalizes an event ID
+	 */
+	eventId: function(_eventId) {
+		if(OS_ANDROID) {
+			return _eventId.match(/\d+/g).join("").substring(0, 5);
+		} else {
+			return _eventId;
+		}
+	},
+	/**
 	 * Sets a reminder
 	 * @param {Object} _params
 	 * @param {String} _params.id The ID of the event
@@ -30,8 +40,10 @@ var Reminder = {
 				date: datetime
 			});
 		} else {
+			var eventId = Reminder.eventId(_params.id);
+
 			Manager.addAlarmNotification({
-				requestCode: _params.id.match(/\d+/g).join("").substring(0, 5),
+				requestCode: eventId,
 				year: datetime.getFullYear(),
 				month: datetime.getMonth(),
 				day: datetime.getDate(),
@@ -43,6 +55,12 @@ var Reminder = {
 				showLights: true,
 				playSound: true
 			});
+
+			var db = Ti.Database.open("Forekast");
+
+			db.execute("INSERT INTO reminder (id) VALUES (?);", eventId);
+
+			db.close();
 		}
 	},
 	/**
@@ -53,7 +71,15 @@ var Reminder = {
 		if(OS_IOS) {
 			Manager.cancelLocalNotificationByKey(_eventId, "eventId");
 		} else {
-			Manager.cancelAlarmNotification(_eventId.match(/\d+/g).join("").substring(0, 5));
+			var eventId = Reminder.eventId(_eventId);
+
+			Manager.cancelAlarmNotification(eventId);
+
+			var db = Ti.Database.open("Forekast");
+
+			db.execute("DELETE FROM reminder WHERE id = ?;", eventId);
+
+			db.close();
 		}
 	},
 	/**
@@ -63,6 +89,19 @@ var Reminder = {
 	cancelAllReminders: function() {
 		if(OS_IOS) {
 			Manager.cancelAllLocalNotifications();
+		} else if(OS_ANDROID) {
+			var db = Ti.Database.open("Forekast");
+
+			var data = db.execute("SELECT id FROM reminder;");
+
+			while(data.isValidRow()) {
+				Reminder.cancelReminder(data.fieldByName("id"));
+
+				data.next();
+			}
+
+			data.close();
+			db.close();
 		}
 	},
 	/**
@@ -70,14 +109,46 @@ var Reminder = {
 	 * @param {Object} _eventId The ID of the event
 	 */
 	isReminderSet: function(_eventId) {
-		var notifications = Manager.findLocalNotificationsByKey(_eventId, "eventId");
+		if(OS_IOS) {
+			var notifications = Manager.findLocalNotificationsByKey(_eventId, "eventId");
 
-		if(notifications.scheduledCount > 0) {
-			return true;
-		} else {
-			return false;
+			if(notifications.scheduledCount > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if(OS_ANDROID) {
+			var eventId = Reminder.eventId(_eventId);
+
+			var db = Ti.Database.open("Forekast");
+
+			var data = db.execute("SELECT id FROM reminder WHERE id = ?;", eventId),
+				isSet = false;
+
+			if(data.rowCount > 0) {
+				isSet = true;
+			}
+
+			data.close();
+			db.close();
+
+			return isSet;
 		}
+	},
+	/**
+	 * Creates the database to be used for tracking reminders (Android-only)
+	 */
+	setupDatabase: function() {
+		var db = Ti.Database.open("Forekast");
+
+		db.execute("CREATE TABLE IF NOT EXISTS reminder (id TEXT PRIMARY KEY);");
+
+		db.close();
 	}
 };
+
+if(OS_ANDROID) {
+	Reminder.setupDatabase();
+}
 
 module.exports = Reminder;

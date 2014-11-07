@@ -17,6 +17,13 @@
 	visible: true,
 	opacity: 0
 },
+"#Reminder[platform=android]": {
+	top: 20,
+	right: 0,
+	width: 28,
+	height: 28,
+	opacity: 0
+},
 ".imageContainer": {
 	top: 0,
 	width: Ti.UI.FILL,
@@ -26,6 +33,9 @@
 "#Image": {
 	top: 0,
 	width: Ti.UI.FILL
+},
+"#Image[platform=android]": {
+	opacity: 0
 },
 ".imageOverlay": {
 	top: 0,

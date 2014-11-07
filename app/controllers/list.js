@@ -260,10 +260,10 @@ $.Events.addEventListener("remind", function(_event) {
 
 if(OS_IOS) {
 	$.Events.addEventListener("postlayout", function postLayoutListener(_event) {
+		$.Events.removeEventListener("postlayout", postLayoutListener);
+
 		parent_height = _event.source.rect.height;
 		parent_center = parent_height / 2;
-
-		$.Events.removeEventListener("postlayout", postLayoutListener);
 	});
 
 	$.Events.addEventListener("scroll", calculateParallax);

@@ -41,10 +41,8 @@ function init() {
 			}
 		});
 
-		if(OS_IOS) {
-			if(Reminder.isReminderSet(EVENT._id)) {
-				$.Reminder.image = "/images/icon_reminder_active.png";
-			}
+		if(Reminder.isReminderSet(EVENT._id)) {
+			$.Reminder.image = "/images/icon_reminder_active.png";
 		}
 	} else {
 		if(OS_IOS && Alloy.isTablet) {
@@ -62,14 +60,23 @@ function setData(_data) {
 	}
 
 	if(OS_ANDROID) {
-		var height = Forekast.calculateImageFill({
-			width: EVENT.width,
-			height: EVENT.height
-		}, $.Image.rect.width);
+		$.Image.addEventListener("postlayout", function postLayoutListener(_event) {
+			$.Image.removeEventListener("postlayout", postLayoutListener);
 
-		if(height) {
-			$.Image.height = height;
-		}
+			var height = Forekast.calculateImageFill({
+				width: EVENT.width,
+				height: EVENT.height
+			}, $.Image.rect.width);
+
+			if(height) {
+				$.Image.height = height;
+			}
+
+			$.Image.animate({
+				opacity: 1,
+				duration: 100
+			});
+		});
 	}
 
 	$.Image.image = EVENT.mediumUrl;
@@ -123,13 +130,11 @@ function setData(_data) {
 		daysAhead: EVENT.time.daysAhead
 	});
 
-	if(OS_IOS) {
-		// Hide reminder option if event is in the past
-		if(!EVENT.reminder.available) {
-			$.Reminder.visible = false;
-		} else {
-			$.Reminder.opacity = 1;
-		}
+	// Hide reminder option if event is in the past
+	if(!EVENT.reminder.available) {
+		$.Reminder.visible = false;
+	} else {
+		$.Reminder.opacity = 1;
 	}
 }
 
@@ -206,37 +211,25 @@ function extractComments(_data, _depth) {
 function toggleReminder(_event) {
 	// Check if event is still to occur
 	if(EVENT.time.datetime.diff(Moment(), "minutes") > 0) {
-		if(OS_IOS) {
-			if(Reminder.isReminderSet(EVENT._id)) {
-				Reminder.cancelReminder(EVENT._id);
+		if(Reminder.isReminderSet(EVENT._id)) {
+			Reminder.cancelReminder(EVENT._id);
 
-				$.Reminder.image = "/images/icon_reminder.png";
+			$.Reminder.image = "/images/icon_reminder.png";
 
-				return;
-			} else {
-				$.Reminder.image = "/images/icon_reminder_active.png";
-			}
-		}
+			return;
+		} else {
+			$.Reminder.image = "/images/icon_reminder_active.png";
 
-		Reminder.setReminder({
-			id: EVENT._id,
-			name: EVENT.name,
-			time: EVENT.reminder.time,
-			text: EVENT.reminder.text
-		});
-
-		App.logEvent("Event:Remind", {
-			eventId: EVENT._id
-		});
-	} else {
-		// For Android, let them know the reminder wasn't set
-		if(OS_ANDROID) {
-			var toast = Ti.UI.createNotification({
-				message: "This event has already occurred; reminder not set",
-				duration: Ti.UI.NOTIFICATION_DURATION_LONG
+			Reminder.setReminder({
+				id: EVENT._id,
+				name: EVENT.name,
+				time: EVENT.reminder.time,
+				text: EVENT.reminder.text
 			});
 
-			toast.show();
+			App.logEvent("Event:Remind", {
+				eventId: EVENT._id
+			});
 		}
 	}
 }
