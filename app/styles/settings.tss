@@ -1,6 +1,15 @@
-"NavigationWindow": {
+"NavigationWindow[platform=ios formFactor=handheld]": {
+	modal: true
+},
+"NavigationWindow[platform=ios formFactor=tablet]": {
+	modal: false
+},
+"NavigationWindow[platform=android]": {
 	modal: true
 },
 "TableView[platform=ios]": {
 	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+},
+"Window[platform=ios formFactor=tablet]": {
+	hideNavBar: true
 }

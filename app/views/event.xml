@@ -1,5 +1,7 @@
 <Alloy>
 	<Window id="EventWindow">
+		<LeftNavButton platform="ios" formFactor="tablet"><View></View></LeftNavButton>
+		
 		<RightNavButton platform="ios">
 			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
@@ -20,6 +22,7 @@
 				
 				<View class="details">
 					<View class="left">
+						<Label id="Date" platform="ios" formFactor="tablet" />
 						<Label id="Time" />
 						<Label id="Subkast" />
 					</View>
@@ -49,7 +52,7 @@
 			
 			<View id="Comments">
 				<!--
-				// TODO: v1.1
+				// TODO: v1.2
 				<View class="commentBoxWrapper">
 					<TextArea id="CommentBox" value="\nLeave a comment..." />
 				</View>

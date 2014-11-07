@@ -34,7 +34,8 @@ if(OS_IOS) {
 var events = [],
 	upvote_notice,
 	current_date = Moment().format("YYYY-MM-DD"),
-	dateSlider;
+	dateSlider,
+	eventTabletOpened = false;
 
 function init() {
 	$.LoadingIndicator.start();
@@ -107,7 +108,7 @@ function setData(_data) {
 			}
 
 			var controller = Alloy.createController("ui/event_row", {
-				id: event._id
+				event_id: event._id
 			});
 
 			controller.updateViews({
@@ -144,6 +145,16 @@ function setData(_data) {
 			$.Events.add(controller.getView());
 
 			eventCount++;
+
+			if(OS_IOS && Alloy.isTablet && !eventTabletOpened) {
+				var eventWindow = Alloy.createController("event", {
+					event_id: event._id
+				}).getView();
+
+				App.DetailWindow.openWindow(eventWindow);
+
+				eventTabletOpened = true;
+			}
 		}
 
 		if(OS_IOS) {
@@ -173,12 +184,6 @@ function setData(_data) {
 		opacity: 1,
 		duration: 100
 	});
-}
-
-function openSettings() {
-	var SettingsWindow = Alloy.createController("settings").getView();
-
-	SettingsWindow.open();
 }
 
 function onDateChange(_event) {
@@ -234,7 +239,7 @@ $.Events.addEventListener("swipe", function(_event) {
 });
 
 /*
-// TODO: v1.1
+// TODO: v1.2
 $.Events.addEventListener("remind", function(_event) {
 	if(!upvote_notice) {
 		upvote_notice = Alloy.createController("ui/upvote");
@@ -245,7 +250,7 @@ $.Events.addEventListener("remind", function(_event) {
 	upvote_notice.show();
 	
 	App.logEvent("Event:Upvote", {
-		eventId: _event.id
+		eventId: _event.event_id
 	});
 });
 */
@@ -325,7 +330,7 @@ $.ListWindow.addEventListener("open", function() {
 
 	init();
 
-	// TODO: v1.1
+	// TODO: v1.2
 	// App.Push.register();
 });
 

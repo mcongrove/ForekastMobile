@@ -4,7 +4,9 @@ var App = require("core"),
 
 var args = arguments[0] || {};
 
-var itemWidth = (App.Device.width / 2);
+var deviceWidth = Alloy.isTablet && OS_IOS ? 320 : App.Device.width;
+var itemWidth = (deviceWidth / 2);
+
 var date = Moment(),
 	dateEnd = Moment().add(1, "months"),
 	dateDiff = dateEnd.diff(date, "days"),
@@ -15,9 +17,9 @@ function init() {
 		$.DateSlider.width = itemWidth;
 
 		$.DateSlider.hitRect = {
-			width: App.Device.width,
+			width: deviceWidth,
 			height: 44,
-			x: (0 - (App.Device.width / 4)),
+			x: (0 - (deviceWidth / 4)),
 			y: 0
 		};
 	}

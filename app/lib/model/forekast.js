@@ -170,6 +170,7 @@ exports.calculateTimes = function(_event) {
 	_event.time = {
 		datetime: datetime,
 		display: {
+			date: datetime.format("MMMM Do"),
 			time: displayTime,
 			relative: displayRelativeTime
 		},

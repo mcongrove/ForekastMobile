@@ -10,37 +10,46 @@ var App = require("core"),
 var args = arguments[0] || {};
 
 var EVENT = {
-	_id: args.id
+	_id: args.event_id
 };
 
 var upvote_notice;
-// TODO: v1.1
+// TODO: v1.2
 // var reminder = false;
 
 function init() {
-	Forekast.getEventById({
-		id: EVENT._id,
-		success: setData,
-		failure: function() {
-			$.EventWindow.close();
+	if(EVENT._id) {
+		App.EventId = EVENT._id;
 
-			$.EventWindow.addEventListener("open", function(_event) {
+		Forekast.getEventById({
+			id: EVENT._id,
+			success: setData,
+			failure: function() {
 				$.EventWindow.close();
-			});
 
-			var dialog = Ti.UI.createAlertDialog({
-				title: "Event Unavailable",
-				message: Ti.Network.online ? "This event is no longer available for viewing" : "Please check your internet connection",
-				ok: "OK"
-			});
+				$.EventWindow.addEventListener("open", function(_event) {
+					$.EventWindow.close();
+				});
 
-			dialog.show();
+				var dialog = Ti.UI.createAlertDialog({
+					title: "Event Unavailable",
+					message: Ti.Network.online ? "This event is no longer available for viewing" : "Please check your internet connection",
+					ok: "OK"
+				});
+
+				dialog.show();
+			}
+		});
+
+		if(OS_IOS) {
+			if(Reminder.isReminderSet(EVENT._id)) {
+				$.Reminder.image = "/images/icon_reminder_active.png";
+			}
 		}
-	});
-
-	if(OS_IOS) {
-		if(Reminder.isReminderSet(EVENT._id)) {
-			$.Reminder.image = "/images/icon_reminder_active.png";
+	} else {
+		if(OS_IOS && Alloy.isTablet) {
+			$.ScrollView.visible = false;
+			$.Reminder.visible = false;
 		}
 	}
 }
@@ -59,6 +68,7 @@ function setData(_data) {
 	}
 
 	$.Title.text = EVENT.name;
+	$.Date.text = EVENT.time.display.date;
 	$.Time.text = EVENT.time.display.time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
@@ -104,10 +114,12 @@ function setData(_data) {
 		daysAhead: EVENT.time.daysAhead
 	});
 
-	// Hide reminder option if event is in the past
 	if(OS_IOS) {
+		// Hide reminder option if event is in the past
 		if(!EVENT.reminder.available) {
 			$.Reminder.visible = false;
+		} else {
+			$.Reminder.opacity = 1;
 		}
 	}
 }
@@ -124,7 +136,7 @@ function setComments(_data) {
 	var rows = [],
 		comments = [];
 
-	// TODO: v1.1
+	// TODO: v1.2
 	if(_data.length < 1) {
 		$.Comments.backgroundGradient = {};
 
@@ -221,7 +233,7 @@ function toggleReminder(_event) {
 }
 
 /*
-// TODO: v1.1
+// TODO: v1.2
 function toggleReminder(_event) {
 	var picker = Alloy.createController("ui/picker");
 	var selectedValue = reminder === false ? Ti.App.Properties.getInt("ReminderDefault", 0) : reminder;
@@ -284,7 +296,7 @@ function toggleReminder(_event) {
 	picker.open();
 }
 
-// TODO: v1.1
+// TODO: v1.2
 $.Upvote.addEventListener("click", function() {
 	if(!upvote_notice) {
 		upvote_notice = Alloy.createController("ui/upvote");
@@ -299,7 +311,7 @@ $.Upvote.addEventListener("click", function() {
 	});
 });
 
-// TODO: v1.1
+// TODO: v1.2
 $.CommentBox.addEventListener("focus", function(_event) {
 	if($.CommentBox.value == "\nLeave a comment...") {
 		$.CommentBox.value = "";
@@ -308,7 +320,7 @@ $.CommentBox.addEventListener("focus", function(_event) {
 	}
 });
 
-// TODO: v1.1
+// TODO: v1.2
 $.CommentBox.addEventListener("blur", function(_event) {
 	if($.CommentBox.value.length == 0) {
 		$.CommentBox.color = "#3E4252";
@@ -317,21 +329,21 @@ $.CommentBox.addEventListener("blur", function(_event) {
 	}
 });
 
-// TODO: v1.1
+// TODO: v1.2
 $.CommentBox.addEventListener("return", function(_event) {
 	App.logEvent("Event:Comment", {
 		eventId: EVENT._id
 	});
 });
 
-// TODO: v1.1
+// TODO: v1.2
 $.ScrollView.addEventListener("click", function(_event) {
 	$.CommentBox.blur();
 });
 */
 
 $.Share.addEventListener("click", function(_event) {
-	Social.share("https://forekast.com/events/show/" + EVENT._id);
+	Social.share("https://forekast.com/events/show/" + EVENT._id, OS_IOS && Alloy.isTablet ? $.Share : null);
 
 	App.logEvent("Event:Share", {
 		eventId: EVENT._id
@@ -370,5 +382,17 @@ $.EventWindow.addEventListener("open", function(_event) {
 		delay: 250
 	});
 });
+
+$.EventWindow.addEventListener("close", function(_event) {
+	if(App.EventId == EVENT._id) {
+		App.EventId = null;
+	}
+});
+
+if(OS_IOS && Alloy.isTablet && EVENT._id) {
+	$.EventWindow.addEventListener("blur", function(_event) {
+		$.EventWindow.close();
+	});
+}
 
 init();

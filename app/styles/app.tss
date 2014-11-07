@@ -4,21 +4,37 @@
 	backButtonTitle: "",
 	titleAttributes: {
 		color: "#FFF"
-	},
+	}
+},
+"Window[platform=ios formFactor=handheld]": {
 	orientationModes: [
 		Ti.UI.PORTRAIT,
 		Ti.UI.UPSIDE_PORTRAIT
 	]
 },
-"Window[formFactor=tablet]": {
+"Window[platform=ios formFactor=tablet]": {
 	orientationModes: [
-		Ti.UI.PORTRAIT,
-		Ti.UI.UPSIDE_PORTRAIT,
 		Ti.UI.LANDSCAPE_LEFT,
 		Ti.UI.LANDSCAPE_RIGHT
 	]
 },
+"Window[platform=android]": {
+	orientationModes: [
+		Ti.UI.PORTRAIT,
+		Ti.UI.UPSIDE_PORTRAIT
+	]
+},
 "Window[platform=ios]": {
+	statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	navTintColor: "#FFF",
+	tintColor: "#3E4252"
+},
+"NavigationWindow[platform=ios]": {
+	statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	navTintColor: "#FFF",
+	tintColor: "#3E4252"
+},
+"SplitWindow[platform=ios]": {
 	statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	navTintColor: "#FFF",
 	tintColor: "#3E4252"

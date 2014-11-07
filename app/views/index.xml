@@ -1,7 +1,17 @@
 <Alloy>
-	<NavigationWindow id="NavWindow" platform="ios">
+	<NavigationWindow id="NavWindow" platform="ios" formFactor="handheld">
 		<Require id="ListWindow" type="view" src="list" />
 	</NavigationWindow>
+	
+	<SplitWindow id="SplitWindow" platform="ios" formFactor="tablet">
+		<NavigationWindow id="MasterWindow">
+			<Require id="ListWindow" type="view" src="list" />
+		</NavigationWindow>
+		
+		<NavigationWindow id="DetailWindow">
+			<Require id="EventWindow" type="view" src="event" />
+		</NavigationWindow>
+	</SplitWindow>
 	
 	<Require type="view" src="splash" platform="ios" />
 	

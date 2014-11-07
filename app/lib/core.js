@@ -46,13 +46,28 @@ var App = {
 	 * Push notifications library
 	 * @type {Class}
 	 */
-	// TODO: v1.1
+	// TODO: v1.2
 	// Push: require("push"),
 	/**
 	 * Accessor for the main window
 	 * @property {Object}
 	 */
 	MainWindow: null,
+	/**
+	 * Accessor for the master window (tablet only)
+	 * @property {Object}
+	 */
+	MasterWindow: null,
+	/**
+	 * Accessor for the detail window (tablet only)
+	 * @property {Object}
+	 */
+	DetailWindow: null,
+	/**
+	 * The currently opened event ID
+	 * @property {String}
+	 */
+	EventId: null,
 	/**
 	 * Sets up the app singleton and all it's child dependencies.
 	 * **NOTE: This should only be fired in index controller file and only once.**
@@ -94,7 +109,11 @@ var App = {
 	openSettings: function() {
 		var SettingsWindow = Alloy.createController("settings").getView();
 
-		SettingsWindow.open();
+		if(OS_IOS && Alloy.isTablet) {
+			App.MasterWindow.openWindow(SettingsWindow);
+		} else {
+			SettingsWindow.open();
+		}
 	},
 	/**
 	 * Notification event observer

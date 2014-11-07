@@ -141,44 +141,16 @@ if(OS_IOS) {
 	 * @platform iOS
 	 */
 	Social.shareActivityView = function(_url, _view) {
-		var dialog = Ti.UI.createOptionDialog({
-			options: ["Share", "Open in Safari", "Cancel"],
-			cancel: 2,
-			selectedIndex: 2
-		});
-
-		dialog.addEventListener("click", function(_event) {
-			switch(_event.index) {
-				case 0:
-					/*
-					if(APP.Device.name == "IPAD") {
-						module.activityPopover({
-							text: "Check out this event on Forekast " + _url,
-							removeIcons: "print,copy,contact,camera,weibo",
-							view: _view
-						});
-					} else {
-						module.activityView({
-							text: "Check out this event on Forekast " + _url,
-							removeIcons: "print,copy,contact,camera,weibo"
-						});
-					}*/
-					module.activityView({
-						text: "Check out this event on Forekast " + _url,
-						removeIcons: "print,copy,contact,camera,weibo"
-					});
-					break;
-				case 1:
-					Ti.Platform.openURL(_url);
-					break;
-			}
-		});
-
-		if(_view === undefined) {
-			dialog.show();
-		} else {
-			dialog.show({
+		if(OS_IOS && Alloy.isTablet) {
+			module.activityPopover({
+				text: "Check out this event on Forekast " + _url,
+				removeIcons: "print,copy,contact,camera,weibo",
 				view: _view
+			});
+		} else {
+			module.activityView({
+				text: "Check out this event on Forekast " + _url,
+				removeIcons: "print,copy,contact,camera,weibo"
 			});
 		}
 	};

@@ -14,7 +14,8 @@
 	hideShadow: true
 },
 "#Reminder[platform=ios]": {
-	visible: true
+	visible: true,
+	opacity: 0
 },
 ".imageContainer": {
 	top: 0,
@@ -113,6 +114,9 @@
 		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
+"#Title[platform=ios formFactor=tablet]": {
+	top: 188
+},
 ".details": {
 	height: 19,
 	width: Ti.UI.FILL,
@@ -132,6 +136,17 @@
 	height: Ti.UI.FILL,
 	right: 0
 },
+"#Date[platform=ios formFactor=tablet]": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
+	textAlign: "left",
+	color: Alloy.CFG.Color.Bright,
+	font: {
+		fontSize: 14,
+		fontFamily: Alloy.CFG.Font.Bold,
+		fontWeight: "bold"
+	}
+},
 "#Time": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.FILL,
@@ -142,6 +157,9 @@
 		fontFamily: Alloy.CFG.Font.Bold,
 		fontWeight: "bold"
 	}
+},
+"#Time[platform=ios formFactor=tablet]": {
+	left: 5
 },
 "#Subkast": {
 	width: Ti.UI.SIZE,
@@ -162,7 +180,7 @@
 	height: 19,
 	backgroundColor: "transparent",
 	borderColor: Alloy.CFG.Color.Bright,
-	borderWidth: 0.5,
+	borderWidth: 1,
 	borderRadius: 1,
 	color: Alloy.CFG.Color.Bright,
 	font: {

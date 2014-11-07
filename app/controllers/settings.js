@@ -2,7 +2,7 @@
 var App = require("core");
 
 /*
-	// TODO: v1.1
+	// TODO: v1.2
 	{
 		title: "Sign out",
 		action: function() {
@@ -111,7 +111,11 @@ function init() {
 				var detail = Alloy.createController(_event.row.controller).getView();
 
 				if(OS_IOS) {
-					$.NavWindow.openWindow(detail);
+					if(Alloy.isTablet) {
+						App.MasterWindow.openWindow(detail);
+					} else {
+						$.NavWindow.openWindow(detail);
+					}
 				} else {
 					detail.open();
 				}

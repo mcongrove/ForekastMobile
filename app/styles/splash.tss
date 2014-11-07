@@ -5,8 +5,8 @@
 },
 "#Background": {
 	opacity: 0,
-	width: 687,
-	height: 1000
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
 },
 ".container": {
 	top: 60,
