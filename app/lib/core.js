@@ -131,7 +131,7 @@ var App = {
 			dialog.addEventListener("click", function(_event) {
 				if(_event.index === 0) {
 					var event = Alloy.createController("event", {
-						id: _notification.userInfo.eventId
+						event_id: _notification.userInfo.eventId
 					}).getView();
 
 					event.rightNavButton = Ti.UI.createButton({
