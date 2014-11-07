@@ -1,7 +1,8 @@
 {
 	"global": {
 		"AppVersion": 1.1,
-		"CacheDuration": 5
+		"CacheDuration": 5,
+		"StaticDemo": false
 	}, 
 	"env:development": {
 		"Parse": {

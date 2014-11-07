@@ -8,14 +8,29 @@ var Moment = require("alloy/moment"),
  * @param {Function} _params.failure The error callback
  */
 exports.getEventsByDate = function(_params) {
-	var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
+	if(!Alloy.CFG.StaticDemo) {
+		var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
 
-	// Use this data for screenshots
-	/*
-	url: "http://www.mattcongrove.com/forekast/events.php",
-	forceFresh: true,
-	doNotCache: true,
-	*/
+		http.request({
+			url: url,
+			type: "GET",
+			format: "JSON",
+			success: _params.success,
+			failure: _params.failure
+		});
+	} else {
+		var url = "http://www.mattcongrove.com/forekast/events.php";
+
+		http.request({
+			url: url,
+			forceFresh: true,
+			doNotCache: true,
+			type: "GET",
+			format: "JSON",
+			success: _params.success,
+			failure: _params.failure
+		});
+	}
 
 	http.request({
 		url: url,
@@ -33,22 +48,29 @@ exports.getEventsByDate = function(_params) {
  * @param {Function} _params.failure The error callback
  */
 exports.getEventById = function(_params) {
-	var url = "https://forekast.com/events/" + _params.id + ".json";
+	if(!Alloy.CFG.StaticDemo) {
+		var url = "https://forekast.com/events/" + _params.id + ".json";
 
-	// Use this data for screenshots
-	/*
-	url: "http://www.mattcongrove.com/forekast/event.php",
-	forceFresh: true,
-	doNotCache: true,
-	*/
+		http.request({
+			url: url,
+			type: "GET",
+			format: "JSON",
+			success: _params.success,
+			failure: _params.failure
+		});
+	} else {
+		var url = "http://www.mattcongrove.com/forekast/event.php";
 
-	http.request({
-		url: url,
-		type: "GET",
-		format: "JSON",
-		success: _params.success,
-		failure: _params.failure
-	});
+		http.request({
+			url: url,
+			forceFresh: true,
+			doNotCache: true,
+			type: "GET",
+			format: "JSON",
+			success: _params.success,
+			failure: _params.failure
+		});
+	}
 };
 
 /*
@@ -203,6 +225,28 @@ exports.calculateTimes = function(_event) {
 		time: reminderTime,
 		text: reminderText
 	};
+
+	if(Alloy.CFG.StaticDemo) {
+		if(_event._id == "53fdeedf666b773aaf030000") {
+			_event.time = {
+				datetime: datetime,
+				display: {
+					date: "Today",
+					time: "6:02pm",
+					relative: "in 5 hours"
+				},
+				daysAhead: datetime.diff(now, "days")
+			};
+		} else {
+			_event.time.display.date = "Today";
+		}
+
+		_event.reminder = {
+			available: true,
+			time: Moment().add(1, "minute"),
+			text: "In 1 Hour"
+		};
+	}
 
 	return _event;
 };

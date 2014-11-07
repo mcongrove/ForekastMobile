@@ -103,7 +103,9 @@ function setData(_data) {
 				if(event.is_all_day && event.local_date == current_date) {
 					// Weird edge-case; datetime is wrong, but local time is today
 				} else {
-					continue;
+					if(!Alloy.CFG.StaticDemo) {
+						continue;
+					}
 				}
 			}
 
