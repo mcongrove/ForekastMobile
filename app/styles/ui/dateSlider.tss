@@ -1,7 +1,15 @@
+"#Container": {
+	height: 74,
+	backgroundColor: "#2B2D38"
+},
+".background": {
+	height: 30,
+	top: 44,
+	backgroundColor: "#21232B"
+},
 "#DateSlider": {
-	height: 44,
+	height: 74,
 	top: 0,
-	backgroundColor: "#2B2D38",
 	showPagingControl: false
 },
 "#DateSlider[platform=ios]": {

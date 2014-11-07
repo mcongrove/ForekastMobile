@@ -18,36 +18,39 @@ function init() {
 
 		$.DateSlider.hitRect = {
 			width: deviceWidth,
-			height: 44,
+			height: 74,
 			x: (0 - (deviceWidth / 4)),
 			y: 0
 		};
 	}
 
 	for(var i = 0, x = dateDiff; i < x; i++) {
-		var text;
+		var dateText, dayText;
 
 		if(i == 0) {
-			text = "Today";
+			dateText = "Today";
 		} else if(i == 1) {
-			text = "Tomorrow";
+			dateText = "Tomorrow";
 		} else {
-			text = date.format("MMM Do");
+			dateText = date.format("MMM Do");
 		}
+
+		dayText = date.format("dddd");
 
 		var item = Ti.UI.createView({
 			top: 0,
 			width: itemWidth,
-			height: 44
+			height: 74
 		});
 
 		if(i == 0) {
 			selectedView = item;
 		}
 
-		var label = Ti.UI.createLabel({
+		var labelDate = Ti.UI.createLabel({
 			width: Ti.UI.FILL,
 			height: 44,
+			top: 0,
 			textAlign: "center",
 			color: i == 0 ? Alloy.CFG.Color.Bright : "#6E7690",
 			font: {
@@ -55,11 +58,27 @@ function init() {
 				fontFamily: Alloy.CFG.Font.Bold,
 				fontWeight: "bold"
 			},
-			text: text,
+			text: dateText,
 			touchEnabled: false
 		});
 
-		item.add(label);
+		var labelDay = Ti.UI.createLabel({
+			width: Ti.UI.FILL,
+			height: 30,
+			top: 44,
+			textAlign: "center",
+			color: "#6E7690",
+			font: {
+				fontSize: 12,
+				fontFamily: Alloy.CFG.Font.Bold,
+				fontWeight: "bold"
+			},
+			text: dayText,
+			touchEnabled: false
+		});
+
+		item.add(labelDate);
+		item.add(labelDay);
 
 		$.DateSlider.addView(item);
 

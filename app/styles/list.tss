@@ -11,7 +11,7 @@
 "#DateSlider": {
 	top: 0,
 	width: Ti.UI.FILL,
-	height: 44,
+	height: 74,
 	backgroundColor: "#2B2D38",
 	zIndex: 1
 },
@@ -30,7 +30,7 @@
 	zIndex: 1000
 }
 "#Events": {
-	top: 44,
+	top: 74,
 	layout: "vertical",
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,

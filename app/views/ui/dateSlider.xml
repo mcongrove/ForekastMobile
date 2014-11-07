@@ -1,3 +1,7 @@
 <Alloy>
-	<ScrollableView id="DateSlider" />
+	<View id="Container">
+		<View class="background"></View>
+		
+		<ScrollableView id="DateSlider"></ScrollableView>
+	</View>
 </Alloy>
