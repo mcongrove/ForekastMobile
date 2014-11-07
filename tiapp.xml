@@ -36,7 +36,9 @@
             </dict>
         </plist>
     </ios>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+	<android xmlns:android="http://schemas.android.com/apk/res/android">
+		<manifest android:versionCode="110" android:versionName="1.1.0"/>
+	</android>
     <mobileweb>
         <precache/>
         <splash>

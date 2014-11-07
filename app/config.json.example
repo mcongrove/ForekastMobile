@@ -1,6 +1,6 @@
 {
 	"global": {
-		"AppVersion": 1,
+		"AppVersion": 1.1,
 		"CacheDuration": 5
 	}, 
 	"env:development": {

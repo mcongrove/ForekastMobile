@@ -15,7 +15,7 @@
 					When will I be reminded about an event?
 				</Label>
 				<Label class="answer">
-					For all-day events, the night before at 9PM local time.\n\nFor other events, one-hour before the start of the event (unless that event is occuring within the hour, then you'll instead be reminded at the event start time). 
+					For all-day events, the night before at 9PM local time.\n\nFor other events, one-hour before the start of the event (unless that event is occuring within the hour, then you'll instead be reminded at the event start time).\n\nCustom reminder options will be available soon. 
 				</Label>
 			</View>
 				
@@ -41,9 +41,6 @@
 				<Label class="question duplicate">
 					Can I add an event to my phone's calendar?
 				</Label>
-				<Label class="question duplicate">
-					Why doesn't this application work on my tablet device?
-				</Label>
 				<Label class="answer">
 					We're actively working on adding this functionality and hope to release it soon.
 				</Label>
@@ -54,7 +51,7 @@
 					I want to see a day that's more than a month away. Why can't I?
 				</Label>
 				<Label class="answer">
-					To keep this application quick, we've limited the number of days worth of events you can browse to one month.
+					To keep this application quick, we've limited the number of days you can browse to one month.
 				</Label>
 			</View>
 				
@@ -63,7 +60,7 @@
 					My event days / times are incorrect!
 				</Label>
 				<Label class="answer">
-					Please use the "Send Feedback" option in the Settings menu to send us a note; we promise we'll look into it.
+					Please use the Send Feedback option in the Settings menu to send us a note; we promise we'll look into it.
 				</Label>
 			</View>
 		</ScrollView>
