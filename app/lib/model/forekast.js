@@ -276,7 +276,7 @@ exports.calculateImageFill = function(_image, _view) {
 		height = _view;
 	} else {
 		// Edge case
-		return false;
+		height = _view;
 	}
 
 	return height;
