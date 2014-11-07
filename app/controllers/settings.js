@@ -58,24 +58,22 @@ var App = require("core");
 
 var OPTIONS = [];
 
-if(OS_IOS) {
-	OPTIONS.push({
-		title: "Cancel all event reminders",
-		action: function() {
-			var reminder = require("reminder");
+OPTIONS.push({
+	title: "Cancel all event reminders",
+	action: function() {
+		var reminder = require("reminder");
 
-			reminder.cancelAllReminders();
+		reminder.cancelAllReminders();
 
-			var dialog = Ti.UI.createAlertDialog({
-				title: "Reminders Cancelled",
-				message: "All event reminders have been cancelled",
-				ok: "OK"
-			});
+		var dialog = Ti.UI.createAlertDialog({
+			title: "Reminders Cancelled",
+			message: "All event reminders have been cancelled",
+			ok: "OK"
+		});
 
-			dialog.show();
-		}
-	});
-}
+		dialog.show();
+	}
+});
 
 OPTIONS.push({
 	title: "Frequently asked questions",
