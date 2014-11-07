@@ -68,12 +68,15 @@ function setData(_data) {
 	}
 
 	$.Title.text = EVENT.name;
-	$.Date.text = EVENT.time.display.date;
 	$.Time.text = EVENT.time.display.time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);
 	$.UpvoteCount.text = EVENT.upvotes;
 	$.TimeFromNow.text = EVENT.time.display.relative;
 	$.Author.text = "by " + EVENT.user;
+
+	if(OS_IOS && Alloy.isTablet) {
+		$.Date.text = EVENT.time.display.date;
+	}
 
 	var description = Util.linkify(EVENT.description);
 
