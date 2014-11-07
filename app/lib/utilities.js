@@ -46,11 +46,11 @@ var Utilities = {
 	 */
 	calculateImageFill: function(_image, _view) {
 		var height = null;
-	
+
 		if(!_image.width || !_image.height) {
 			return false;
 		}
-	
+
 		if(_image.width > _image.height) {
 			// Landscape
 			height = ((_image.height / _image.width) * _view);
@@ -64,7 +64,7 @@ var Utilities = {
 			// Edge case
 			height = (0.75 * _view);
 		}
-	
+
 		return Math.round(height);
 	},
 	/**

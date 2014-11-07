@@ -23,7 +23,8 @@
 	preventDefaultImage: true
 },
 "#Image[platform=ios]": {
-	width: 113
+	width: 113,
+	opacity: 0
 },
 "#ImageOverlay": {
 	width: 75,

@@ -31,14 +31,6 @@ exports.getEventsByDate = function(_params) {
 			failure: _params.failure
 		});
 	}
-
-	http.request({
-		url: url,
-		type: "GET",
-		format: "JSON",
-		success: _params.success,
-		failure: _params.failure
-	});
 };
 
 /*

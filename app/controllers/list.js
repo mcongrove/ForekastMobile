@@ -133,8 +133,7 @@ function setData(_data) {
 					text: event.upvotes
 				},
 				"#Image": {
-					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl,
-					opacity: OS_IOS ? 0 : 1
+					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl
 				},
 				"#ImageOverlay": {
 					image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
