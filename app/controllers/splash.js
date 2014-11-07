@@ -14,15 +14,15 @@ function animate() {
 
 	var animFadeIn = Ti.UI.createAnimation({
 		opacity: 1,
-		duration: 1000
+		duration: 500
 	});
 
 	var animAstronaut = Ti.UI.createAnimation({
 		right: (App.Device.width + 150),
 		transform: transAstronautEnd,
 		curve: Ti.UI.ANIMATION_CURVE_LINEAR,
-		duration: 3500,
-		delay: 1000
+		duration: Alloy.isHandheld ? 2500 : 3000,
+		delay: 500
 	});
 
 	animAstronaut.addEventListener("complete", complete);
