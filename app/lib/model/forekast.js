@@ -250,34 +250,3 @@ exports.calculateTimes = function(_event) {
 
 	return _event;
 };
-
-/**
- * Performs some image size calculations
- * @param {Object} _image The image size
- * @param {Number} _image.width The image width
- * @param {Number} _image.height The image height
- * @param {Number} _view The width of the container view
- */
-exports.calculateImageFill = function(_image, _view) {
-	var height = null;
-
-	if(!_image.width || !_image.height) {
-		return false;
-	}
-
-	if(_image.width > _image.height) {
-		// Landscape
-		height = ((_image.height / _image.width) * _view);
-	} else if(_image.height > _image.width) {
-		// Portrait
-		height = ((_image.height / _image.width) * _view);
-	} else if(_image.width == _image.height) {
-		// Square
-		height = _view;
-	} else {
-		// Edge case
-		height = (0.75 * _view);
-	}
-
-	return Math.round(height);
-};

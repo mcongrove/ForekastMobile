@@ -8,8 +8,7 @@
 },
 "Window[platform=ios formFactor=handheld]": {
 	orientationModes: [
-		Ti.UI.PORTRAIT,
-		Ti.UI.UPSIDE_PORTRAIT
+		Ti.UI.PORTRAIT
 	]
 },
 "Window[platform=ios formFactor=tablet]": {
@@ -20,8 +19,7 @@
 },
 "Window[platform=android]": {
 	orientationModes: [
-		Ti.UI.PORTRAIT,
-		Ti.UI.UPSIDE_PORTRAIT
+		Ti.UI.PORTRAIT
 	]
 },
 "Window[platform=ios]": {

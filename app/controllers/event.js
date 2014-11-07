@@ -63,7 +63,7 @@ function setData(_data) {
 		$.Image.addEventListener("postlayout", function postLayoutListener(_event) {
 			$.Image.removeEventListener("postlayout", postLayoutListener);
 
-			var height = Forekast.calculateImageFill({
+			var height = Util.calculateImageFill({
 				width: EVENT.width,
 				height: EVENT.height
 			}, $.Image.rect.width);
