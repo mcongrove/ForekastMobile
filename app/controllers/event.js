@@ -345,7 +345,11 @@ $.ScrollView.addEventListener("click", function(_event) {
 */
 
 $.Share.addEventListener("click", function(_event) {
-	Social.share("https://forekast.com/events/show/" + EVENT._id, OS_IOS && Alloy.isTablet ? $.Share : null);
+	Social.share({
+		title: EVENT.name,
+		time: EVENT.time.datetime,
+		url: "http://forekast.com/events/show/" + EVENT._id
+	}, OS_IOS && Alloy.isTablet ? $.Share : null);
 
 	App.logEvent("Event:Share", {
 		eventId: EVENT._id

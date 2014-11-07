@@ -1,3 +1,5 @@
+var Moment = require("alloy/moment");
+
 /**
  * Social sharing library
  * 
@@ -9,13 +11,13 @@ var Social = {
 	 * Opens the sharing menu
 	 * 
 	 * **NOTE: Minimum iOS 6 for ActivityView, otherwise fall back to Twitter and e-mail**
-	 * @param {String} _url The URL to share
+	 * @param {String} _event The event to share
 	 * @param {Object} _view [iOS only] The view to attach the OptionDialog to (required for iPad)
 	 */
-	share: function(_url, _view) {
+	share: function(_event, _view) {
 		if(OS_IOS) {
 			if(Social.activitySupported) {
-				Social.shareActivityView(_url, _view);
+				Social.shareActivityView(_event, _view);
 			} else {
 				var options = [];
 				var mapping = [];
@@ -45,13 +47,13 @@ var Social = {
 				dialog.addEventListener("click", function(_event) {
 					switch(mapping[_event.index]) {
 						case "twitter":
-							Social.twitter(_url);
+							Social.twitter(_event);
 							break;
 						case "email":
-							Social.email(_url);
+							Social.email(_event);
 							break;
 						case "browser":
-							Ti.Platform.openURL(_url);
+							Ti.Platform.openURL(_event.url);
 							break;
 					}
 				});
@@ -70,10 +72,43 @@ var Social = {
 				type: "text/plain"
 			});
 
-			intent.putExtra(Ti.Android.EXTRA_TEXT, "Check out this event on Forekast " + _url);
+			intent.putExtra(Ti.Android.EXTRA_TEXT, Social.format(_event));
 
 			Ti.Android.currentActivity.startActivity(intent);
 		}
+	},
+	/**
+	 * Formats event information for social sharing
+	 * @param {Object} _event Event information to format into a post
+	 * @param {Boolean} _trim Whether to trim the title
+	 */
+	format: function(_event, _trim) {
+		var title = "",
+			now = Moment(),
+			count = 144 - 28 - 11; // Max Tweet - Short URL (+5) as of 11/07/14 - Forekast hashtag
+
+		if(_event.time.diff(now, "hours") < 1) {
+			title += "Now: ";
+		} else if(_event.time.format("YYMMDD") == now.format("YYMMDD")) {
+			title += "At " + _event.time.format("h:mma"); + ": ";
+		} else if(_event.time.format("YYMMDD") == now.clone().add(1, "days").format("YYMMDD")) {
+			title += "Tomorrow: ";
+		} else {
+			title += _event.time.format("MMM Do") + ": ";
+		}
+
+		if(_trim) {
+			count -= title.length;
+
+			title += _event.title.substring(0, count);
+		} else {
+			title += _event.title;
+		}
+
+		title += " #Forekast ";
+		title += _event.url;
+
+		return title;
 	}
 };
 
@@ -106,15 +141,16 @@ if(OS_IOS) {
 
 	/**
 	 * Shares information via e-mail
-	 * @param {String} _url The URL to share
+	 * @param {String} _event The event to share
 	 * @platform iOS
 	 */
-	Social.email = function(_url) {
+	Social.email = function(_event) {
 		if(Social.emailSupported) {
-			var email = Ti.UI.createEmailDialog();
-
-			email.html = true;
-			email.messageBody = "Check out this event on Forekast<br /><br /><a href='" + _url + "'>" + _url + "</a>";
+			var email = Ti.UI.createEmailDialog({
+				html: false,
+				subject: "Check out this event on Forekast",
+				messageBody: Social.format(_event, false)
+			});
 
 			email.open();
 		}
@@ -122,34 +158,34 @@ if(OS_IOS) {
 
 	/**
 	 * Shares information via Twitter
-	 * @param {String} _url The URL to share
+	 * @param {String} _event The event to share
 	 * @platform iOS
 	 */
-	Social.twitter = function(_url) {
+	Social.twitter = function(_event) {
 		if(Social.twitterSupported) {
 			module.twitter({
-				text: "Check out this event on Forekast",
-				url: _url
+				text: Social.format(_event, true),
+				url: _event.url
 			});
 		}
 	};
 
 	/**
 	 * Opens the sharing menu for iOS 6+ users
-	 * @param {String} _url The URL to share
+	 * @param {String} _event The event to share
 	 * @param {Object} _view The view to attach the OptionDialog to (required for iPad)
 	 * @platform iOS
 	 */
-	Social.shareActivityView = function(_url, _view) {
+	Social.shareActivityView = function(_event, _view) {
 		if(OS_IOS && Alloy.isTablet) {
 			module.activityPopover({
-				text: "Check out this event on Forekast " + _url,
+				text: Social.format(_event, true),
 				removeIcons: "print,copy,contact,camera,weibo",
 				view: _view
 			});
 		} else {
 			module.activityView({
-				text: "Check out this event on Forekast " + _url,
+				text: Social.format(_event, true),
 				removeIcons: "print,copy,contact,camera,weibo"
 			});
 		}
