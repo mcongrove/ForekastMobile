@@ -61,12 +61,18 @@ function setData(_data) {
 		EVENT.mediumUrl = "/images/empty_large.png";
 	}
 
-	if(OS_IOS) {
-		$.Image.image = EVENT.mediumUrl;
-	} else {
-		$.Image.backgroundImage = EVENT.mediumUrl;
+	if(OS_ANDROID) {
+		var height = Forekast.calculateImageFill({
+			width: EVENT.width,
+			height: EVENT.height
+		}, $.Image.rect.width);
+
+		if(height) {
+			$.Image.height = height;
+		}
 	}
 
+	$.Image.image = EVENT.mediumUrl;
 	$.Title.text = EVENT.name;
 	$.Time.text = EVENT.time.display.time;
 	$.Subkast.text = Forekast.getSubkastByAbbrev(EVENT.subkast);

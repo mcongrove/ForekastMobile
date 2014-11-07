@@ -27,9 +27,6 @@
 	top: 0,
 	width: Ti.UI.FILL
 },
-"#Image[platform=android]": {
-	backgroundColor: "#000D16"
-},
 ".imageOverlay": {
 	top: 0,
 	width: Ti.UI.FILL,

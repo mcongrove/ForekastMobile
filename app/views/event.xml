@@ -11,8 +11,8 @@
 		</Menu>
 		
 		<View class="imageContainer">
-			<ImageView id="Image" platform="ios" />
-			<View id="Image" platform="android" />
+			<ImageView id="Image" />
+			
 			<View class="imageOverlay" />
 		</View>
 		
@@ -64,6 +64,6 @@
 			</View>
 		</ScrollView>
 		
-		<View class="navbarOverlay" />
+		<View class="navbarOverlay" platform="ios" />
 	</Window>
 </Alloy>

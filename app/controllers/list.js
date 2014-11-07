@@ -134,7 +134,7 @@ function setData(_data) {
 				},
 				"#Image": {
 					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl,
-					opacity: 0
+					opacity: OS_IOS ? 0 : 1
 				},
 				"#ImageOverlay": {
 					image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
