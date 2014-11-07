@@ -133,7 +133,8 @@ function setData(_data) {
 					text: event.upvotes
 				},
 				"#Image": {
-					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl
+					image: event.width == 0 ? "/images/empty.png" : event.mediumUrl,
+					opacity: 0
 				},
 				"#ImageOverlay": {
 					image: (eventCount % 2 == 0) ? "/images/circle_white.png" : "/images/circle_grey.png"
@@ -299,7 +300,8 @@ if(OS_IOS) {
 
 			event.updateViews({
 				"#Image": {
-					top: new_y
+					top: new_y,
+					opacity: 1
 				}
 			});
 		}

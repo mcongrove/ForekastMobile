@@ -15,7 +15,7 @@
 					When will I be reminded about an event?
 				</Label>
 				<Label class="answer">
-					For all-day events, the night before at 9PM local time.\n\nFor other events, one-hour before the start of the event (unless that event is occuring within the hour, then you'll instead be reminded at the event start time).\n\nCustom reminder options will be available soon. 
+					For all-day events, the night before at 9pm local time.\n\nFor other events, one-hour before the start of the event (unless that event is occuring within the hour, then you'll instead be reminded at the event start time).\n\nCustom reminder options will be available soon. 
 				</Label>
 			</View>
 				
