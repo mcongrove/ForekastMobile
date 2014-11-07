@@ -10,18 +10,18 @@ $.Row.addEventListener("click", function(_event) {
 		}
 	}
 
-	var event = Alloy.createController("event", {
+	var eventWindow = Alloy.createController("event", {
 		event_id: args.event_id
 	}).getView();
 
 	if(OS_IOS) {
 		if(Alloy.isHandheld) {
-			App.MainWindow.openWindow(event);
+			App.MainWindow.openWindow(eventWindow);
 		} else {
-			App.DetailWindow.openWindow(event);
+			App.DetailWindow.openWindow(eventWindow);
 		}
 	} else {
-		event.open();
+		eventWindow.open();
 	}
 });
 

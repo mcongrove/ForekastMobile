@@ -130,24 +130,28 @@ var App = {
 
 			dialog.addEventListener("click", function(_event) {
 				if(_event.index === 0) {
-					var event = Alloy.createController("event", {
+					var eventWindow = Alloy.createController("event", {
 						event_id: _notification.userInfo.eventId
 					}).getView();
 
-					event.rightNavButton = Ti.UI.createButton({
-						systemButton: Ti.UI.iPhone.SystemButton.DONE
-					});
+					if(Alloy.isHandheld) {
+						eventWindow.rightNavButton = Ti.UI.createButton({
+							systemButton: Ti.UI.iPhone.SystemButton.DONE
+						});
 
-					var win = Ti.UI.iOS.createNavigationWindow({
-						window: event,
-						modal: true
-					});
+						var win = Ti.UI.iOS.createNavigationWindow({
+							window: eventWindow,
+							modal: true
+						});
 
-					event.rightNavButton.addEventListener("click", function() {
-						win.close();
-					});
+						eventWindow.rightNavButton.addEventListener("click", function() {
+							win.close();
+						});
 
-					win.open();
+						win.open();
+					} else {
+						App.DetailWindow.openWindow(eventWindow);
+					}
 				}
 			});
 
