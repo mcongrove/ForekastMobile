@@ -6,14 +6,14 @@
  * Easier, improved event sharing
  * Updated FAQs
 
-###### iOS
+iOS
 
  * iPad support
  * Smoother animations
  * Prettier splash screen
  * New app icon
 
-###### Android
+Android
 
  * Fixing event images
  * Improved reminder management 
@@ -21,7 +21,7 @@
 
 #### v1.0.1
 
-###### iOS
+iOS
 
  * Fixed reminders bug
 
