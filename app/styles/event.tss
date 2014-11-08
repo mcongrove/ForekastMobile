@@ -13,8 +13,24 @@
 	barImage: "/images/semitransparent.png",
 	hideShadow: true
 },
-"#Reminder[platform=ios]": {
+"Window[platform=ios formFactor=tablet]": {
+	navBarHidden: true
+},
+".reminderOverlay[platform=ios formFactor=tablet]": {
+	height: 65,
+	width: Ti.UI.FILL,
+	top: 0,
+	backgroundImage: "/images/semitransparent.png"
+},
+"#Reminder[platform=ios formFactor=handheld]": {
 	visible: true,
+	opacity: 0
+},
+"#Reminder[platform=ios formFactor=tablet]": {
+	top: 28,
+	right: 18,
+	width: 28,
+	height: 28,
 	opacity: 0
 },
 "#Reminder[platform=android]": {

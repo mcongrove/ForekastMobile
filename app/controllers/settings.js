@@ -66,8 +66,8 @@ OPTIONS.push({
 		reminder.cancelAllReminders();
 
 		var dialog = Ti.UI.createAlertDialog({
-			title: "Reminders Cancelled",
-			message: "All event reminders have been cancelled",
+			title: "Reminders Canceled",
+			message: "All event reminders have been canceled",
 			ok: "OK"
 		});
 

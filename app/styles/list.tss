@@ -39,7 +39,7 @@
 	scrollsToTop: true
 },
 "#Loading": {
-	top: 44,
+	top: 74,
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL,
 	backgroundColor: "#FFF"
