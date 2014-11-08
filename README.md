@@ -49,6 +49,8 @@ You'll also need to install the following modules:
 
  * [StyledLabel](https://github.com/appcelerator/titanium_modules/tree/master/styledlabel) for iOS
  * [TiSocial](https://github.com/viezel/TiSocial.Framework) for iOS
+ * [LocalNotify](https://github.com/benbahrenburg/LocalNotify) for iOS
+ * [AlarmManager](https://github.com/benbahrenburg/benCoding.AlarmManager) for Android
 
 ### Code Standards
 
