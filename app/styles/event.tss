@@ -16,7 +16,7 @@
 "Window[platform=ios formFactor=tablet]": {
 	navBarHidden: true
 },
-".reminderOverlay[platform=ios formFactor=tablet]": {
+".navbarOverlay[platform=ios formFactor=tablet]": {
 	height: 65,
 	width: Ti.UI.FILL,
 	top: 0,
@@ -80,7 +80,7 @@
 ]
 	}
 },
-".navbarOverlay": {
+".statusbarOverlay": {
 	top: 0,
 	height: 40,
 	width: Ti.UI.FILL,

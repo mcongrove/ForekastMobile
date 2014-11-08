@@ -1,7 +1,5 @@
 <Alloy>
 	<Window id="EventWindow">
-		<LeftNavButton platform="ios" formFactor="tablet"><View></View></LeftNavButton>
-		
 		<RightNavButton platform="ios" formFactor="handheld">
 			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
@@ -62,9 +60,9 @@
 			</View>
 		</ScrollView>
 		
-		<View class="navbarOverlay" platform="ios" />
+		<View class="statusbarOverlay" platform="ios" />
 		
-		<View class="reminderOverlay" platform="ios" formFactor="tablet">
+		<View class="navbarOverlay" platform="ios" formFactor="tablet">
 			<ImageView id="Reminder" image="/images/icon_reminder.png" onClick="toggleReminder" />
 		</View>
 	</Window>
