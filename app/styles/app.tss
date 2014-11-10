@@ -53,7 +53,7 @@
 		fontFamily: Alloy.CFG.Font.Regular
 	}
 },
-"Image": {
+"ImageView": {
 	preventDefaultImage: true
 },
 "TableView": {
