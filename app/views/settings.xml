@@ -14,6 +14,8 @@
 	</Window>
 	
 	<Window id="SettingsWindow" title="Settings" platform="android">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeSettings" platform="android"/>
+
 		<TableView id="Table" />
 	</Window>
 </Alloy>
