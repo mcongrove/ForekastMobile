@@ -1,5 +1,7 @@
 <Alloy>
 	<Window id="SettingsFaqWindow" title="FAQ">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeFaq" platform="android"/>
+
 		<ScrollView id="ScrollView">
 			<View class="container">
 				<Label class="question">
