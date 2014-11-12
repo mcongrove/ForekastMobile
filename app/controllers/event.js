@@ -234,6 +234,10 @@ function toggleReminder(_event) {
 	}
 }
 
+function closeEvent() {
+	$.EventWindow.close();
+}
+
 /*
 // TODO: v1.2
 function toggleReminder(_event) {

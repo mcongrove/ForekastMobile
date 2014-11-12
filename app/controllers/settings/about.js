@@ -31,4 +31,8 @@ if(OS_IOS) {
 	});
 }
 
+function closeAbout() {
+	$.SettingsAboutWindow.close();
+}
+
 $.ScrollView.add(label);

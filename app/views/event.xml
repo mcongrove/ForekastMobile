@@ -1,5 +1,7 @@
 <Alloy>
 	<Window id="EventWindow">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeEvent" platform="android"/>
+
 		<RightNavButton platform="ios" formFactor="handheld">
 			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>

@@ -1,5 +1,7 @@
 <Alloy>
 	<Window id="SettingsAboutWindow" title="About">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeAbout" platform="android"/>
+
 		<ScrollView id="ScrollView" />
 	</Window>
 </Alloy>

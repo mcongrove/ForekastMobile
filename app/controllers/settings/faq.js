@@ -1,0 +1,3 @@
+function closeFaq() {
+	$.SettingsFaqWindow.close();
+}

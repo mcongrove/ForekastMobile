@@ -1,5 +1,7 @@
 <Alloy>
 	<Window id="SettingsFeedbackWindow" title="Feedback">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeFeedback" platform="android"/>
+
 		<ScrollView>
 			<View class="fieldWrapper"><TextField id="FieldName" hintText="Your Name" /></View>
 			<View class="fieldWrapper"><TextField id="FieldEmail" hintText="E-mail Address" /></View>
