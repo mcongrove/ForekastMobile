@@ -231,7 +231,9 @@ var App = {
 	 * Logs an analytics event
 	 */
 	logEvent: function(_name, _properties) {
-		App.Parse.event(_name, _properties);
+		if(!ENV_DEV) {
+			App.Parse.event(_name, _properties);
+		}
 	}
 };
 
