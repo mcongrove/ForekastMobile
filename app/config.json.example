@@ -1,6 +1,6 @@
 {
 	"global": {
-		"AppVersion": "1.1",
+		"AppVersion": "1.1.1",
 		"CacheDuration": 5,
 		"StaticDemo": false
 	}, 
@@ -43,6 +43,10 @@
 		},
 		"Color": {
 			"Bright": "#4ED5C3"
+		},
+		"Rating": {
+			"AppId": "926565209",
+			"URL": "itms-apps://itunes.apple.com/app/id"
 		}
 	},
 	"os:ios": {
@@ -54,6 +58,10 @@
 		},
 		"Color": {
 			"Bright": "#33B5E5"
+		},
+		"Rating": {
+			"AppId": "com.mcongrove.forekast",
+			"URL": "market://details?id="
 		}
 	},
 	"os:blackberry": {},
