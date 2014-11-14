@@ -1,5 +1,17 @@
 # Forekast Change Log
 
+#### v1.1.1
+
+ * Improving feedback form
+
+iOS
+
+ * Fixing images for non-retina devices using iOS 7 
+
+Android
+
+ * Adding back button to title bar
+
 #### v1.1.0
 
  * Day-of-week now shown in date slider

@@ -2,7 +2,7 @@
 	<NavigationWindow id="NavWindow" platform="ios" formFactor="handheld">
 		<Window id="SettingsWindow" title="Settings">
 			<RightNavButton>
-				<Button systemButton="Ti.UI.iPhone.SystemButton.DONE" onClick="closeSettings" />
+				<Button title="Done" onClick="closeSettings" />
 			</RightNavButton>
 			
 			<TableView id="Table" />

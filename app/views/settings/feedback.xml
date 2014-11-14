@@ -1,12 +1,33 @@
 <Alloy>
 	<Window id="SettingsFeedbackWindow" title="Feedback">
+		<RightNavButton platform="ios">
+			<Button title="Send" onClick="submitForm" />
+		</RightNavButton>
+		
+		<Menu platform="android">
+			<MenuItem title="Send" showAsAction="Ti.Android.SHOW_AS_ACTION_ALWAYS" onClick="submitForm" />
+		</Menu>
+		
 		<ScrollView>
-			<View class="fieldWrapper"><TextField id="FieldName" hintText="Your Name" /></View>
-			<View class="fieldWrapper"><TextField id="FieldEmail" hintText="E-mail Address" /></View>
-			<View class="fieldWrapper"><TextField id="FieldTwitter" hintText="@twitter" /></View>
-			<View class="fieldWrapper"><TextArea id="FieldMessage" /></View>
+			<View class="field">
+				<Label text="Name" /> <TextField id="FieldName" hintText="Optional" />
+			</View>
 			
-			<Button id="Submit" title="Send Feedback" />
+			<View class="separator" />
+			
+			<View class="field">
+				<Label text="Email" /> <TextField id="FieldEmail" hintText="Optional" />
+			</View>
+			
+			<View class="separator" />
+			
+			<View class="field">
+				<Label text="@Twitter" /> <TextField id="FieldTwitter" hintText="Optional" />
+			</View>
+			
+			<View class="separator" />
+			
+			<TextArea id="FieldMessage" />
 		</ScrollView>
 	</Window>
 </Alloy>

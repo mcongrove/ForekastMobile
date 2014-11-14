@@ -1,13 +1,23 @@
 var Mailgun = require("mailgun");
 
 function submitForm() {
-	var message = "From: " + $.FieldName.value + "\n" + "Email: " + $.FieldEmail.value + "\n" + "Twitter: " + $.FieldTwitter.value + "\n" + "Message: " + $.FieldMessage.value + "\n";
+	if($.FieldMessage.value.length > 0) {
+		var message = "From: " + $.FieldName.value + "\n" + "Email: " + $.FieldEmail.value + "\n" + "Twitter: " + $.FieldTwitter.value + "\n" + "Message: " + $.FieldMessage.value + "\n";
 
-	Mailgun.sendMail({
-		message: message,
-		success: onSuccess,
-		failure: onError
-	});
+		Mailgun.sendMail({
+			message: message,
+			success: onSuccess,
+			failure: onError
+		});
+	} else {
+		var dialog = Ti.UI.createAlertDialog({
+			title: "Missing Fields",
+			message: "Please fill out the comments field with your feedback.",
+			ok: "OK"
+		});
+
+		dialog.show();
+	}
 }
 
 function onSuccess() {
@@ -33,5 +43,3 @@ function onError() {
 
 	dialog.show();
 }
-
-$.Submit.addEventListener("click", submitForm);

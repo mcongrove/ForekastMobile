@@ -90,6 +90,31 @@ OPTIONS.push({
 	controller: "settings/feedback"
 });
 
+OPTIONS.push({
+	title: "Send us love",
+	action: function() {
+		var dialog = Ti.UI.createAlertDialog({
+			title: "Rate Forekast",
+			message: "If you enjoy using Forekast, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!",
+			buttonNames: [
+				"Not Now",
+				"Rate Forekast"
+			],
+			cancel: 0
+		});
+
+		dialog.addEventListener("click", function(_event) {
+			if(_event.index == 1) {
+				var url = Alloy.CFG.Rating.URL + Alloy.CFG.Rating.AppId;
+
+				Ti.Platform.openURL(url);
+			}
+		});
+
+		dialog.show();
+	}
+});
+
 function init() {
 	var rows = [];
 
