@@ -8,6 +8,8 @@
 			<MenuItem title="Send" showAsAction="Ti.Android.SHOW_AS_ACTION_ALWAYS" onClick="submitForm" />
 		</Menu>
 		
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" platform="android" />
+
 		<ScrollView>
 			<View class="field">
 				<Label text="Name" /> <TextField id="FieldName" hintText="Optional" />

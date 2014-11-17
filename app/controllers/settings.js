@@ -155,7 +155,7 @@ function init() {
 	$.Table.setData(rows);
 }
 
-function closeSettings() {
+function closeWindow() {
 	if(OS_IOS) {
 		$.NavWindow.close();
 	} else {

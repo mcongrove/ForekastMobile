@@ -4,6 +4,8 @@
 			<ImageView id="Reminder" image="/images/icon_reminder.png" width="28" height="28" onClick="toggleReminder" />
 		</RightNavButton>
 		
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" platform="android" />
+		
 		<View class="imageContainer">
 			<ImageView id="Image" />
 			

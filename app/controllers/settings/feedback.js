@@ -43,3 +43,9 @@ function onError() {
 
 	dialog.show();
 }
+
+function closeWindow() {
+	$.SettingsFeedbackWindow.close();
+}
+
+$.Submit.addEventListener("click", submitForm);

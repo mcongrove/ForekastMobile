@@ -32,3 +32,7 @@ if(OS_IOS) {
 }
 
 $.ScrollView.add(label);
+
+function closeWindow() {
+	$.SettingsAboutWindow.close();
+}

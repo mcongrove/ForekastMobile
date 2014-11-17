@@ -2,7 +2,7 @@
 	<NavigationWindow id="NavWindow" platform="ios" formFactor="handheld">
 		<Window id="SettingsWindow" title="Settings">
 			<RightNavButton>
-				<Button title="Done" onClick="closeSettings" />
+				<Button title="Done" onClick="closeWindow" />
 			</RightNavButton>
 			
 			<TableView id="Table" />
@@ -14,6 +14,8 @@
 	</Window>
 	
 	<Window id="SettingsWindow" title="Settings" platform="android">
+		<ActionBar displayHomeAsUp="true" onHomeIconItemSelected="closeWindow" />
+
 		<TableView id="Table" />
 	</Window>
 </Alloy>
