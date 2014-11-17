@@ -47,5 +47,3 @@ function onError() {
 function closeWindow() {
 	$.SettingsFeedbackWindow.close();
 }
-
-$.Submit.addEventListener("click", submitForm);
