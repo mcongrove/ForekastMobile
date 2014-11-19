@@ -1,6 +1,6 @@
 <Alloy>
-	<NavigationWindow id="NavWindow" platform="ios" formFactor="handheld">
-		<Window id="SettingsWindow" title="Settings">
+	<NavigationWindow id="SettingsWindow" platform="ios" formFactor="handheld">
+		<Window title="Settings">
 			<RightNavButton>
 				<Button title="Done" onClick="closeWindow" />
 			</RightNavButton>

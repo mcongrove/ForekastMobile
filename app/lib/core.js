@@ -136,7 +136,7 @@ var App = {
 
 					if(Alloy.isHandheld) {
 						eventWindow.rightNavButton = Ti.UI.createButton({
-							systemButton: Ti.UI.iPhone.SystemButton.DONE
+							title: "Done"
 						});
 
 						var win = Ti.UI.iOS.createNavigationWindow({

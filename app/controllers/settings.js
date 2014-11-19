@@ -156,11 +156,7 @@ function init() {
 }
 
 function closeWindow() {
-	if(OS_IOS) {
-		$.NavWindow.close();
-	} else {
-		$.SettingsWindow.close();
-	}
+	$.SettingsWindow.close();
 }
 
 init();
