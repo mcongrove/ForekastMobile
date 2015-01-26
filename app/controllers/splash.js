@@ -60,7 +60,17 @@ function close() {
 if(ENV_DEV) {
 	$.SplashWindow.addEventListener("open", close);
 } else {
-	$.SplashWindow.addEventListener("open", animate);
+	var current_date = Moment().format("YYYY-MM-DD");
+	var splash_date = Ti.App.Properties.getString("SplashDate", current_date);
+	var diff = current_date.diff(splash_date, "days");
+
+	Ti.App.Properties.setString("SplashDate", current_date);
+
+	if(diff > 7) {
+		$.SplashWindow.addEventListener("open", animate);
+	} else {
+		$.SplashWindow.addEventListener("open", close);
+	}
 }
 
 $.SplashWindow.open();
