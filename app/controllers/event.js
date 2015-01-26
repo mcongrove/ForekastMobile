@@ -10,7 +10,7 @@ var App = require("core"),
 var args = arguments[0] || {};
 
 var EVENT = {
-	_id: args.event_id
+	id: args.id
 };
 
 var upvote_notice;
@@ -18,11 +18,11 @@ var upvote_notice;
 // var reminder = false;
 
 function init() {
-	if(EVENT._id) {
-		App.EventId = EVENT._id;
+	if(EVENT.id) {
+		App.EventId = EVENT.id;
 
 		Forekast.getEventById({
-			id: EVENT._id,
+			id: EVENT.id,
 			success: setData,
 			failure: function() {
 				$.EventWindow.close();
@@ -41,7 +41,7 @@ function init() {
 			}
 		});
 
-		if(Reminder.isReminderSet(EVENT._id)) {
+		if(Reminder.isReminderSet(EVENT.id)) {
 			$.Reminder.image = "/images/icon_reminder_active.png";
 		}
 	} else {
@@ -53,6 +53,8 @@ function init() {
 }
 
 function setData(_data) {
+	_data = _data.response;
+
 	EVENT = Forekast.calculateTimes(_data);
 
 	if(EVENT.width == 0) {
@@ -126,7 +128,7 @@ function setData(_data) {
 	getComments();
 
 	App.logEvent("Event:Open", {
-		eventId: EVENT._id,
+		eventId: EVENT.id,
 		daysAhead: EVENT.time.daysAhead
 	});
 
@@ -140,13 +142,15 @@ function setData(_data) {
 
 function getComments() {
 	Forekast.getCommentsByEventId({
-		id: EVENT._id,
+		id: EVENT.id,
 		success: setComments,
 		failure: setComments
 	});
 }
 
 function setComments(_data) {
+	_data = _data.response;
+
 	var rows = [],
 		comments = [];
 
@@ -211,8 +215,8 @@ function extractComments(_data, _depth) {
 function toggleReminder(_event) {
 	// Check if event is still to occur
 	if(EVENT.time.datetime.diff(Moment(), "minutes") > 0) {
-		if(Reminder.isReminderSet(EVENT._id)) {
-			Reminder.cancelReminder(EVENT._id);
+		if(Reminder.isReminderSet(EVENT.id)) {
+			Reminder.cancelReminder(EVENT.id);
 
 			$.Reminder.image = "/images/icon_reminder.png";
 
@@ -221,14 +225,14 @@ function toggleReminder(_event) {
 			$.Reminder.image = "/images/icon_reminder_active.png";
 
 			Reminder.setReminder({
-				id: EVENT._id,
+				id: EVENT.id,
 				name: EVENT.name,
 				time: EVENT.reminder.time,
 				text: EVENT.reminder.text
 			});
 
 			App.logEvent("Event:Remind", {
-				eventId: EVENT._id
+				eventId: EVENT.id
 			});
 		}
 	}
@@ -289,7 +293,7 @@ function toggleReminder(_event) {
 				$.Reminder.image = "/images/icon_reminder_active.png";
 				
 				App.logEvent("Event:Remind", {
-					eventId: EVENT._id
+					eventId: EVENT.id
 				});
 			}
 		}
@@ -313,7 +317,7 @@ $.Upvote.addEventListener("click", function() {
 	upvote_notice.show();
 	
 	App.logEvent("Event:Upvote", {
-		eventId: EVENT._id
+		eventId: EVENT.id
 	});
 });
 
@@ -338,7 +342,7 @@ $.CommentBox.addEventListener("blur", function(_event) {
 // TODO: v1.2
 $.CommentBox.addEventListener("return", function(_event) {
 	App.logEvent("Event:Comment", {
-		eventId: EVENT._id
+		eventId: EVENT.id
 	});
 });
 
@@ -352,11 +356,11 @@ $.Share.addEventListener("click", function(_event) {
 	Social.share({
 		title: EVENT.name,
 		time: EVENT.time.datetime,
-		url: "http://forekast.com/events/show/" + EVENT._id
+		url: "http://forekast.com/events/" + EVENT.id
 	}, OS_IOS && Alloy.isTablet ? $.Share : null);
 
 	App.logEvent("Event:Share", {
-		eventId: EVENT._id
+		eventId: EVENT.id
 	});
 });
 
@@ -394,12 +398,12 @@ $.EventWindow.addEventListener("open", function(_event) {
 });
 
 $.EventWindow.addEventListener("close", function(_event) {
-	if(App.EventId == EVENT._id) {
+	if(App.EventId == EVENT.id) {
 		App.EventId = null;
 	}
 });
 
-if(OS_IOS && Alloy.isTablet && EVENT._id) {
+if(OS_IOS && Alloy.isTablet && EVENT.id) {
 	$.EventWindow.addEventListener("blur", function(_event) {
 		$.EventWindow.close();
 	});

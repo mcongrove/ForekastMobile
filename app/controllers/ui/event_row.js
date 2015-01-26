@@ -5,13 +5,13 @@ var args = arguments[0] || {};
 
 $.Row.addEventListener("click", function(_event) {
 	if(OS_IOS && Alloy.isTablet) {
-		if(args.event_id == App.EventId) {
+		if(args.id == App.EventId) {
 			return;
 		}
 	}
 
 	var eventWindow = Alloy.createController("event", {
-		event_id: args.event_id
+		id: args.id
 	}).getView();
 
 	if(OS_IOS) {
@@ -29,7 +29,7 @@ $.Row.addEventListener("click", function(_event) {
 // TODO: v1.2
 $.Upvotes.addEventListener("click", function(_event) {
 	$.Row.fireEvent("remind", {
-		id: args.event_id
+		id: args.id
 	});
 });
 */

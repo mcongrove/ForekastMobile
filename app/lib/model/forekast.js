@@ -1,6 +1,8 @@
 var Moment = require("alloy/moment"),
 	http = require("http");
 
+var apiUrl = "https://staging.forekast.com/api/1/";
+
 /*
  * Gets events for a specific date
  * @param {String} _params.date The date in YYYY-MM-DD format
@@ -9,7 +11,7 @@ var Moment = require("alloy/moment"),
  */
 exports.getEventsByDate = function(_params) {
 	if(!Alloy.CFG.StaticDemo) {
-		var url = "https://forekast.com/api/events/eventsByDate.json?" + "&subkasts[]=TV" + "&subkasts[]=TVM" + "&subkasts[]=SE" + "&subkasts[]=ST" + "&subkasts[]=TE" + "&subkasts[]=HAW" + "&subkasts[]=PRP" + "&subkasts[]=HA" + "&subkasts[]=EDU" + "&subkasts[]=MA" + "&subkasts[]=ART" + "&subkasts[]=GM" + "&subkasts[]=OTH" + "&country=" + Ti.Locale.getCurrentCountry() + "&datetime=" + _params.date + " 00:00:00" + "&zone_offset=" + Moment().zone();
+		var url = apiUrl + "events?country=" + Ti.Locale.getCurrentCountry() + "&time_zone=America/Chicago&on_date=" + Moment(_params.date).format("YYYY-MM-DD");
 
 		http.request({
 			url: url,
@@ -41,7 +43,7 @@ exports.getEventsByDate = function(_params) {
  */
 exports.getEventById = function(_params) {
 	if(!Alloy.CFG.StaticDemo) {
-		var url = "https://forekast.com/events/" + _params.id + ".json";
+		var url = apiUrl + "events/" + _params.id;
 
 		http.request({
 			url: url,
@@ -72,7 +74,7 @@ exports.getEventById = function(_params) {
  * @param {Function} _params.failure The error callback
  */
 exports.getCommentsByEventId = function(_params) {
-	var url = "https://forekast.com/api/events/" + _params.id + "/comments.json?skip=0";
+	var url = apiUrl + "events/" + _params.id + "/comments";
 
 	http.request({
 		url: url,
@@ -142,38 +144,15 @@ exports.getSubkastByAbbrev = function(_abbrev) {
 exports.calculateTimes = function(_event) {
 	var datetime = Moment(_event.datetime),
 		now = Moment(),
-		userOffset = now.zone(),
 		displayTime,
 		displayRelativeTime,
 		reminderTime,
 		reminderText;
 
-	if(_event.time_format == "tv_show") {
-		var hour = _event.local_time.split(":")[0],
-			isDST = Moment(_event.local_date).isDST(),
-			eastOffset,
-			westOffset;
-
-		displayTime = hour + "/" + (parseInt(hour, 10) - 1) + "c";
-
-		if(isDST) {
-			eastOffset = "-0400";
-			westOffset = 360;
-		} else {
-			eastOffset = "-0500";
-			westOffset = 420;
-		}
-
-		datetime = Moment(_event.local_date + " " + _event.local_time + " " + eastOffset, "YYYY-MM-DD h:mm A Z");
-
-		if(userOffset >= westOffset) {
-			datetime = datetime.subtract(2, "hours");
-		}
-
+	if(_event.eastern_tv_show) {
+		displayTime = _event.eastern_tv_time;
 		displayRelativeTime = datetime.fromNow();
 	} else if(_event.is_all_day) {
-		datetime = Moment(_event.datetime.split("T")[0] + " 12:00", "YYYY-MM-DD HH:mm");
-
 		displayTime = "All Day";
 		displayRelativeTime = "";
 	} else {
@@ -191,15 +170,7 @@ exports.calculateTimes = function(_event) {
 		daysAhead: datetime.diff(now, "days")
 	};
 
-	if(_event.time_format == "tv_show") {
-		if(datetime.diff(now, "hours") < 2) {
-			reminderTime = datetime;
-			reminderText = "Happening Now";
-		} else {
-			reminderTime = datetime.clone().subtract(1, "hours");
-			reminderText = "In 1 Hour";
-		}
-	} else if(_event.is_all_day) {
+	if(_event.is_all_day) {
 		reminderTime = datetime.clone().subtract(1, "days").hour(21);
 		reminderText = "Tomorrow";
 	} else {
@@ -219,7 +190,7 @@ exports.calculateTimes = function(_event) {
 	};
 
 	if(Alloy.CFG.StaticDemo) {
-		if(_event._id == "53fdeedf666b773aaf030000") {
+		if(_event.id == "53fdeedf666b773aaf030000") {
 			_event.time = {
 				datetime: datetime,
 				display: {

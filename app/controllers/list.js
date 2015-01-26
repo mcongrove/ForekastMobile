@@ -88,6 +88,8 @@ function getData() {
 }
 
 function setData(_data) {
+	_data = _data.response;
+
 	$.Events.removeAllChildren();
 
 	events = [];
@@ -110,7 +112,7 @@ function setData(_data) {
 			}
 
 			var controller = Alloy.createController("ui/event_row", {
-				event_id: event._id
+				id: event.id
 			});
 
 			controller.updateViews({
@@ -150,7 +152,7 @@ function setData(_data) {
 
 			if(OS_IOS && Alloy.isTablet && !eventTabletOpened) {
 				var eventWindow = Alloy.createController("event", {
-					event_id: event._id
+					id: event.id
 				}).getView();
 
 				App.DetailWindow.openWindow(eventWindow);
@@ -252,7 +254,7 @@ $.Events.addEventListener("remind", function(_event) {
 	upvote_notice.show();
 	
 	App.logEvent("Event:Upvote", {
-		eventId: _event.event_id
+		id: _event.id
 	});
 });
 */

@@ -185,8 +185,6 @@ var Parse = {
 			url: Parse.url + "events/" + _name.replace(" ", ""),
 			headers: headers,
 			success: function(_response) {
-				Ti.API.debug("Analytic pushed");
-
 				if(_callback) {
 					_callback({
 						success: _response
@@ -207,9 +205,9 @@ var Parse = {
 		if(!_data) {
 			_data = {};
 		}
-		
+
 		_data.os = OS_IOS ? "ios" : "android";
-		
+
 		payload.data = JSON.stringify({
 			dimensions: _data
 		});
